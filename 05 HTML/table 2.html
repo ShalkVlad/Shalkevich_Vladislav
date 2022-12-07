@@ -4,11 +4,102 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forms</title>
+    <title>Anceta</title>
 </head>
-<body>  
-  <table>
- 
-  </table>
+<body>    
+<table>
+  <h1>Заполните анкету</h1>  
+  <form action=" http://fe.it-academy.by/TestForm.php" method="post"> 
+  <fieldset>
+    <legend>   Личные данные    </legend> 
+      <input type="text" pattern=" \S, \W " autofocus lang="ru" maxlength="25" placeholder="Фамилия" required=""><br>
+      <input type="text" pattern=" \S, \W " lang="ru" maxlength="20" placeholder="Имя" required=""><br>
+      <input type="text" pattern=" \S, \W " lang="ru" maxlength="24" placeholder="Отчество" required=""><br>
+  <fieldset>      
+    <legend>   Паспортные данные    </legend> 
+      <input type="text" pattern="[A-Z]" minlength="2" maxlength="2" placeholder="АА" required="">
+      <input type="text" pattern="[0-9]" minlength="7" maxlength="7" placeholder="1234567" required="">
+  </fieldset>
+  <fieldset>
+    <legend>   Дата рождения   </legend> 
+      <input type="text" pattern="[0-9]" minlength="4"  maxlength="4" placeholder="2000" required=""><br>
+        <select name="list" id="list">
+        <option value="1">Январь</option>
+        <option value="2">Февраль</option>
+        <option value="3">Март</option>
+        <option value="4">Апрель</option>
+        <option value="5">Май</option>
+        <option value="6">Июнь</option>
+        <option value="7">Июль</option>
+        <option value="8">Август</option>
+        <option value="9">Сентябрь</option>
+        <option value="10">Октябрь</option>
+        <option value="11">Ноябрь</option>
+        <option value="12">Декабрь</option>
+        </select><br>
+      <input type="number" min="1" max="31" step="1" pattern="[0-9]" maxlength="2" required="">
+  </fieldset>     
+    <select name="list" id="list">
+      <option value="1">РБ</option>
+      <option value="2">РФ</option>
+      <option value="3">УКР</option>
+    </select><br>
+    Адрес:<br>
+    <textarea name="report" lang="rus"></textarea>   
+  </form>  
+  </fieldset> 
+  <form action=" http://fe.it-academy.by/TestForm.php" method="post"> 
+  <fieldset>      
+    <legend>   Интересы   </legend>
+  <fieldset>   
+    <legend>   array: Хобби   </legend> 
+    <input type="radio" name = "ansver1"> Рыбалка<br>
+    <input type="radio" name = "ansver2"> Астраномия<br>
+    <input type="radio" name = "ansver3"> Дайвинг<br>
+    <input type="radio" name = "ansver4"> Марки<br>
+  </fieldset>
+  <fieldset>      
+      <legend>   Домашние животные   </legend> 
+          <select multiple id="list" name="list" size="12" >
+          <optgroup label="Попугаи">
+          <option value="1">Волнистый</option>
+          <option value="2">Ара</option>
+          <option value="3">Неразлучники</option>
+          </optgroup>
+          <optgroup label="Рыба">
+          <option value="4">Короси</option>
+          <option value="5">Окуни</option>
+          <option value="6">Осётр</option>
+          </optgroup>
+          <optgroup label="Птицы">
+          <option value="7">Стаи ворон</option>
+          <option value="8">Аист</option>
+          <option value="9">Археоптерикс</option>
+          </optgroup>
+          </select>  
+  </fieldset>
+</fieldset> 
+<fieldset>  
+<form action=" http://fe.it-academy.by/TestForm.php" method="post">     
+  <legend>   Данные для входа и восстановления пароля   </legend>
+  <input type="text" maxlength="20" pattern=" \S, \w " minlength="5" placeholder="Логин" required=""><br>
+  <input type="text" maxlength="20" pattern=" \S, \w " autocomplete="off" minlength="10" placeholder="Пароль" required="">
+</fieldset>
+<fieldset>  
+    <legend>  Координаты  </legend>
+    <input type="email" placeholder="введите адрес почты"> <br>
+    <input type="url" placeholder="введите адрес сайта">
+  </fieldset>
+  <fieldset>  
+    <legend>   Цифры   </legend>
+      <input type="number" min="-2.5" max="2.5" step="0.1" ><br>
+      <input type="range" max="10" min="1">
+    </fieldset>
+    <fieldset>  
+      <legend>   кнопки управления   </legend>
+        <input type="submit" value="Отправить">
+        <input type="submit" value="Сбросить"><br>
+        <input type="image" src="email.jpg">
+      </fieldset></form>
 </body>
 </html>

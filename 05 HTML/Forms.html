@@ -23,7 +23,7 @@
     <td><form action=" http://fe.it-academy.by/TestForm.php" method="post">  
         <h4>Простая форма поиска с вариантами:</h4><fieldset>
             <legend>   Cтрока поиска:   </legend>
-            <input type="text" maxlength="10" placeholder="Обязательное поле" required="">* <input type="submit" value="Искать"><br>
+            <input type="text" maxlength="10" placeholder="Обязательное поле" required="">* <input autofocus type="submit" value="Искать"><br>
             <label>
             <input type="radio" name="sait"> на сайте
             <input type="radio" name="Google"> в google<br>
@@ -86,8 +86,21 @@
                     <option value="5">Рязань</option>
                 <option value="6">Магадан</option>
                 </optgroup>
-                </select>               
-                <input type="submit" value="Ок">
+                </select>   
+                <select name="list" id="list" multiple size="9">             
+                <optgroup label="Города РБ">
+                    <option value="1">Брест</option>
+                    <option value="2">Минск</option>
+                    <option value="3">Витебск</option>
+                </optgroup>
+                <optgroup label="Города России">
+                    <option value="4">Москва</option>
+                    <option value="5">Рязань</option>
+                <option value="6">Магадан</option>
+                </optgroup>
+                </select>      
+                
+                    <input type="submit" value="Ок">
         </fieldset></form>
     </td>
     </tr>
