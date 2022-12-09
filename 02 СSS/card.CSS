@@ -1,0 +1,11 @@
+.card {
+    border: 10px ridge silver;
+    background-color: darkgrey;
+    padding: .5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.card img {
+    width: 100%;
+}
