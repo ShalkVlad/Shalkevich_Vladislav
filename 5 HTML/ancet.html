@@ -12,17 +12,17 @@
   <form action=" http://fe.it-academy.by/TestForm.php" method="post"> 
   <fieldset>
     <legend>   Личные данные    </legend> 
-      <input type="text" pattern=" \S, \W " autofocus lang="ru" maxlength="25" placeholder="Фамилия" required="Только русские буквы"><br>
-      <input type="text" pattern=" \S, \W " lang="ru" maxlength="20" placeholder="Имя" required="Только русские буквы"><br>
-      <input type="text" pattern=" \S, \W " lang="ru" maxlength="24" placeholder="Отчество" required="Только русские буквы"><br>
+      <input type="text" pattern=" \S, \W " name="fam" autofocus lang="ru" maxlength="25" placeholder="Фамилия" required="Только русские буквы"><br>
+      <input type="text" pattern=" \S, \W " name="name" lang="ru" maxlength="20" placeholder="Имя" required="Только русские буквы"><br>
+      <input type="text" pattern=" \S, \W " name="lastn" lang="ru" maxlength="24" placeholder="Отчество" required="Только русские буквы"><br>
   <fieldset>      
     <legend>   Паспортные данные    </legend> 
-      <input type="text" pattern="[A-Z]" minlength="2" maxlength="2" placeholder="АА" required="Серия паспорта">
-      <input type="text" pattern="[0-9]" minlength="7" maxlength="7" placeholder="1234567" required=" Номер паспорта">
+      <input type="text" pattern="[A-Z]" minlength="2" name="ser" maxlength="2" placeholder="АА" required="Серия паспорта">
+      <input type="text" pattern="[0-9]" minlength="7" name="numb" maxlength="7" placeholder="1234567" required=" Номер паспорта">
   </fieldset>
   <fieldset>
     <legend>   Дата рождения   </legend> 
-      <input type="text" pattern="[0-9]" minlength="4"  maxlength="4" placeholder="2000" required="Год рождения"><br>
+      <input type="text" pattern="[0-9]" minlength="4" name="yer" maxlength="4" placeholder="2000" required="Год рождения"><br>
         <select name="list" id="list">
         <option value="1">Январь</option>
         <option value="2">Февраль</option>
@@ -37,7 +37,7 @@
         <option value="11">Ноябрь</option>
         <option value="12">Декабрь</option>
         </select><br>
-      <input type="number" min="1" max="31" step="1" pattern="[0-9]" maxlength="2" required="День вашего рождения">
+      <input type="number" min="1" max="31" step="1" name="data" pattern="[0-9]" maxlength="2" required="День вашего рождения">
   </fieldset>     
     <select name="list" id="list">
       <option value="1">РБ</option>
