@@ -1,33 +1,72 @@
-.menu ul {
-    list-style: none;
-    margin: 0;
-    padding-left: 0;
-    margin-top:25px;
-    background:#819A32;
-    height: 50px;
+.menu {
+	display: flex;
+    height: auto;
     width: 100%;
-    display: inline-block;
-}
-menu li {
+    background-color: #666;
     list-style: none;
-    float:left; 
-    background:#819A32;
-    padding:0px 15px;
-    line-height:50px;
-    -moz-transition: all 0.3s 0.01s ease; 
-    -o-transition: all 0.3s 0.01s ease;
-    -webkit-transition: all 0.3s 0.01s ease;
+	position: 0;
+	padding-left: 0;
+  }
+  .menu a {
+    display: block;
+	padding: 10px;
+    color: #fff;
+    border-bottom: 1px solid darkblue;
+    transition: 0.5s all;
+    text-decoration: none;
+  }
+.menu a:hover { 
+  background: rgb(221, 12, 12); 
+  padding: 10px 0 10px 20px
 }
-     
-  li > ul {
-    position:absolute;
-    top:25px;
-    display:none;   
-    } 
-    li:hover > ul {
-        display:block; 
-        width:250px;      
-    }
-    li:hover > ul > li {
-        float:none;
-    }
+.menu_list{
+  position: relative;
+}
+.sub{
+background-color: #666;
+position: absolute;
+width: 100%;
+top: 100%;
+opacity: 0;
+transition: 0.5s opacity;
+list-style: none;
+padding-left: 0;
+}
+.menu_list:hover .sub {opacity: 1 ;}
+
+@media screen and (max-width: 1000px) {
+.menu {
+	flex-direction: column;
+	height: auto;
+	width: 200px;
+	background-color: #666;
+	list-style: none;
+	}
+.menu a {
+	display: block;
+	padding: 10px;
+	color: #fff;
+	border-bottom: 1px solid darkblue;
+	transition: 0.5s all;
+	text-decoration: none;
+	}
+.menu a:hover { 
+	background: rgb(221, 12, 12); 
+	padding: 10px 0 10px 20px
+}
+.menu_list{
+	position: relative;
+}
+.sub{
+background-color: #666;
+position: absolute;
+width: 100%;
+left: 100%;
+top: 0;
+opacity: 0;
+transition: 0.5s opacity;
+border-left: 10px solid transparent ;
+list-style: none;
+}
+.menu_list:hover .sub {opacity: 1 ;}
+}
