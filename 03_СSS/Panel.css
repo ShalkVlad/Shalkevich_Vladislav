@@ -65,8 +65,8 @@ left: 100%;
 top: 0;
 opacity: 0;
 transition: 0.5s opacity;
-border-left: 10px solid transparent ;
 list-style: none;
+border-left: 10px solid cornsilk;
 }
 .menu_list:hover .sub {opacity: 1 ;}
 }
