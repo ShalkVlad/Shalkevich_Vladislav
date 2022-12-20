@@ -2,7 +2,6 @@ th{
    border: 0px ;
    padding-left: 85px;
    padding-bottom: 100px;
-   position: relative ;
 }
 tr:nth-child(odd) th:nth-child(odd) {
     background-color: black;
