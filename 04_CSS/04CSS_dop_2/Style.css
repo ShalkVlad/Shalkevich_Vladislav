@@ -1,9 +1,8 @@
 table{
-    border: 3px;
     counter-reset: list 65;
+    outline: auto;
 }
 th{
-   border: 0px ;
    padding-left: 85px;
    padding-bottom: 100px;
    counter-increment: list -1; 
