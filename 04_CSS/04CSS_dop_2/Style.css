@@ -1,0 +1,30 @@
+table{
+    border: 3px;
+    counter-reset: list 65;
+}
+th{
+   border: 0px ;
+   padding-left: 85px;
+   padding-bottom: 100px;
+   counter-increment: list -1; 
+}
+tr:nth-child(odd) th:nth-child(odd) {
+    background-color: black;
+}
+ 
+tr:nth-child(even) th:nth-child(even) {
+    background-color: black;    
+}
+th:before{ 
+    content: counter(list ) ;
+    color: white;
+    font-size: 100px;
+    margin-left: -80%;}
+tr:nth-child(odd) th:nth-child(even):before{ 
+    content: counter(list ) ;
+    color: black;
+}
+tr:nth-child(even) th:nth-child(odd):before{ 
+    content: counter(list ) ;
+    color: black;
+}
