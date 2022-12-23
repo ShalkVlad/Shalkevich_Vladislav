@@ -5,17 +5,22 @@
    <meta http-equiv="content-type" content="text/html; charset=utf-8">
    <title>Рамка</title>
    <style>
-   #multibackground {
-   background-image: url("t.png"),url("r.png"),url("l.png"),url("r-t.png"),url("r-b.png"),url("l-b.png"),url("l-t.png"),;
-   background-position: left top, left top;
-   background-repeat: no-repeat, repeat;
-   padding: 75px;
-   background-size: 50px, 130px, auto;
-}
+   div {
+   width:80%; 
+   padding:2.5em;
+   background: 
+  	url("l-t.png") no-repeat top left,
+  	url("r-t.png") no-repeat top right,
+  	url("l-b.png") no-repeat bottom left,
+  	url("r-b.png") no-repeat bottom right,
+  	url("l.png") repeat-y left,  
+  	url("t.png") repeat-x top, 
+  	url("r.png") repeat-y right, 
+  	url("b.png") repeat-x bottom;}
 </style>
  </head>
  <body>
-   <div id="multibackground">
+   <div>
       <img src="Crs.jpg" style="padding-left: 300px; width: 700px;">
       <p style="text-align: center;">От всего сердца поздравляю с Новым годом!<br> 
       Желаю, всего самого доброго, светлого и прекрасного. Пусть исполняются самые заветные желания.<br> 
