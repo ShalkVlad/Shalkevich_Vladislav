@@ -1,0 +1,11 @@
+body{
+    width: 1000px;
+    border: none;
+}
+table{
+    width: 100%;
+}
+.lev{
+    width: 350px;
+    float: left;
+}

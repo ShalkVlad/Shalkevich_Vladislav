@@ -1,0 +1,26 @@
+
+th{
+    border: dotted;
+    border-left: none;
+    border-top: none ;
+    border-color:darkgray;
+    text-align: none ;
+}
+td{
+    border: dotted;
+    border-left: none;
+    border-top: none ;
+    border-color:darkgray;
+}
+table{
+    top: 0;
+    border: none;
+    background-color: blanchedalmond;
+}
+tr:hover { 
+	background-color: blueviolet;
+    transition: 0.5s all;
+}
+caption{
+caption-side: bottom;
+}
