@@ -1,0 +1,229 @@
+   @import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+
+  * {
+    font-family: 'Michroma', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+. left{
+text-align left}
+
+.auto{
+ padding-left: 20px;
+}
+
+body {
+  background: beige;
+  color: gray;
+}
+
+footer {
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin-top: 15%
+}
+
+.col-md-6 {
+  flex: 1 1 50%;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+
+}
+
+p {
+  font-size: 1em;
+  margin: 0;
+
+}
+img {
+display: block;
+  margin: 0 auto;
+  max-width: 100%
+}
+
+.col-md-6 {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%
+  width: 50%;
+
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  background-color: beige;
+  list-style: none;
+  position: relative;
+  padding-left: 0;
+}
+
+.menu a {
+  display: block;
+  padding: 10px;
+  color: gray;
+  border-bottom: 1px solid darkblue;
+  transition: 0.5s all;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  background: rgb(221, 12, 12);
+  padding: 10px 5px 10px 20px;
+  color: white;
+}
+
+.menu_list{
+  position: se;
+}
+
+.sub {
+  background-color: beige;
+  position: absolute;
+  width: auto;
+  top: 100%;
+  opacity: 0;
+  transition: 0.5s opacity;
+  list-style: none;
+  padding-left: 0;
+}
+
+.menu_list:hover .sub {
+  opacity: 1;
+}
+.auth-block a {
+  display: block;
+  padding: 10px;
+  color: gray;
+  border-bottom: 1px solid darkblue;
+  transition: 0.5s all;
+  text-decoration: none;
+}
+
+.auth-block {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: block;
+  padding: 10px;
+  color: gray;
+}
+
+.auth-block a:hover {
+  background: rgb(221, 12, 12);
+  padding: 10px 5px 10px 20px;
+  color: white;
+}
+
+.auth-block a:hover {
+  color: blue;
+}
+
+
+.icons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.telegram {
+  z-index: 2;
+}
+
+.instagram {
+  z-index: 1;
+}
+
+.icons img:hover {
+  transform: scale(1.2);
+}
+
+
+@media screen and (max-width: 1000px) {
+  .menu {
+   margin-left: 20px;
+   position: fixed;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    height: auto;
+    width: 200px;
+    background-color: beige;
+    list-style: none;
+  }
+
+ .icons {
+  position: fixed;
+  max-width: 100%;
+  height: auto;
+}
+
+ body {   margin-left: 35%;
+
+
+.icons {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .menu a {
+    display: block;
+    padding: 10px;
+    color: gray;
+    border-bottom: 1px solid darkblue;
+    transition: 0.5s all;
+    text-decoration: none;
+    text-align: left;
+    display: block;
+    padding: 10px;
+    color: gray;
+    border-bottom: 1px solid darkblue;
+    transition: 0.5s all;
+    text-decoration: none;
+  }
+
+  .menu a:hover {
+    background: rgb(221, 12, 12);
+    padding: 10px 0 10px 20px;
+  }
+
+  .menu_list {
+    position: relative;
+  }
+
+  .sub {
+    background: beige;
+    position: absolute;
+    width: auto;
+    left: 100%;
+    top: 0;
+    opacity: 0;
+    transition: 0.5s opacity;
+    list-style: none;
+    border-left: 40px solid  beige;
+    ;
+  }
+
+  .menu_list:hover .sub {
+    opacity: 1;
+  }
+}
