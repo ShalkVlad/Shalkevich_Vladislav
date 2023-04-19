@@ -1,0 +1,8 @@
+{% for comment in comments %}
+    <div class="comment">
+        <p><strong>{{ comment.name }}</strong> - {{ comment.created_date }}</p>
+        <p>{{ comment.comment }}</p>
+    </div>
+{% empty %}
+    <p>Нет комментариев</p>
+{% endfor %}

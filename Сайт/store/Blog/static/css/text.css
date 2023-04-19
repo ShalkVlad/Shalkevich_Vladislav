@@ -1,0 +1,174 @@
+<div class="container">
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap');
+
+  footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.rating {
+  margin-bottom: 20px;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+textarea.form-control {
+  height: auto;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.btn-primary:focus,
+.btn-primary.focus {
+  color: #fff;
+  background-color: #0069d9;
+  border-color: #0062cc;
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+  outline: 0;
+}
+
+.btn-primary:active,
+.btn-primary.active {
+  color: #fff;
+  background-color: #0062cc;
+  border-color: #005cbf;
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+.btn-primary:disabled,
+.btn-primary.disabled {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  opacity: 0.65;
+}
+
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+.text-frame {
+   margin-top: 10%;
+   border: 1px solid #ccc;
+  padding: 10px;
+}
+
+  .center {
+    text-align: center;
+    margin-top: 10%;
+  }
+
+  h1 {
+  text-align: center;
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 0.5em;
+  }
+
+  p {
+      text-align: center;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.2em;
+    line-height: 1.5em;
+    color: #666;
+    margin-bottom: 1.5em;
+  }
+
+  ol {
+    font-size: 1.2em;
+    line-height: 1.5em;
+    color: #666;
+    margin-bottom: 1.5em;
+  }
+
+  li {
+    margin-bottom: 0.5em;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .center {
+      text-align: center;
+    }
+  }
+
+  * {
+    font-family: 'Cinzel Decorative', cursive;
+  }
+
+ img {
+  max-width: 100%;
+  height: auto;
+}
+
+.left {
+  float: left;
+}
+.right {
+  float: right;
+  margin-right: 0;
+  margin-left: 10px;
+}
+
+.center {
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text {
+  clear: both;
+  margin-top: 10px;
+}

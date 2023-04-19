@@ -1,0 +1,28 @@
+{% extends 'hello/panel.html' %}
+{% load static %}
+{% block styles %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/reg.css' %}">
+  <style>
+     @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+{% endblock %}
+{% block content %}
+  <h2>Форма регистрации</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="button">Register</button>
+  </form>
+{% endblock %}
+{% block scripts %}
+  <script src="{% static 'js/reg.js' %}"></script>
+{% endblock %}

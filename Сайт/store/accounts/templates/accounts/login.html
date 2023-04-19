@@ -1,0 +1,33 @@
+{% extends 'hello/panel.html' %}
+{% load static %}
+{% block styles %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/logins.css' %}">
+{% endblock %}
+{% block title %}<title> Авторизация </title>{% endblock %}
+{% block content %}
+<div class="form-wrapper">
+  <form method="post">
+    {% csrf_token %}
+    <h1>Авторизация</h1>
+    {% if form.non_field_errors %}
+      <div class="error-message">{{ form.non_field_errors }}</div>
+    {% endif %}
+    <div class="form-group{% if form.username.errors %} has-error{% endif %}">
+      {{ form.username.label_tag }}
+      {{ form.username }}
+      {% if form.username.errors %}
+        <div class="error-message">{{ form.username.errors }}</div>
+      {% endif %}
+    </div>
+    <div class="form-group{% if form.password.errors %} has-error{% endif %}">
+      {{ form.password.label_tag }}
+      {{ form.password }}
+      {% if form.password.errors %}
+        <div class="error-message">{{ form.password.errors }}</div>
+      {% endif %}
+    </div>
+    <button type="submit">Войти</button>
+    <p>Еще не зарегистрированы? <a href="{% url 'register' %}">Зарегистрироваться</a></p>
+  </form>
+</div>
+{% endblock %}
