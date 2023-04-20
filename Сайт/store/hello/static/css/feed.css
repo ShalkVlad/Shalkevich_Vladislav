@@ -1,0 +1,81 @@
+.form-contact {
+  background-color: #f2f2f2;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: slideUp 1s ease-in-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.form-contact h2 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.form-contact textarea,
+.form-contact input[type="text"],
+.form-contact input[type="email"] {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #999;
+  color: #333;
+  font-size: 16px;
+  padding: 20px;
+  width: 50%;
+  margin-bottom: 30px;
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.form-contact textarea {
+  height: 200px;
+}
+
+.form-contact input[type="text"]:focus,
+.form-contact input[type="email"]:focus,
+.form-contact textarea:focus {
+  outline: none;
+  border-bottom: 2px solid #ff4b2b;
+}
+
+.form-contact input[type="text"]:focus::placeholder,
+.form-contact input[type="email"]:focus::placeholder,
+.form-contact textarea:focus::placeholder {
+  color: transparent;
+}
+
+.form-contact input[type="text"]::placeholder,
+.form-contact input[type="email"]::placeholder,
+.form-contact textarea::placeholder {
+  color: #999;
+}
+
+.button-contactForm {
+  background-color: #ff4b2b;
+  display: inline-block;
+  vertical-align: middle;
+  transition: all 0.3s ease-in-out;
+}
+
+.button-contactForm:hover {
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+.col-12{
+  text-align: center;
+}
