@@ -54,14 +54,15 @@
   </nav>
  <div class="auth-block">
 {% if user.is_authenticated %}
+    <p>Добро пожаловать, {{ user.username }}!</p>
     <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
+        <input type="hidden" name="next" value="{% url 'hello' %}">
         <button type="submit">Выйти</button>
     </form>
 {% else %}
     <a href="{% url 'login' %}">Войти</a>
 {% endif %}
-
 </div>
 <div class="icons">
   <a href="https://t.me/PhysioGnomySBOT">

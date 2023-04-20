@@ -2,10 +2,11 @@ from django.urls import path
 from accounts.views import user_login
 from hello.views import hello
 from . import views
+from django.contrib.auth.views import LogoutView
 
 
 urlpatterns = [
-
+    path('logout/', LogoutView.as_view(next_page='hello'), name='logout'),
     path('', hello, name='hello'),
     path('login/', user_login, name='login'),
     path('Fiziognomika/', views.fiziognomika, name='fiziognomika'),

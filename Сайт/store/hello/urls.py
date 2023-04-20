@@ -5,7 +5,7 @@ from accounts import views
 from .views import hello, feedback, parsing_order
 
 urlpatterns = [
-    path('logout/', LogoutView.as_view(), name='logout'),
+    path('logout/', LogoutView.as_view(next_page='hello'), name='logout'),
     path('', hello, name='hello'),
     path('login/', views.user_login, name='login'),
     path('login/register/', views.signup, name='register'),
