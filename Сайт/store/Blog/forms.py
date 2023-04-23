@@ -1,10 +1,14 @@
-from django.forms import ModelForm
-from .models import Comments
+from django import forms
+from .models import Comment
 
 
-class CommentForm(ModelForm):
-    """Форма комментариев к статьям
-    """
+class CommentForm(forms.ModelForm):
     class Meta:
-        model = Comments
-        fields = ('text', )
+        model = Comment
+        fields = ['name', 'comment', 'rating', 'post_id']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
+            'comment': forms.Textarea(attrs={'class': 'form-control', 'required': True}),
+            'rating': forms.Select(attrs={'class': 'form-control', 'required': True}),
+            'post_id': forms.HiddenInput(),
+        }

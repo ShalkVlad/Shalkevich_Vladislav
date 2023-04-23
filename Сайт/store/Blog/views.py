@@ -1,6 +1,15 @@
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from .forms import CommentForm
+
+
+def post_detail(request, post_id):
+    form = CommentForm(request.POST or None, initial={'post_id': post_id})
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        form = CommentForm(initial={'post_id': post_id})
+    return render(request, 'post_detail.html', {'form': form})
 
 
 class CustomLoginView(LoginView):
