@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Real Estate</title>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no"/>
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+<!-- Stylesheet  -->
+<link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
+<!-- Jquery Start  -->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<!-- Rating Star  -->
+<script type="text/javascript" src="js/jquery.rateit.js"></script>
+<!-- Navigation  -->
+<script type="text/javascript" src="js/superfish.js"></script>
+<script type="text/javascript" src="js/jquery.responsivemenu.js"></script>
+<script type="text/javascript" src="js/jquery.mobilemenu.js"></script>
+<!-- Hover Effect  -->
+<script type="text/javascript" src="js/jquery.hoverIntent.minified.js"></script>
+<!-- Easing  -->
+<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+<!-- Camera Slider  -->
+<script type="text/javascript" src="js/camera.js"></script>
+<!-- Accordion  -->
+<script type="text/javascript" src="js/accordion.js"></script>
+<!-- Tabs  -->
+<script type="text/javascript" src="js/tabs.js"></script>
+<!-- Carsoule  -->
+<script type="text/javascript" src="js/jquery.carouFredSel-6.1.0-packed.js"></script>
+<!-- A gallery optimized for touch devices  -->
+<script type="text/javascript" src="js/touchTouch.jquery.js"></script>
+<script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
+<!-- forms  -->
+<script type="text/javascript" src="js/forms.js"></script>
+<!-- Portfolio -->
+<script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+<script type="text/javascript" src="js/jquery.quicksand.js"></script>
+<script type="text/javascript" src="js/filter_setting.js"></script>
+<!-- Custom  -->
+<script type="text/javascript" src="js/custom.js"></script>
+<!--[if (gt IE 9)|!(IE)]><!-->
+<script type="text/javascript" src="js/jquery.mobile.customized.min.js"></script>
+<!--<![endif]-->
+<script>
+  	$(window).load( function(){	
+	  jQuery('.magnifier').touchTouch();								
+    });
+</script>
+<!--[if lt IE 9]>
+   	<script type="text/javascript" src="js/html5.js"></script>
+   	<link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
+<![endif]-->
+</head>
+<body>
+<!--============================== Header ================================-->
+<header class="pad0">
+  <div class="container_12">
+    <!-- Logo  -->
+    <div class="grid_12">
+      <!-- Navigation  -->
+      <div class="menu_block">
+        <nav>
+          <ul class="sf-menu">
+      </div>
+    </div>
+  </div>
+</header>
+<!-- top image  -->
+<div class="row-1">
+  <div class="container_12">
+    <!-- Search  -->
+    <div class="grid_12">
+      <h2>Блог</h2>
+    </div>
+  </div>
+</div>
+<!-- top search  -->
+<div class="row-2">
+  <div class="container_12">
+    <!-- Search  -->
+    <div class="grid_12">
+            <div class="d3">
+                <form>
+                    <input type="text" id="text-to-find" value="">
+                    <input type="button" onclick="javascript: FindOnPage('text-to-find'); return false;" value="Искать"/>
+                </form>
+                </div>
+
+                <script type="text/javascript">
+                    var lastResFind=""; // последний удачный результат
+                    var copy_page=""; // копия страницы в ихсодном виде
+                    function TrimStr(s) {
+                         s = s.replace( /^\s+/g, '');
+                      return s.replace( /\s+$/g, '');
+                    }
+                    function FindOnPage(inputId) {//ищет текст на странице, в параметр передается ID поля для ввода
+                      var obj = window.document.getElementById(inputId);
+                      var textToFind;
+                     
+                      if (obj) {
+                        textToFind = TrimStr(obj.value);//обрезаем пробелы
+                      } else {
+                        alert("Введенная фраза не найдена");
+                        return;
+                      }
+                      if (textToFind == "") {
+                        alert("Вы ничего не ввели");
+                        return;
+                      }
+                     
+                      if(document.body.innerHTML.indexOf(textToFind)=="-1")
+                      alert("Ничего не найдено, проверьте правильность ввода!");
+                     
+                      if(copy_page.length>0)
+                            document.body.innerHTML=copy_page;
+                      else copy_page=document.body.innerHTML;
+                    
+                     
+                      document.body.innerHTML = document.body.innerHTML.replace(eval("/name="+lastResFind+"/gi")," ");//стираем предыдущие якори для скрола
+                      document.body.innerHTML = document.body.innerHTML.replace(eval("/"+textToFind+"/gi"),"<a name="+textToFind+" style='background:red'>"+textToFind+"</a>"); //Заменяем найденный текст ссылками с якорем;
+                      lastResFind=textToFind; // сохраняем фразу для поиска, чтобы в дальнейшем по ней стереть все ссылки
+                      window.location = '#'+textToFind;//перемещаем скрол к последнему найденному совпадению
+                     }
+                    </script>
+
+                   
+                    
+                  
+<!--==============================content================================-->
+<div class="main_bg">
+  <section class="content">
+    <div class="container_12">
+      <div class="wrapper">
+        <article class="grid_8">
+          <div class="post-border-right">
+            <article class="post-holder box1 b3">
+              <div>
+                <div class="date"> <span class="day">14</span> <span class="month">July</span> </div>
+                <h2 class="entry-title fleft"><a href="#">Новая современная отделка </a></h2>
+                <div class="post-meta">
+                  <div class="fleft"><i class="icon-user"></i> <a href="#">owltemplates </a> <i class="icon-eye-open"></i> <a href="#">16 Views</a> <i class="icon-comments-alt"></i> <a href="#">25 Comments</a> <i class="icon-tag"></i> <a href="#">property,</a> <a href="#">freehold,</a> <a href="#">open house</a> </div>
+                </div>
+                <!--.post-meta-->
+              </div>
+              <figure class="ident-bot-2"><a class="img_inner" href="#"><img src="images/blog/post1.jpg"></a></figure>
+              <p class="ident-bot-2">Современные технологии дают большой простор в выборе материалов для оформления жилья. Рассказываем, какие варианты наиболее актуальны и в чем преимущества или недостатки </p>
+              <a class="button-black p1" href="blog-single.html">Продолжить чтение</a>
+              <div class="addthis_toolbox addthis_pill_combo"> <a class="addthis_button_google_plusone" g:plusone:size="medium"></a> <a class="addthis_button_tweet" tw:count="horizontal"></a> <a class="addthis_button_facebook_like"></a> </div>
+            </article>
+            <div class="clear"></div>
+            <article class="post-holder box1 b3">
+              <div>
+                <div class="date"> <span class="day">14</span> <span class="month">July</span> </div>
+                <h2 class="entry-title fleft"><a href="#">Компания Envato приобрела недвижимость в Чижовке</a></h2>
+                <div class="post-meta">
+                  <div class="fleft"><i class="icon-user"></i> <a href="#">owltemplates </a> <i class="icon-eye-open"></i> <a href="#">16 Views</a> <i class="icon-comments-alt"></i> <a href="#">25 Comments</a> <i class="icon-tag"></i> <a href="#">property,</a> <a href="#">freehold,</a> <a href="#">open house</a> </div>
+                </div>
+                <!--.post-meta-->
+              </div>
+              <figure class="sidebar-blog-video ident-bot-2"><a class="img_inner" href="#">
+                <iframe src="http://player.vimeo.com/video/7449107?title=0&amp;byline=0&amp;portrait=0&amp;color=8A9B0F" width="568" height="332" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                </a></figure>
+              <p class="ident-bot-2">Envato — австралийская интернет-компания, которая управляет 8-ю интернет-ресурсами, ориентированными на продажу контента в разных отраслях, например, шаблоны для веб-дизайна, графические элементы, видеофутажи, аудиоджинглы, 3D-модели ... </p>
+              <a class="button-black p1" href="blog-single.html">Продолжить чтение</a>
+              <div class="addthis_toolbox addthis_pill_combo"> <a class="addthis_button_google_plusone" g:plusone:size="medium"></a> <a class="addthis_button_tweet" tw:count="horizontal"></a> <a class="addthis_button_facebook_like"></a> </div>
+            </article>
+            <div class="clear"></div>
+            <article class="post-holder box1 b3">
+              <div>
+                <div class="date"> <span class="day">14</span> <span class="month">July</span> </div>
+                <h2 class="entry-title fleft"><a href="#">Как стиль оформить кухню</a></h2>
+                <div class="post-meta">
+                  <div class="fleft"><i class="icon-user"></i> <a href="#">owltemplates </a> <i class="icon-eye-open"></i> <a href="#">16 Views</a> <i class="icon-comments-alt"></i> <a href="#">25 Comments</a> <i class="icon-tag"></i> <a href="#">property,</a> <a href="#">freehold,</a> <a href="#">open house</a> </div>
+                </div>
+                <!--.post-meta-->
+              </div>
+              <figure class="ident-bot-2"><a class="img_inner" href="#"><img alt="" src="images/blog/post2.jpg"></a></figure>
+              <p class="ident-bot-2">В доме каждая комната должна быть обустроена таким образом, чтобы в ней гармонично соединились красота и комфорт. Особенно это касается кухни, в которой готовят, едят и отдыхают все жители дома. Задумавшись над вопросом «как оформить кухню», следует сначала все распланировать каждую мелочь, вплоть до декоративных элементов, и только после этого приступать к переделке... </p>
+              <a class="button-black p1" href="blog-single.html">Продолжить чтение</a>
+              <div class="addthis_toolbox addthis_pill_combo"> <a class="addthis_button_google_plusone" g:plusone:size="medium"></a> <a class="addthis_button_tweet" tw:count="horizontal"></a> <a class="addthis_button_facebook_like"></a> </div>
+            </article>
+            <div class="clear"></div>
+            <article class="post-holder box1 b3">
+              <div>
+                <div class="date"> <span class="day">14</span> <span class="month">July</span> </div>
+                <h2 class="entry-title fleft"><a href="#">О стиле "Лофт"</a></h2>
+                <div class="post-meta">
+                  <div class="fleft"><i class="icon-user"></i> <a href="#">owltemplates </a> <i class="icon-eye-open"></i> <a href="#">16 Views</a> <i class="icon-comments-alt"></i> <a href="#">25 Comments</a> <i class="icon-tag"></i> <a href="#">property,</a> <a href="#">freehold,</a> <a href="#">open house</a> </div>
+                </div>
+                <!--.post-meta-->
+              </div>
+              <figure class="ident-bot-2"><a class="img_inner" href="#"><img alt="" src="images/blog/post3.jpg"></a></figure>
+              <p class="ident-bot-2">«Лофт», появившись относительно недавно, стремительно завоевал высокую популярность и широкое распространение в сфере оформления интерьеров. Одной из причин этого является его универсальность. Лофт-стиль прекрасно подходит и для небольших квартир-студий, и для оформления достаточно просторных апартаментов, и для обустройства офисных помещений. Максимальная функциональность при сравнительно небольших затратах и минимуме излишеств – все это в полной мере отвечает современным требованиям, существующим сегодня тенденциям и общей международной моде... </p>
+              <a class="button-black p1" href="blog-single.html">Продолжить чтение</a>
+              <div class="addthis_toolbox addthis_pill_combo"> <a class="addthis_button_google_plusone" g:plusone:size="medium"></a> <a class="addthis_button_tweet" tw:count="horizontal"></a> <a class="addthis_button_facebook_like"></a> </div>
+            </article>
+            <div class="clear"></div>
+            <div class="pagination fright">
+              <ul>
+                <li class="disabled"><a href="#">«</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">»</a></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</div>
+<!--==============================footer=================================-->
+<footer class="main-wrapper main-wrapper-shadow">
+  <div class="footer-1">
+    <div class="container_12">
+      <div class="wrapper">
+        <!-- Text Widget & SOCIABLE -->
+        <div class="grid_3">
+          <!--Text Widget-->
+          <h2>Контакты</h2>
+          <p>Свяжитесь с нами и мы быстро и профессионально окажем полную помощь по всем интересующим Вас услугам сразу и бесплатно. </p>
+          <address>
+          <dl>
+            <dd><span>Телефон:</span> +375291561240</dd>
+            <dd><span>E-mail:</span> <a href="#" class="link-1"> Nedvizhimost@mail.ru</a></dd>
+          </dl>
+          </address>
+        </div>
+        <!-- Links -->
+        <div class="grid_3">
+          <!--Text Widget-->
+          <h2>Виды недвижимости</h2>
+          <ul class="list1">
+            <li><a href="#">1-комнатные квартиры </a></li>
+            <li><a href="#">Квартиры для семьи </a></li>
+            <li><a href="#">Апартаменты </a></li>
+            <li><a href="#">Виллы </a></li>
+            <li><a href="#">Коттеджи </a></li>
+            <li><a href="#">Другие </a></li>
+          </ul>
+        </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-2">
+    <div class="container_12">
+      <div class="wrapper">
+        <div class="grid_12">
+          <div class="policy">Real-Estate - лучшее агентство по недвижимости &copy; 2022 <a href="#">Privacy Policy</a></div>
+        </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

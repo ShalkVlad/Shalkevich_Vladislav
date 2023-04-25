@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Real Estate</title>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no"/>
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+<!-- Stylesheet  -->
+<link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
+<!-- Jquery Start  -->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<!-- Rating Star  -->
+<script type="text/javascript" src="js/jquery.rateit.js"></script>
+<!-- Navigation  -->
+<script type="text/javascript" src="js/superfish.js"></script>
+<script type="text/javascript" src="js/jquery.responsivemenu.js"></script>
+<script type="text/javascript" src="js/jquery.mobilemenu.js"></script>
+<!-- Hover Effect  -->
+<script type="text/javascript" src="js/jquery.hoverIntent.minified.js"></script>
+<!-- Easing  -->
+<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+<!-- Camera Slider  -->
+<script type="text/javascript" src="js/camera.js"></script>
+<!-- Accordion  -->
+<script type="text/javascript" src="js/accordion.js"></script>
+<!-- Tabs  -->
+<script type="text/javascript" src="js/tabs.js"></script>
+<!-- Carsoule  -->
+<script type="text/javascript" src="js/jquery.carouFredSel-6.1.0-packed.js"></script>
+<!-- A gallery optimized for touch devices  -->
+<script type="text/javascript" src="js/touchTouch.jquery.js"></script>
+<script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
+<!-- forms  -->
+<script type="text/javascript" src="js/forms.js"></script>
+<!-- Portfolio -->
+<script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+<script type="text/javascript" src="js/jquery.quicksand.js"></script>
+<script type="text/javascript" src="js/filter_setting.js"></script>
+<!-- Custom  -->
+<script type="text/javascript" src="js/custom.js"></script>
+<!--[if (gt IE 9)|!(IE)]><!-->
+<script type="text/javascript" src="js/jquery.mobile.customized.min.js"></script>
+<!--<![endif]-->
+<script>
+    $(document).ready(function(){
+      jQuery('#camera_wrap').camera({
+        loader: false,
+        pagination: true,
+        thumbnails: false,
+        height: '452px',
+        caption: false,
+        navigation: false,
+        fx: 'random'
+      });   
+	});
+   
+  $(window).load (
+    function(){$('.carousel1').carouFredSel({auto: false, prev: '.prev1',next: '.next1', width: 186, items: {
+      visible : {min: 2,
+       max: 3
+},
+height: 'auto',
+ width: 110,
+
+    }, responsive: true, 
+    
+    scroll: 1, 
+    
+    mousewheel: false,
+    
+    swipe: {onMouse: true, onTouch: true}});
+    
+    } ); 
+
+  	$(window).load( function(){	
+	  jQuery('.magnifier').touchTouch();								
+    });
+
+     </script>
+<!--[if lt IE 9]>
+   	<script type="text/javascript" src="js/html5.js"></script>
+   	<link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
+<![endif]-->
+</head>
+<body class="home_page">
+<!--============================== Header ================================-->
+<header class="pad0">
+  <div class="container_12">
+    <!-- Logo  -->
+    <div class="grid_12">
+      <h1><a href="index.html"><img src="images/logo.png" alt="Real Estate"></a> </h1>
+      <!-- Navigation  -->
+      <div class="menu_block">
+        <nav>
+          <ul class="sf-menu">
+            <li class="current"><a href="index.html">Главная</a> </li>
+            <li><a href="#">Характеристики</a>
+              <ul>
+                <li><a href="about.html">О нас</a></li>
+                <li><a href="agent.html">Сотрудники</a></li>
+                  </ul>
+                </li>
+
+            <li><a href="#">Блог</a>
+              <ul>
+                <li><a href="blog.html">Блог</a></li>
+              </ul>
+            </li>
+            <li><a href="contact.html">Контакты</a></li>
+          </ul>
+        </nav>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+</header>
+<!--==============================content================================-->
+<div class="main_bg">
+  <div class="content page1">
+    <div class="container_12">
+      <div class="grid_12 call-top">
+        <h2>Напишите нам или позвоните по номеру &ndash; <span>+375291546104</span></h2>
+      </div>
+      <div class="grid_8">
+        <div class="slider_wrapper t2">
+          <div>
+            <div id="camera_wrap" class="">
+              <div data-src="images/slide.jpg">
+                <div class="camera_caption fadeIn"> <span class="moduleItemTitle"><span>Квартира</span> Мы можем подобрать совершенно любую квартиру на ваш вкус </span>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div data-src="images/slide1.jpg">
+                <div class="camera_caption fadeIn"> <span class="moduleItemTitle"><span>Квартира</span> Доверьтесь нашей компании </span>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div data-src="images/slide2.jpg">
+                <div class="camera_caption fadeIn"> <span class="moduleItemTitle"><span>Квартира</span> Начните жить в квартире вашей мечты прямо сейчас! </span>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div data-src="images/slide3.jpg">
+                <div class="camera_caption fadeIn"> <span class="moduleItemTitle"><span>Квартира</span> Подберем для каждого </span>
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div data-src="images/slide4.jpg">
+                <div class="camera_caption fadeIn"> <span class="moduleItemTitle"><span>Квартира</span> Консультация бесплатная </span>
+                  <div class="clear"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="clear"></div>
+    <div class="container_12">
+      <div class="wrapper">
+        <article class="grid_4 center">
+          <div class="inner-block">
+            <div class="icon-text"> <span class="icon-text-bg bg-1"> <img src="images/icon3.png" alt=""> </span> </span>
+              <h2> Квартиры <span>и аппартаменты </span> </h2>
+            </div>
+            <p> В нашем агентстве недвижимости мы запросто подберем вам квартиру, подходящую под ваши парамерты <a class="link2" href="#">... читать далее</a></p>
+          </div>
+        </article>
+        <article class="grid_4 center">
+          <div class="inner-block">
+            <div class="icon-text"> <span class="icon-text-bg bg-2"> <img src="images/icon2.png" alt=""> </span>
+              <h2>Приветливые <span>сотрудники</span> </h2>
+            </div>
+            <p>Наши сотрудники дадут вам подробную консультацию, ознакомят со всеми необходимыми вещами и  <a class="link2" href="#">... читать далее</a></p>
+          </div>
+        </article>
+        <article class="grid_4 center">
+          <div class="inner-block">
+            <div class="icon-text"> <span class="icon-text-bg bg-4"> <img src="images/icon4.png" alt=""> </span>
+              <h2>Квартира <span>"под ключ" </span> </h2>
+            </div>
+            <p>Вам не нужно делать ремонт! Просто заезжайте, ставьте мебель и живите в первый же день <a class="link2" href="#">... читать далее</a></p>
+          </div>
+        </article>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="row-3">
+      <div class="container_12">
+        <div class="grid_12">
+          <h2> Рекомендуемая <span>недвижимость </span> <a class="link2 fright" href="#">смотреть больше</a></h2>
+          <div class="carousel_wrapper"> <a href="#" class="prev1"></a><a href="#" class="next1"></a>
+            <div>
+              <ul class="carousel1">
+                <li>
+                  <div class="img_inner">
+                    <div class="price-notification">1.000.000.000 BYN</div>
+                    <a class="magnifier" href="images/image-blank.png"><img src="images/250x156_img1.jpg" alt=""><span></span></a></div>
+                  <ul class="listbox-1">
+                    <li><span>Тип недвижимости:</span><a href="#">Вилла</a></li>
+                    <li><span>Адрес:</span><a href="#">деревня Тарасово</a></li>
+                    <li><span>Площадь:</span><a href="#">29000 м2</a></li>
+                  </ul>
+                <li>
+                  <div class="img_inner">
+                    <div class="price-notification">7.000.800.00 BYN</div>
+                    <a class="magnifier" href="images/image-blank.png"><img src="images/250x156_img2.jpg" alt=""><span></span></a></div>
+                  <ul class="listbox-1">
+                    <li><span>Тип недвижимости:</span><a href="#">Вилла</a></li>
+                    <li><span>Адрес:</span><a href="#">Чижовка</a></li>
+                    <li><span>Площадь:</span><a href="#">23000 м2</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <div class="img_inner">
+                    <div class="price-notification">4.000.800 BYN</div>
+                    <a class="magnifier" href="images/image-blank.png"><img src="images/250x156_img3.jpg" alt=""><span></span></a></div>
+                  <ul class="listbox-1">
+                    <li><span>Тип недвижимости:</span><a href="#">Квартира</a></li>
+                    <li><span>Адрес:</span><a href="#">Серебрянка</a></li>
+                    <li><span>Площадь:</span><a href="#">200 м2</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <div class="img_inner">
+                    <div class="price-notification">1.000.000.000 BYN</div>
+                    <a class="magnifier" href="images/image-blank.png"><img src="images/250x156_img1.jpg" alt=""><span></span></a></div>
+                  <ul class="listbox-1">
+                    <li><span>Тип недвижимости:</span><a href="#">Вилла</a></li>
+                    <li><span>Адрес:</span><a href="#">деревня Тарасово</a></li>
+                    <li><span>Площадь:</span><a href="#">29000 м2</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <div class="img_inner">
+                    <div class="price-notification">7.000.800.00 BYN</div>
+                    <a class="magnifier" href="images/image-blank.png"><img src="images/250x156_img2.jpg" alt=""><span></span></a></div>
+                  <ul class="listbox-1">
+                    <li><span>Тип недвижимости:</span><a href="#">Вилла</a></li>
+                    <li><span>Адрес:</span><a href="#">Чижовка</a></li>
+                    <li><span>Площадь:</span><a href="#">23000 м2</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <div class="img_inner">
+                    <div class="price-notification">4.000.800 BYN</div>
+                    <a class="magnifier" href="images/image-blank.png"><img src="images/250x156_img3.jpg" alt=""><span></span></a></div>
+                  <ul class="listbox-1">
+                    <li><span>Тип недвижимости:</span><a href="#">Квартира</a></li>
+                    <li><span>Адрес:</span><a href="#">Серебрянка</a></li>
+                    <li><span>Площадь:</span><a href="#">200 м2</a></li>
+                  </ul>
+                </li>
+               <li>
+                  <div class="img_inner">
+                    <div class="price-notification">1.000.000.000 BYN</div>
+                    <a class="magnifier" href="images/image-blank.png"><img src="images/250x156_img1.jpg" alt=""><span></span></a></div>
+                  <ul class="listbox-1">
+                    <li><span>Тип недвижимости:</span><a href="#">Вилла</a></li>
+                    <li><span>Адрес:</span><a href="#">деревня Тарасово</a></li>
+                    <li><span>Площадь:</span><a href="#">29000 м2</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <div class="img_inner">
+                    <div class="price-notification">7.000.800.00 BYN</div>
+                    <a class="magnifier" href="images/image-blank.png"><img src="images/250x156_img2.jpg" alt=""><span></span></a></div>
+                  <ul class="listbox-1">
+                    <li><span>Тип недвижимости:</span><a href="#">Вилла</a></li>
+                    <li><span>Адрес:</span><a href="#">Чижовка</a></li>
+                    <li><span>Площадь:</span><a href="#">23000 м2</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <div class="img_inner">
+                    <div class="price-notification">4.000.800 BYN</div>
+                    <a class="magnifier" href="images/image-blank.png"><img src="images/250x156_img3.jpg" alt=""><span></span></a></div>
+                  <ul class="listbox-1">
+                    <li><span>Тип недвижимости:</span><a href="#">Квартира</a></li>
+                    <li><span>Адрес:</span><a href="#">Серебрянка</a></li>
+                    <li><span>Площадь:</span><a href="#">200 м2</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="container_12">
+      <div class="grid_4">
+        <h2 class="title-effect">О компании </h2>
+        <div class="box b1">
+          <div class="img_full"> <img src="images/170x120_img1.jpg" alt=""> </div>
+          <p>Мы работаем для того, чтобы осуществить Вашу мечту жить в идеальном доме, и у нас есть все необходимое для ее скорейшего осуществления! Слаженная и дружная команда – агент, риэлтер, фотограф, маркетолог, директор – всегда найдет индивидуальный подход к ситуации каждого клиента, и это наше главное преимущество.</p>
+          <a href="#" class="btn-readmore"></a> </div>
+      </div>
+      <div class="grid_4">
+        <h2>Наши сотрудники</h2>
+        <p>Общий стаж работы наших сотрудников составляет более 100 лет! А поддержку в коллективе находят не только профессионалы, но и любящие свою работу новички. </p>
+      </div>
+      <div class="grid_4">
+        <h2>Сдается <span>в аренду</span></h2>
+        Предоставляем вам пару вариантов, которые можно взять в аренду за самую выгодную цену.
+        <div class="singles">
+          <div class="grid_2 alpha">
+            <div class="img_inner"><a class="magnifier" href="images/image-blank.png"><img src="images/124x78_img1.jpg" alt=""><span></span></a></div>
+          </div>
+          <div class="grid_2 omega">
+            <div class="img_inner"><a class="magnifier" href="images/image-blank.png"><img src="images/124x78_img3.jpg" alt=""><span></span></a></div>
+          </div>
+          <div class="clear"></div>
+          <div class="grid_2 alpha">
+            <div class="img_inner"><a class="magnifier" href="images/image-blank.png"><img src="images/124x78_img4.jpg" alt=""><span></span></a></div>
+          </div>
+          <div class="grid_2 omega">
+            <div class="img_inner"><a class="magnifier" href="images/image-blank.png"><img src="images/124x78_img6.jpg" alt=""><span></span></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--==============================footer=================================-->
+<footer class="main-wrapper main-wrapper-shadow">
+  <div class="footer-1">
+    <div class="container_12">
+      <div class="wrapper">
+        <!-- Text Widget & SOCIABLE -->
+        <div class="grid_3">
+          <!--Text Widget-->
+          <h2>Контакты</h2>
+          <p>Свяжитесь с нами и мы быстро и профессионально окажем полную помощь по всем интересующим Вас услугам сразу и бесплатно. </p>
+          <address>
+          <dl>
+            <dd><span>Телефон:</span> +375291561240</dd>
+            <dd><span>E-mail:</span> <a href="#" class="link-1"> Nedvizhimost@mail.ru</a></dd>
+          </dl>
+          </address>
+        </div>
+        <!-- Links -->
+        <div class="grid_3">
+          <!--Text Widget-->
+          <h2>Виды недвижимости</h2>
+          <ul class="list1">
+            <li><a href="#">1-комнатные квартиры </a></li>
+            <li><a href="#">Квартиры для семьи </a></li>
+            <li><a href="#">Апартаменты </a></li>
+            <li><a href="#">Виллы </a></li>
+            <li><a href="#">Коттеджи </a></li>
+            <li><a href="#">Другие </a></li>
+          </ul>
+        </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tizery-hr">
+    <a href="https://www.youtube.com/@zxcursed" title="zxcursed"><img src="https://avatars.mds.yandex.net/get-ydo/3918388/2a000001832725975cdbc906e65cf389c2a3/med" alt="Картинка 1" />Ремонт квартир под ключ</a>
+    <a href="https://www.youtube.com/@zxcursed" title="zxcursed"><img src="https://www.stroki.info/products_pictures/rdv_tekst1.jpg" alt="Картинка 1" />Газетная правда</a>
+    <a href="https://www.youtube.com/@zxcursed" title="zxcursed"><img src="https://smartyprint.ru/blog/wp-content/uploads/2021/04/Orso-grupp_Izobrazhenie_31.08.16-1024x501.jpg" alt="Картинка 1" />Храни бобро</a>
+    <a href="https://www.youtube.com/@zxcursed" title="zxcursed"><img src="https://img01.flagma.ua/photo/remont-kvartir-klyuch-ukrainka-obuhov-kiev-vsya-1675728_big.jpg" alt="Картинка 1" />Ремонт квартир</a>
+    <a href="https://www.youtube.com/@zxcursed" title="zxcursed"><img src="https://i.ytimg.com/vi/YCI0qo98C0o/maxresdefault.jpg" alt="Картинка 1" />Факты и риски для продавца квартир</a>
+  </div>
+  <div class="footer-2">
+    <div class="container_12">
+      <div class="wrapper">
+        <div class="grid_12">
+          <div class="policy">Real-Estate - лучшее агентство по недвижимости &copy; 2022 <a href="#">Privacy Policy</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

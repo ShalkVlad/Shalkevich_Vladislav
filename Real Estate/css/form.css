@@ -1,0 +1,57 @@
+
+#form1 { padding-top:4px; }
+
+#form1 input { border:1px solid #dbdadb; background: none repeat scroll 0 0 #FFFFFF; font-size:12px; color:#676767; line-height:18px; padding:9px 13px 8px; outline:medium none; width:100%; height:41px; float:left; font-family:Arial, Helvetica, sans-serif; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; }
+
+#form1 textarea { border:1px solid #dbdadb; background: none repeat scroll 0 0 #FFFFFF; font-size:12px; color:#676767; height:171px; outline:medium none; overflow:auto; padding:12px 13px 8px; width:100%; position:relative; resize:none; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; float:left; font-family:Arial, Helvetica, sans-serif; margin:0; }
+
+#form1 label { position:relative; display:block; min-height:56px; width:380px; float:left; clear:left; }
+
+#form1 .error, #form1 .empty { color:#FF0000; display:none; font-size:12px; line-height:18px; width:auto; position:absolute; z-index:999; right:5px; top:12px; float:left; }
+
+#form1.contact .error, #form1.contact .empty { top:7px; }
+
+#form1 .error-empty { display:none; float:left; }
+
+.btns { position:relative; overflow:hidden; padding-top:24px; text-align:right; }
+
+.btns a.btn { margin:0 0 0 19px!important; cursor:pointer; }
+
+#form1 .message { width:100%; }
+
+.message br { height:0; line-height:0; }
+
+#form1 .success { border:1px solid #dbdadb; display:none; position:absolute; width:380px; background:#fff; text-align:center; padding:20px 10px; z-index:999; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; }
+
+.success_wrapper { position:relative; }
+@media only screen and (max-width: 995px) {
+#form1 {
+padding-top:0;
+}
+#form1.contact label {
+width:100%;
+}
+#form1 label {
+float:none!important;
+width:100%;
+}
+#form1 .success {
+width:100%;
+}
+}
+@media only screen and (max-width: 767px) {
+.map {
+margin-bottom:25px;
+}
+.btns {
+padding-bottom:0;
+}
+#form1 textarea {
+height:300px!important;
+}
+}
+@media only screen and (max-width: 479px) {
+#form1 textarea {
+height:200px!important;
+}
+}

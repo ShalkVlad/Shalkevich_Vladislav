@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Real Estate</title>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no"/>
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+<!-- Stylesheet  -->
+<link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
+<!-- Jquery Start  -->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<!-- Rating Star  -->
+<script type="text/javascript" src="js/jquery.rateit.js"></script>
+<!-- Navigation  -->
+<script type="text/javascript" src="js/superfish.js"></script>
+<script type="text/javascript" src="js/jquery.responsivemenu.js"></script>
+<script type="text/javascript" src="js/jquery.mobilemenu.js"></script>
+<!-- Hover Effect  -->
+<script type="text/javascript" src="js/jquery.hoverIntent.minified.js"></script>
+<!-- Easing  -->
+<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+<!-- Camera Slider  -->
+<script type="text/javascript" src="js/camera.js"></script>
+<!-- Accordion  -->
+<script type="text/javascript" src="js/accordion.js"></script>
+<!-- Tabs  -->
+<script type="text/javascript" src="js/tabs.js"></script>
+<!-- Carsoule  -->
+<script type="text/javascript" src="js/jquery.carouFredSel-6.1.0-packed.js"></script>
+<!-- A gallery optimized for touch devices  -->
+<script type="text/javascript" src="js/touchTouch.jquery.js"></script>
+<script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
+<!-- forms  -->
+<script type="text/javascript" src="js/forms.js"></script>
+<!-- Portfolio -->
+<script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+<script type="text/javascript" src="js/jquery.quicksand.js"></script>
+<script type="text/javascript" src="js/filter_setting.js"></script>
+<!-- Custom  -->
+<script type="text/javascript" src="js/custom.js"></script>
+<!--[if (gt IE 9)|!(IE)]><!-->
+<script type="text/javascript" src="js/jquery.mobile.customized.min.js"></script>
+<!--<![endif]-->
+<script>
+  	$(window).load( function(){	
+	  jQuery('.magnifier').touchTouch();								
+    });
+</script>
+<!--[if lt IE 9]>
+   	<script type="text/javascript" src="js/html5.js"></script>
+   	<link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
+<![endif]-->
+</head>
+<body>
+<!--============================== Header ================================-->
+<header class="pad0">
+  <div class="container_12">
+    <!-- Logo  -->
+    <div class="grid_12">
+      <h1><a href="index.html"><img src="images/logo.png" alt="Real Estate"></a> </h1>
+      <!-- Navigation  -->
+      <div class="menu_block">
+        <nav>
+          <ul class="sf-menu">
+            <li><a href="index.html">Home</a> </li>
+            <li><a href="#">Properties</a>
+              <ul>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="search.html">Search Page</a></li>
+                <li><a href="rent.html">For Rent</a></li>
+                <li><a href="sale.html">For Sale</a></li>
+                <li><a href="project-details.html">Project Details</a></li>
+                <li><a href="project-details.html">Project Details</a></li>
+                <li><a href="#">All Properties</a>
+                  <ul>
+                    <li><a href="all-2column.html">Style 1</a></li>
+                    <li><a href="all-3column.html">Style 2</a></li>
+                  </ul>
+                </li>
+                <li><a href="agent.html">Agents</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="#">Portfolio </a>
+                  <ul>
+                    <li><a href="portfolio2.html">Portfolio 2</a></li>
+                    <li><a href="portfolio3.html">Portfolio 3</a></li>
+                    <li><a href="portfolio4.html">Portfolio 4</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#">Elements</a>
+              <ul>
+                <li><a href="elements.html">Elements</a></li>
+                <li><a href="price-layouts.html">Price</a></li>
+                <li><a href="column.html">Column Layouts</a></li>
+              </ul>
+            </li>
+            <li class="current"><a href="#">Blog</a>
+              <ul>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="blog-single.html">Blog Single</a></li>
+              </ul>
+            </li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- top image  -->
+<div class="row-1">
+  <div class="container_12">
+    <!-- Search  -->
+    <div class="grid_12">
+      <h2>Blog Single</h2>
+    </div>
+  </div>
+</div>
+<!-- top search  -->
+<div class="row-2">
+  <div class="container_12">
+    <!-- Search  -->
+    <div class="grid_12">
+      <form id="form5" class="form1-1 form2" method="post">
+        <div class="fix-w">
+          <label class="text"> <span>City, State: </span> </label>
+          <label class="input">
+          <input type="text">
+          </label>
+        </div>
+        <div class="fix-w">
+          <label class="text"> <span>ZIP Code: </span> </label>
+          <label class="input">
+          <input type="text">
+          </label>
+        </div>
+        <div class="fix-w">
+          <label class="text"> <span>Max price:</span> </label>
+          <label class="select">
+          <select name="select">
+            <option value="">No Limit</option>
+            <option value="">$3000</option>
+            <option value="">$2000</option>
+            <option value="">$1000</option>
+          </select>
+          </label>
+        </div>
+        <div class="fix-w">
+          <label class="text"> <span>Beds:</span> </label>
+          <label class="select">
+          <select name="select">
+            <option value="">Any</option>
+            <option value="">1</option>
+            <option value="">2</option>
+            <option value="">3</option>
+          </select>
+          </label>
+        </div>
+        <div class="form-button"><a onClick="document.getElementById('form4').submit()" href="#" class="button-red">Search</a></div>
+      </form>
+    </div>
+  </div>
+</div>
+<!--==============================content================================-->
+<div class="main_bg">
+  <section class="content">
+    <div class="container_12">
+      <div class="wrapper">
+        <article class="grid_8">
+          <div class="post-border-right">
+            <article class="post-holder box1 b3">
+              <div>
+                <div class="date"> <span class="day">14</span> <span class="month">July</span> </div>
+                <h2 class="entry-title fleft"><a href="#">Donec tempor libero</a></h2>
+                <div class="post-meta">
+                  <div class="fleft"><i class="icon-user"></i> <a href="#">owltemplates </a> <i class="icon-eye-open"></i> <a href="#">16 Views</a> <i class="icon-comments-alt"></i> <a href="#">25 Comments</a> <i class="icon-tag"></i> <a href="#">property,</a> <a href="#">freehold,</a> <a href="#">open house</a> </div>
+                </div>
+                <!--.post-meta-->
+              </div>
+              <figure class="ident-bot-2"><a class="img_inner" href="#"><img src="images/blog/post1.jpg"></a></figure>
+              <p class="ident-bot-2">Curabitur tincidunt iaculis ipsum, eu malesuada tellus congue a. Quisque aliquet, enim eget consequat scele, lectus nibh pulvinar lectus, ac vestibulum nisl urna quis magna. Quisque laoreet pulvinar orci, eget tempor ante consectetur in. Nullam et lorem ut magna aliquet eleifend scelerisque eu justo. </p>
+              <p class="ident-bot-2">Maecenas sollicitudin, urna sit amet tristique euismod, tellus orci malesuada sapien, ut volutpat ante augue interdum leo. Ut neque massa, lacinia et consectetur ac, sodales ac risus. Proin ullamcorper, elit sit amet pulvinar aliquet, tellus ipsum dapibus ipsum, a tristique ligula leo sit amet tellus. </p>
+              <p class="ident-bot-2">Donec consectetur libero ut tortor condimentum eu egestas est viverra. Sed eget turpis dui, sed auctor nisi. Fusce suscipit risus sed tortor mattis sollicitudin. Vivamus dictum, nisl sed aliquet sodales, nisi ipsum interdum metus, quis rhoncus felis ligula sit amet nisi. Quisque ultricies turpis nec ipsum rutrum condimentum. </p>
+              <p class="ident-bot-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit massa vel mauris sollicitudin dignissim. Phasellus ultrices tellus eget ipsum ornare molestie scelerisque. </p>
+              <div class="addthis_toolbox addthis_pill_combo"> <a class="addthis_button_google_plusone" g:plusone:size="medium"></a> <a class="addthis_button_tweet" tw:count="horizontal"></a> <a class="addthis_button_facebook_like"></a> </div>
+            </article>
+            <div class="clear"></div>
+            <!--COMMENTS-->
+            <article class="comment-box">
+              <h3 class="ident-top-2">25 Comments</h3>
+              <div class="parent">
+                <div class="img-border-bg ident-right-2 fleft"><img class="img-border" src="images/mark.jpg" alt="" title="" /></div>
+                <h2><a href="#">Mark Abucayon</a></h2>
+                <span>January 22, 2012 at 5:02pm</span> <a href="#" class="reply">Reply</a>
+                <p> Donec ut mauris vel risus rutrum commodo. Duis sed massa id urna elementum varius. Fusce nibh sapien, porttitor sed euismod in, aliquet eget lorem. Curabitur scelerisque mauris quis diam gravida eu placerat ligula scelerisque. In vitae sem nec massa imperdiet condimentum. </p>
+              </div>
+              <div class="parent child">
+                <div class="img-border-bg ident-right-2 fleft"><img class="img-border" src="images/jade.jpg" alt="" title="" /></div>
+                <div class="parent-sub-img"></div>
+                <h2><a href="#">Jade Thompson</a></h2>
+                <span>January 22, 2012 at 5:02pm</span> <a href="#" class="reply">Reply</a>
+                <p> Donec ut mauris vel risus rutrum commodo. Duis sed massa id urna elementum varius. Fusce nibh sapien, porttitor sed euismod in, aliquet eget lorem. Curabitur scelerisque mauris quis diam gravida eu placerat ligula scelerisque. In vitae sem nec massa imperdiet condimentum. </p>
+              </div>
+              <div class="parent subchild">
+                <div class="img-border-bg ident-right-2 fleft"><img class="img-border" src="images/mark.jpg" alt="" title="" /></div>
+                <div class="parent-sub-img"></div>
+                <h2><a href="#">Mark Abucayon</a></h2>
+                <span>January 22, 2012 at 5:02pm</span>
+                <p> Donec ut mauris vel risus rutrum commodo. Duis sed massa id urna elementum varius. Fusce nibh sapien, porttitor sed euismod in, aliquet eget lorem. Curabitur scelerisque mauris quis diam gravida. </p>
+              </div>
+              <div class="parent">
+                <div class="img-border-bg ident-right-2 fleft"><img class="img-border" src="images/jade.jpg" alt="" title="" /></div>
+                <h2><a href="#">Jade Thompson</a></h2>
+                <span>January 22, 2012 at 5:02pm</span> <a href="#" class="reply">Reply</a>
+                <p> Donec ut mauris vel risus rutrum commodo. Duis sed massa id urna elementum varius. Fusce nibh sapien, porttitor sed euismod in, aliquet eget lorem. Curabitur scelerisque mauris quis diam gravida eu placerat ligula scelerisque. In vitae sem nec massa imperdiet condimentum. </p>
+              </div>
+            </article>
+            <div class="clear"></div>
+            <!-- Form -->
+            <article>
+              <div class="grid_6">
+                <h3 class="ident-top-2">Get In Touch</h3>
+                <!-- contact form -->
+                <form id="form1">
+                  <div class="success_wrapper">
+                    <div class="success">Contact form submitted!<br>
+                      <strong>We will be in touch soon.</strong> </div>
+                  </div>
+                  <fieldset>
+                  <label class="name">
+                  <input type="text" value="Name:">
+                  <br class="clear">
+                  <span class="error error-empty">*This is not a valid name.</span><span class="empty error-empty">*This field is required.</span> </label>
+                  <label class="email">
+                  <input type="text" value="E-mail:">
+                  <br class="clear">
+                  <span class="error error-empty">*This is not a valid email address.</span><span class="empty error-empty">*This field is required.</span> </label>
+                  <label class="phone">
+                  <input type="tel" value="Phone:">
+                  <br class="clear">
+                  <span class="error error-empty">*This is not a valid phone number.</span><span class="empty error-empty">*This field is required.</span> </label>
+                  <label class="message">
+                  <textarea>Message:</textarea>
+                  <br class="clear">
+                  <span class="error">*The message is too short.</span> <span class="empty">*This field is required.</span> </label>
+                  <div class="clear"></div>
+                  <div class="btns"><a data-type="reset" class="button-red p1">clear</a><a data-type="submit" class="button-green p1">send</a>
+                    <div class="clear"></div>
+                  </div>
+                  </fieldset>
+                </form>
+                <!-- end contact form -->
+              </div>
+            </article>
+          </div>
+        </article>
+        <article class="grid_4 fright">
+          <h2 class="title-effect">categories</h2>
+          <div class="box b3">
+            <ul class="list">
+              <li><a href="#">Praesent vestibulum molestie lacus</a></li>
+              <li><a href="#">Aenean nonummy hendrerit </a></li>
+              <li><a href="#">Fusce suscipit varius mi</a></li>
+              <li><a href="#">Cum sociis natoque penatibus </a></li>
+              <li><a href="#">Magnis dis parturient monte</a></li>
+              <li><a href="#">Fusce feugiat malesuada odio </a></li>
+              <li><a href="#">Duis ultricies pharetra magna</a></li>
+              <li><a href="#">Lorem ipsum dolor sit am</a></li>
+              <li class="mb0"><a href="#">Mauris fermentum dict</a></li>
+            </ul>
+          </div>
+          <h2 class="title-effect">archives</h2>
+          <div class="box b3">
+            <ul class="list">
+              <li><a href="#">August - 2013</a></li>
+              <li><a href="#">July - 2013</a></li>
+              <li><a href="#">June - 2013</a></li>
+              <li><a href="#">May - 2013</a></li>
+              <li><a href="#">April - 2013</a></li>
+              <li class="mb0"><a href="#">March - 2013</a></li>
+            </ul>
+          </div>
+          <div id="accordion"> <a class="selected"> <span>Lorem ipsum</span></a>
+            <div class="accordion-wrapper">
+              <p> Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque inventore. </p>
+            </div>
+            <a><span>Lorem ipsum</span></a>
+            <div class="accordion-wrapper" style="display: none;">
+              <p> Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque inventore. </p>
+            </div>
+            <a><span>Lorem ipsum</span></a>
+            <div class="accordion-wrapper" style="display: none;">
+              <p> Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque inventore. </p>
+            </div>
+            <a><span>Lorem ipsum</span></a>
+            <div class="accordion-wrapper" style="display: none;">
+              <p> Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque inventore. </p>
+            </div>
+          </div>
+          <h2>Tags widget</h2>
+          <div class="wrapper tags"> <a href="#">Business</a> <a href="#">Corporate</a> <a href="#">Portfolio</a> <a href="#">Work</a> <a href="#">Clean</a> <a href="#">Template</a> <a href="#">Wordpress</a> <a href="#">Joomla</a> <a href="#">Drupal</a> <a href="#">Grow</a> </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</div>
+<!--==============================footer=================================-->
+<footer class="main-wrapper main-wrapper-shadow">
+  <div class="footer-1">
+    <div class="container_12">
+      <div class="wrapper">
+        <!-- Text Widget & SOCIABLE -->
+        <div class="grid_3">
+          <!--Text Widget-->
+          <h2>Office Address</h2>
+          <p>Lorem ipsum dolor sit amet, secte adipisicing laoreet elit, sed do eiusmod tempor incididunt. </p>
+          <address>
+          <dl>
+            <dd><span>Phone:</span> +1 100 123 6580</dd>
+            <dd><span>Mobile:</span> +1 200 123 6035</dd>
+            <dd><span>FAX:</span> +1 300 123 989</dd>
+            <dd><span>E-mail:</span> <a href="#" class="link-1"> mail@owltemplates.com</a></dd>
+          </dl>
+          </address>
+        </div>
+        <!-- Links -->
+        <div class="grid_3">
+          <!--Text Widget-->
+          <h2>Property Types</h2>
+          <ul class="list1">
+            <li><a href="#">Single Home </a></li>
+            <li><a href="#">Family Home </a></li>
+            <li><a href="#">Apartment </a></li>
+            <li><a href="#">Villa </a></li>
+            <li><a href="#">Condo </a></li>
+            <li><a href="#">Other </a></li>
+          </ul>
+        </div>
+        <!-- Twitter Feed -->
+        <div class="grid_3 tweet">
+          <h2>Twitter Feed</h2>
+          <div class="tweets">
+            <p> Loading Tweets... </p>
+            <ul id="tweet-list">
+            </ul>
+          </div>
+        </div>
+        <!-- FLCKR PHOTOS & Tag Cloud -->
+        <div class="grid_3">
+          <!--FLCKR PHOTOS-->
+          <div class="wrapper">
+            <div class="flickr">
+              <h2>Flickr Photos</h2>
+              <script  type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=6&amp;display=latest&amp;size=s&amp;layout=x&amp;source=user&amp;user=52617155@N08"></script>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-2">
+    <div class="container_12">
+      <div class="wrapper">
+        <div class="grid_12">
+          <div class="policy">Real-Estate - responsive theme &copy; 2013 <a href="#">Privacy Policy</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

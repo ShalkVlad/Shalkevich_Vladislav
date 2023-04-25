@@ -1,0 +1,110 @@
+
+.menu_block { float:right; position:relative; z-index:999; }
+
+nav>.sf-menu { text-align:center; }
+
+nav { position:relative; padding:0px 0 0 0; }
+
+.sf-menu ul { position:absolute; top:-999px; display:none; }
+
+.sf-menu li { float:left; position:relative; }
+
+.sf-menu>li { text-align:center; float: left; padding-right: 2px; display:inline-block; background: url("../images/li_bg.png") no-repeat scroll right 0 transparent; }
+
+.sf-menu>li:first-child, .sf-menu>li.current { }
+
+.sf-menu>li:first-child a { }
+
+.sf-menu>li img { display:none; margin: 0 auto; position:absolute; width: 100%; bottom:0; right:0; }
+
+.sf-menu>li:hover img, .sf-menu>li.current img, .sf-menu>li.sfHover img { display:block; cursor:pointer; }
+
+.sf-menu>li>ul>li { float:none; }
+
+.sf-menu>li>a { color:#EEEEEE; font-family: 'Open Sans', sans-serif; font-size:14px; display:block; line-height:19px; position:relative; background:url(../images/spacer.png) 0 0 repeat; padding: 19px 32px 19px; z-index:999; }
+
+.sf-menu > li.current a, .sf-menu > li > a:hover { background-image: linear-gradient(bottom, #444 0%, #333 100%); background-image: -o-linear-gradient(bottom, #444 0%, #333 100%); background-image: -moz-linear-gradient(bottom, #444 0%, #333 100%); background-image: -webkit-linear-gradient(bottom, #444 0%, #333 100%); background-image: -ms-linear-gradient(bottom, #444 0%, #333 100%); background-color: #444; }
+
+.sf-menu>li>a.sf-with-ul:after { position:absolute; content:''; left:50%; margin-left:-2px; width:5px; background:url("../images/arrows.png") no-repeat scroll 0 0 transparent; height:3px; top:49px; pointer-events:none; z-index:999; }
+
+.sf-menu>li.current>a.with-ul:after, .sf-menu>li.sfHover>a.with-ul:after { background-position:0 -3px; }
+
+.sf-menu>li>ul>li>a>span { position:absolute; right:10px; width:4px; background:url(../images/arrows.png) no-repeat right 0; height:7px; top: 17px; }
+
+.sf-menu>li>ul>li.sfHover>a>span { background-position:right bottom; }
+
+.sf-menu a { font-size:16px; line-height:21px; color:#fffefe; }
+
+.sf-menu li ul, .sf-menu li.sfHover>ul { background: none repeat scroll 0 0 #333333 !important; top: 58px; width:155px; -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3); box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3); z-index:1; }
+
+.sf-menu li ul li { text-align: left; float:none !important; }
+
+.sf-menu li ul li:first-child { padding-top:0; background:none; }
+
+.sf-menu li ul li a { background: none repeat scroll 0 0 #333333 !important; border-bottom: 1px solid #222; border-top: 1px solid #414141; border-left: 1px solid #000000; border-right: 1px solid #000000; display: block; font-family: 'Open Sans', sans-serif; font-weight: 600; font-size:14px; padding: 10px 3px 10px 23px; line-height:19px; text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4); }
+
+.sf-menu li ul li:last-child a { }
+
+.sf-menu li li a:hover, .sf-menu li.sfHover li.sfHover>a { background: none repeat scroll 0 0 #FE6103 !important; border-bottom: 1px solid #FF8130; border-top: 1px solid #FF8130; border-left: 1px solid #CE3100; border-right: 1px solid #CE3100; color:#FFFFFF !important; text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4); }
+
+.sf-menu li li ul { left: 157px !important; top: 3px !important; background: none repeat scroll 0 0 #333333 !important; z-index:999; }
+@media only screen and (max-width: 995px) {
+.sf-menu>li {
+}
+.sf-menu>li:after, .sf-menu>li:first-child:before {
+display:none;;
+}
+.sf-menu>li>a {
+padding-left:14px;
+padding-right:14px;
+}
+.menu_block {
+right:0;
+}
+.sf-menu>li:first-child a {
+padding-right:20px;
+}
+header nav {
+padding-top:0px!important;
+}
+}
+@media only screen and (max-width: 767px) {
+.menu_block {
+float:none!important;
+margin:0 0px!important;
+padding:20px 0px 25px!important;
+}
+header {
+padding:0px 0 0px!important;
+}
+header nav {
+float:none;
+font:12px/15px Arial, Helvetica, sans-serif;
+text-transform:uppercase;
+color:#927c67;
+width:100%;
+margin:0 auto;
+}
+nav:before {
+content:'';
+display:block;
+margin-bottom:5px;
+color:#fff;
+}
+.sf-menu {
+display:none;
+float:none;
+}
+nav select {
+font:12px/15px Arial, Helvetica, sans-serif;
+color:#202020;
+width:100%;
+margin:0 auto;
+float:none;
+outline:none;
+border: 1px solid #CCCCCC;
+}
+.search_block {
+padding-bottom:10px!important;
+}
+}

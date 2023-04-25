@@ -1,0 +1,62 @@
+
+.carousel_wrapper { position:relative; padding:23px 53px 17px; background:#fff; overflow:hidden; height:242px; margin-bottom: 50px; border:1px solid #c0c9d2; -webkit-border-radius: 0 0 4px 4px; -moz-border-radius: 0 0 4px 4px; -ms-border-radius: 0 0 4px 4px; -o-border-radius: 0 0 4px 4px; border-radius: 0 0 4px 4px; -webkit-box-shadow:0px 1px 2px rgba(0, 0, 0, 0.1); -moz-box-shadow:0px 1px 2px rgba(0, 0, 0, 0.1); box-shadow:0px 1px 2px rgba(0, 0, 0, 0.1); }
+
+.row-3 .carousel_wrapper { background: none repeat scroll 0 0 transparent; border: 0 none; height: 287px; margin-bottom: 0; overflow: hidden; padding: 0; position: relative; -webkit-border-radius: 0 0 0 0; -moz-border-radius: 0 0 0 0; -ms-border-radius: 0 0 0 0; -o-border-radius: 0 0 0 0; border-radius: 0 0 0 0; -webkit-box-shadow:0 0 0 rgba(0, 0, 0, 0.1); -moz-box-shadow:0 0 0 rgba(0, 0, 0, 0.1); box-shadow:0 0 0 rgba(0, 0, 0, 0.1); }
+
+.carousel_wrapper>div { margin:0 -5px; }
+
+.carousel1 li { float:left; margin:0px 10px; overflow:hidden; font-family: 'Open Sans', sans-serif; font-size:12px; line-height:16px; }
+
+.listbox-1 li:first-child { border-top: 0 none; }
+
+.listbox-1 li { border-bottom: 1px solid #E1E1E1; border-top: 1px solid #FCFCFC; color: #777777; float: none; font-family: 'Open Sans', sans-serif; font-size: 12px; font-weight: 600; line-height: 15px; padding: 7px 0; margin: 0; }
+
+.listbox-1 li:last-child { border-bottom: 0 none; }
+
+.listbox-1 li a { color: #777777; float: right; font-weight: 100; text-decoration: none; }
+
+.carousel1 li .img_inner { margin-bottom: 6px; position: relative; width: 100%; }
+
+.carousel1 li a { }
+
+.carousel1 li a img { width:100%; }
+
+.carousel1 { cursor:default!important; }
+
+a.next1 { background: url("../images/prevnext.png") no-repeat scroll right 5px #FFFFFF; display: block; height: 43px; position: absolute; right: 8px; top: 71px; width: 33px; z-index: 999; -webkit-border-radius: 3px 0 0 3px; -moz-border-radius: 3px 0 0 3px; border-radius: 3px 0 0 3px; }
+
+a.prev1 { background: url("../images/prevnext.png") no-repeat scroll 0 5px #FFFFFF; display: block; height: 43px; left: 8px; position: absolute; top: 71px; width: 33px; z-index: 999; -webkit-border-radius: 0 3px 3px 0; -moz-border-radius: 0 3px 3px 0; border-radius: 0 3px 3px 0; }
+
+.prev1:hover, .next1:hover { opacity:0.4; }
+
+.carousel1 .price-notification { background: none repeat scroll 0 0 #FE6103; -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); color: #FFFFFF; display: inline-block; font-family: open sans; font-weight: 600; font-size: 21px; left: 6px; padding: 7px 5px; position: absolute; text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.17); text-transform: uppercase; bottom: 6px; z-index: 2; }
+ @media only screen and (max-width: 995px) {
+a.next1 {
+top: 51px;
+}
+ a.prev1 {
+top: 51px;
+}
+}
+ @media only screen and (max-width: 767px) {
+.carousel-div {
+margin:0!important;
+}
+a.next1 {
+top: 31px;
+}
+ a.prev1 {
+top: 31px;
+}
+ .carousel1 .price-notification {
+display: none;
+}
+}
+@media only screen and (max-width: 479px) {
+a.next1 {
+top: 17px;
+}
+ a.prev1 {
+top: 17px;
+}
+}
