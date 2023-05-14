@@ -11,7 +11,7 @@ body {
   background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20210115/pngtree-technological-futuristic-background-image_519974.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center center;
+  background-position: center;
 }
 
 h1 {
@@ -24,7 +24,7 @@ h1 {
 form {
   max-width: 500px;
   margin: 0 auto;
-  background-color: #57a4d1;
+  background-color: #8f8e8e;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
