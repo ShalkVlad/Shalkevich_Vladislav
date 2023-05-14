@@ -33,9 +33,7 @@
         <br>
         <input type="number" id="extra" name="extra" min="0" max="10000000">
         <br>
-        <br>
         <label for="competition">Как оцениваете уровень конкуренции Вашей сферы?</label>
-        <br>
         <input type="radio" id="high" name="competition" value="300">
         <label for="high">Высокий</label>
         <br>
@@ -48,17 +46,18 @@
         <input type="radio" id="unknown" name="competition" value="0" checked>
         <label for="unknown">Не знаю</label>
         <br>
-        <br>
-        <input type="checkbox" id="employee" name="employee" value="50">
         <label for="employee">Есть штатный специалист в компании?</label>
-        <br>
+        <input type="radio" id="yes" name="employee_answer" value="yes">
+        <label for="yes">Да</label>
+        <input type="radio" id="no" name="employee_answer" value="no">
+        <label for="no">Нет</label>
         <label for="new_client">Обращаетесь к нам впервые?</label>
-        <br>
-        <input type="checkbox" id="new_client" name="new_client" value="10">
-        <label for="new_client">Да, я новый клиент</label>
+        <input type="radio" id="Da" name="client_status" value="new">
+        <label for="Da">Да, я новый клиент</label>
+        <input type="radio" id="Net" name="client_status" value="returning">
+        <label for="Net">Нет, я не новый клиент</label>
         <br>
         <br>
         <input type="submit" value="Рассчитать стоимость">
-      </form>
 </body>
 </html>
