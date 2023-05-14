@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Калькулятор стоимости услуг</title>
+    <link type="text/css" href="{{ url_for('static', filename='css/style.css')}}" rel="stylesheet" />
+</head>
+<body>
+    <h1>Калькулятор стоимости услуг</h1>
+    <form action="/calculate" method="POST">
+        <label for="services">Выберите интересующую услугу:</label>
+        <br>
+        <select id="services" name="services">
+            <option value="1">Оптимизация сайта (1100)</option>
+            <option value="2">SMM (950р)</option>
+            <option value="3">Управление репутацией (950р)</option>
+            <option value="4">Таргетированная реклама (1100р)</option>
+            <option value="5">Медийная реклама (1000р)</option>
+            <option value="6">Контекстная реклама (1200р)</option>
+        </select>
+        <br>
+        <br>
+        <label for="duration">На какой срок рассматриваете данную услугу, мес:</label>
+        <br>
+        <input type="number" id="duration" name="duration" min="1" max="100" required>
+        <br>
+        <br>
+        <label for="profit">Желаемое увеличение прибыли компании, руб:</label>
+        <br>
+        <input type="number" id="profit" name="profit" min="1" max="10000000" required>
+        <br>
+        <br>
+        <label for="extra">Поле для ввода цифры вручную (+20% от суммы):</label>
+        <br>
+        <input type="number" id="extra" name="extra" min="0" max="10000000">
+        <br>
+        <br>
+        <label for="competition">Как оцениваете уровень конкуренции Вашей сферы?</label>
+        <br>
+        <input type="radio" id="high" name="competition" value="300">
+        <label for="high">Высокий</label>
+        <br>
+        <input type="radio" id="medium" name="competition" value="200">
+        <label for="medium">Средний</label>
+        <br>
+        <input type="radio" id="low" name="competition" value="100">
+        <label for="low">Низкий</label>
+        <br>
+        <input type="radio" id="unknown" name="competition" value="0" checked>
+        <label for="unknown">Не знаю</label>
+        <br>
+        <br>
+        <input type="checkbox" id="employee" name="employee" value="50">
+        <label for="employee">Есть штатный специалист в компании?</label>
+        <br>
+        <label for="new_client">Обращаетесь к нам впервые?</label>
+        <br>
+        <input type="checkbox" id="new_client" name="new_client" value="10">
+        <label for="new_client">Да, я новый клиент</label>
+        <br>
+        <br>
+        <input type="submit" value="Рассчитать стоимость">
+      </form>
+</body>
+</html>
