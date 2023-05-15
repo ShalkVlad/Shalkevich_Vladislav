@@ -10,33 +10,39 @@
         <label for="services">Выберите интересующую услугу:</label>
         <br>
         <select id="services" name="services">
-            <option value="1">Оптимизация сайта (1100)</option>
-            <option value="2">SMM (950р)</option>
-            <option value="3">Управление репутацией (950р)</option>
-            <option value="4">Таргетированная реклама (1100р)</option>
-            <option value="5">Медийная реклама (1000р)</option>
-            <option value="6">Контекстная реклама (1200р)</option>
+            <option value="1">Оптимизация сайта</option>
+            <option value="2">SMM </option>
+            <option value="3">Управление репутацией </option>
+            <option value="4">Таргетированная реклама </option>
+            <option value="5">Медийная реклама </option>
+            <option value="6">Контекстная реклама </option>
         </select>
         <br>
         <br>
         <label for="duration">На какой срок рассматриваете данную услугу, мес:</label>
         <br>
-        <input type="number" id="duration" name="duration" min="1" max="100" required>
+        <br>
+        <input type="number" id="duration"  name="duration" min="1" max="100" required placeholder="Введите срок в месяцах">
         <br>
         <br>
         <label for="profit">Желаемое увеличение прибыли компании, руб:</label>
         <br>
-        <input type="number" id="profit" name="profit" min="1" max="10000000" required>
+        <br>
+        <input type="number" id="profit" name="profit" min="1" max="10000000" required placeholder="Введите желаемое увеличение прибыли">
+        <br>
         <br>
         <label for="competition">Как оцениваете уровень конкуренции Вашей сферы?</label>
         <input type="checkbox" id="high" name="competition" value="300" onclick="handleCheckboxSelection('competition', this)">
         <label for="high">Высокий</label>
         <br>
+        <br>
         <input type="checkbox" id="medium" name="competition" value="200" onclick="handleCheckboxSelection('competition', this)">
         <label for="medium">Средний</label>
         <br>
+        <br>
         <input type="checkbox" id="low" name="competition" value="100" onclick="handleCheckboxSelection('competition', this)">
         <label for="low">Низкий</label>
+        <br>
         <br>
         <input type="checkbox" id="unknown" name="competition" value="0" onclick="handleCheckboxSelection('competition', this)">
         <label for="unknown">Не знаю</label>

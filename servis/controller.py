@@ -86,11 +86,10 @@ def calculate():
 
     # передача переменной total_service_price в шаблон result.html
     service_name = service['name']
-    service_price = service['price']
-    other = total_service_price - service_price
+    service_price = total_service_price + 200
 
     return render_template('result.html', service_name=service_name, service_price=service_price,
-                           total_service_price=total_service_price, other = other)
+                           total_service_price=total_service_price)
 
 
 if __name__ == '__main__':

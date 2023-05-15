@@ -10,33 +10,40 @@
 }
 
 body {
-  background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20210115/pngtree-technological-futuristic-background-image_519974.jpg');
+  background-color: rgb(255, 255, 255);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 
 h1 {
-  text-align: center;
-  margin: 50px 0;
   font-size: 32px;
-  color: #ffffff;
+  text-align: center;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+input[type="checkbox"] {
+  opacity: 0;
+  margin-right: 150px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 form {
-  max-width: 500px;
+  max-width: 600px;
   margin: 0 auto;
-  background-color: #8f8e8e;
+  background-color: #808080;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px rgb(255, 255, 255);
 }
 
 label {
   display: block;
   margin-bottom: 10px;
-  font-size: 16px;
-  color: #333;
+  font-size: 20px;
+  color: #ffffff;
 }
 
 input[type="number"],
@@ -52,8 +59,8 @@ select {
 
 input[type="reset"],
 input[type="submit"] {
-  background-color: #ee57aa;
-  color: #fff;
+  background-color: #f7f7f7;
+  color: #333;
   font-size: 18px;
   padding: 10px 40px;
   border: none;
@@ -69,10 +76,7 @@ input[type="submit"]:hover {
 
 input[type="checkbox"]+label {
   display: inline-block;
-  margin-right: 10px;
-  font-size: 14px;
-  color: #333;
-}
+  margin-right: 37px;}
 
 input[type="checkbox"]:checked+label::before {
   content: "\2713";
