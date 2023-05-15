@@ -5,12 +5,18 @@
     <link type="text/css" href="{{ url_for('static', filename='css/style.css')}}" rel="stylesheet" />
 </head>
 <body>
-<h1 class="calculator-title">Калькулятор стоимости услуг</h1>
+<h1 class="calculator-title">AMDG</h1>
+<h3> Калькулятор стоимости услуг</h3>
+<div class="header-wrapper">
+  <h4>Заполните поля</h4>
+</div>
+  <br>
 <div class="container">
     <form action="/calculate" method="POST">
-        <label for="services">Выберите интересующую услугу:</label>
+        <label for="services">услуга <span class="red-asterisk">*</span></label>
         <br>
         <select id="services" name="services">
+            <option value="0">Выберете интересующую Вас услугу</option>
             <option value="1">Оптимизация сайта</option>
             <option value="2">SMM </option>
             <option value="3">Управление репутацией </option>
@@ -20,19 +26,19 @@
         </select>
         <br>
         <br>
-        <label for="duration">На какой срок рассматриваете данную услугу, мес:</label>
+        <label for="duration">На какой срок рассматриваете данную услугу, мес. <span class="red-asterisk">*</span></label>
         <br>
         <br>
         <input type="number" id="duration"  name="duration" min="1" max="100" required placeholder="Введите срок в месяцах">
         <br>
         <br>
-        <label for="profit">Желаемое увеличение прибыли компании, руб:</label>
+        <label for="profit">Желаемое увеличение прибыли компании, руб. <span class="red-asterisk">*</span></label>
         <br>
         <br>
-        <input type="number" id="profit" name="profit" min="1" max="10000000" required placeholder="Введите желаемое увеличение прибыли">
+        <input type="number" id="profit" name="profit" min="1" max="10000000" required placeholder="Введите желаемое увеличение прибыли в рублях">
         <br>
         <br>
-        <label for="competition">Как оцениваете уровень конкуренции Вашей сферы?</label>
+        <label for="competition">Как оцениваете уровень конкуренции Вашей сферы <span class="red-asterisk">*</span></label>
         <br>
         <br>
         <input type="checkbox" id="high" name="competition" value="300" onclick="handleCheckboxSelection('competition', this)">
@@ -51,7 +57,7 @@
         <label for="unknown">Не знаю</label>
         <br>
         <br>
-        <label for="employee">Есть штатный специалист в компании?</label>
+        <label for="employee">Есть штатный специалист в компании? <span class="red-asterisk">*</span></label>
         <br>
         <br>
         <input type="checkbox" id="yes" name="employee_answer" value="yes" onclick="handleCheckboxSelection('employee_answer', this)">
@@ -60,7 +66,7 @@
         <label for="no">Нет</label>
         <br>
         <br>
-        <label for="new_client">Обращаетесь к нам впервые?</label>
+        <label for="new_client">Обращаетесь к нам впервые? <span class="red-asterisk">*</span></label>
         <br>
         <br>
         <input type="checkbox" id="new_client" name="client_status" value="new" onclick="handleCheckboxSelection('client_status', this)">

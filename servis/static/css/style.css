@@ -8,13 +8,19 @@
   margin: 0;
   padding: 0;
 }
+.red-asterisk {
+  color: red;
+}
+
 .container {
   display: flex;
   justify-content: flex-end;
+  margin-left: 560px;
 }
 
 .result {
-  margin-left: 20px; /* Настройте отступ в соответствии с вашими потребностями */
+  margin-left: 20px;
+
 }
 
 body {
@@ -22,13 +28,15 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  
 }
 
 .calculator-title {
   font-size: 32px;
   text-align: center;
-  color: #000000;
-  background-color: #ffffff;
+  color: #ffffff;
+  background-color: #ff0707;
+
 }
 
 form {
@@ -37,7 +45,22 @@ form {
   background-color: #808080;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgb(255, 255, 255);
+}
+h3 {
+  text-align: center;
+  margin: 50px 0;
+  font-size: 32px;
+  color: #000000;
+  margin-right: 5%
+
+}
+
+.header-wrapper {
+  max-width: 600px;
+  font-size: 25px;
+  color: #ffffff;
+  background-color: #ff0707;
+   margin-left: 34%
 }
 
 label {

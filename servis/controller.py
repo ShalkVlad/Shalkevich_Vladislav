@@ -10,7 +10,7 @@ def home():
 
 @app.route('/calculate', methods=['POST'])
 def calculate():
-    services = {
+    services = {'0': {'name': ' ', 'price': 0},
         '1': {'name': 'Оптимизация сайта', 'price': 1100},
         '2': {'name': 'SMM', 'price': 950},
         '3': {'name': 'Управление репутацией', 'price': 950},
