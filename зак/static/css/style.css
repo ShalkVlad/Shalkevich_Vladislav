@@ -38,9 +38,7 @@ label {
 }
 
 input[type="number"],
-select,
-input[type="checkbox"],
-input[type="radio"] {
+select {
   display: block;
   width: 100%;
   padding: 10px;
@@ -50,11 +48,12 @@ input[type="radio"] {
   border: 2px solid #96007d;
 }
 
+input[type="reset"],
 input[type="submit"] {
   background-color: #ee57aa;
   color: #fff;
   font-size: 18px;
-  padding: 10px 20px;
+  padding: 10px 40px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -62,22 +61,18 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   background-color: #ee57aa;
-  ;
 }
 
-/* Стили для радиокнопок и чекбоксов */
+/* Анимации для чекбоксов */
 
-input[type="checkbox"]+label,
-input[type="radio"]+label {
+input[type="checkbox"]+label {
   display: inline-block;
   margin-right: 10px;
   font-size: 14px;
   color: #333;
-
 }
 
-input[type="checkbox"]:checked+label::before,
-input[type="radio"]:checked+label::before {
+input[type="checkbox"]:checked+label::before {
   content: "\2713";
   display: inline-block;
   font-size: 14px;
@@ -87,8 +82,7 @@ input[type="radio"]:checked+label::before {
 
 /* Анимации */
 
-input[type="checkbox"]+label::before,
-input[type="radio"]+label::before {
+input[type="checkbox"]+label::before {
   content: "";
   display: inline-block;
   width: 14px;
@@ -101,8 +95,7 @@ input[type="radio"]+label::before {
   top: 2px;
 }
 
-input[type="checkbox"]:hover+label::before,
-input[type="radio"]:hover+label::before {
+input[type="checkbox"]:hover+label::before {
   border-color:  #ee57aa;
 }
 
@@ -111,102 +104,61 @@ input[type="checkbox"]:checked+label::before {
   border-color: #e40303;
 }
 
-input[type="radio"]:checked+label::before {
-  background-color: #e40303;
-  border-color: #e40303;
-}
-
 /* Медиа-запросы */
 @media only screen and (max-width: 768px) {
-    body {
+  body {
     font-size: 14px;
-    }
-    
-    h1 {
+  }
+
+  h1 {
     font-size: 24px;
-    }
-    
-    form {
-    width: 90%;
-    margin: 0 auto;
-    }
-    
-    input[type="number"] {
-    width: 50%;
-    margin-bottom: 10px;
-    }
-    
-    label {
-    font-size: 16px;
-    }
-    
-    select {
-    font-size: 14px;
-    }
-    
-    input[type="submit"] {
-    font-size: 18px;
-    padding: 10px 20px;
-    }
-    
-    #services {
-    width: 100%;
-    }
-    
-    input[type="checkbox"], input[type="radio"] {
-    margin-right: 5px;
-    }
-    
-    input[type="checkbox"] + label, input[type="radio"] + label {
-    font-size: 14px;
-    }
-    }
-    
+  }
+}
+
     @media only screen and (max-width: 480px) {
     body {
     font-size: 12px;
     }
-    
+
     h1 {
     font-size: 20px;
     }
-    
+
     form {
     width: 90%;
     margin: 0 auto;
     }
-    
+
     input[type="number"] {
     width: 60%;
     margin-bottom: 10px;
     }
-    
+
     label {
     font-size: 14px;
     }
-    
+
     select {
     font-size: 12px;
     }
-    
+
     input[type="submit"] {
     font-size: 16px;
     padding: 10px 20px;
     }
-    
+
     #services {
     width: 100%;
     }
-    
+
     input[type="checkbox"], input[type="radio"] {
     margin-right: 5px;
     }
-    
+
     input[type="checkbox"] + label, input[type="radio"] + label {
     font-size: 12px;
     }
     }
-    input[type="radio"], 
     input[type="checkbox"]{
-    opacity: 0; 
+    opacity: 0;
     }
