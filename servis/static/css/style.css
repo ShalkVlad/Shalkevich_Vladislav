@@ -10,7 +10,7 @@
 }
 
 body {
-  background-color: rgb(255, 255, 255);
+  background-image: url('https://sun9-57.userapi.com/impg/yJlc3oJCXfg4R9nhJvN5ARzrsmfieCnPanNBnQ/aPdhaFWzfb0.jpg?size=1000x563&quality=96&sign=49f5ebfb9a3e84458da969fa86d278df&type=album');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -21,13 +21,6 @@ h1 {
   text-align: center;
   color: #000000;
   background-color: #ffffff;
-}
-
-input[type="checkbox"] {
-  opacity: 0;
-  margin-right: 150px;
-  display: inline-block;
-  vertical-align: middle;
 }
 
 form {
@@ -59,6 +52,9 @@ select {
 
 input[type="reset"],
 input[type="submit"] {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
   background-color: #f7f7f7;
   color: #333;
   font-size: 18px;
@@ -66,6 +62,10 @@ input[type="submit"] {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+input[type="reset"] {
+  margin-bottom: 10px;
 }
 
 input[type="submit"]:hover {
@@ -76,7 +76,8 @@ input[type="submit"]:hover {
 
 input[type="checkbox"]+label {
   display: inline-block;
-  margin-right: 37px;}
+  margin-right: 37px;
+}
 
 input[type="checkbox"]:checked+label::before {
   content: "\2713";
@@ -102,7 +103,7 @@ input[type="checkbox"]+label::before {
 }
 
 input[type="checkbox"]:hover+label::before {
-  border-color:  #ee57aa;
+  border-color: #ee57aa;
 }
 
 input[type="checkbox"]:checked+label::before {
@@ -121,21 +122,21 @@ input[type="checkbox"]:checked+label::before {
   }
 }
 
-    @media only screen and (max-width: 480px) {
-    body {
+@media only screen and (max-width: 480px) {
+  body {
     font-size: 12px;
-    }
+  }
 
-    h1 {
+  h1 {
     font-size: 20px;
-    }
+  }
 
-    form {
+  form {
     width: 90%;
     margin: 0 auto;
-    }
+  }
 
-    input[type="number"] {
+  input[type="number"] {
     width: 60%;
     margin-bottom: 10px;
     }

@@ -1,6 +1,6 @@
 
 body {
-  background-color: rgb(255, 255, 255);
+  background-image: url('https://sun9-57.userapi.com/impg/yJlc3oJCXfg4R9nhJvN5ARzrsmfieCnPanNBnQ/aPdhaFWzfb0.jpg?size=1000x563&quality=96&sign=49f5ebfb9a3e84458da969fa86d278df&type=album');
   background-size: cover;
   background-position: center;
 }
@@ -10,7 +10,7 @@ h1 {
   text-align: center;
   margin: 50px 0;
   font-size: 32px;
-  color: #ffffff;
+  color: #808080;
 }
 
 /* стили для цены */

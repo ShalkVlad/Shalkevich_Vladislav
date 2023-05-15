@@ -32,6 +32,8 @@
         <br>
         <br>
         <label for="competition">Как оцениваете уровень конкуренции Вашей сферы?</label>
+        <br>
+        <br>
         <input type="checkbox" id="high" name="competition" value="300" onclick="handleCheckboxSelection('competition', this)">
         <label for="high">Высокий</label>
         <br>
@@ -49,6 +51,8 @@
         <br>
         <br>
         <label for="employee">Есть штатный специалист в компании?</label>
+        <br>
+        <br>
         <input type="checkbox" id="yes" name="employee_answer" value="yes" onclick="handleCheckboxSelection('employee_answer', this)">
         <label for="yes">Да</label>
         <input type="checkbox" id="no" name="employee_answer" value="no" onclick="handleCheckboxSelection('employee_answer', this)">
@@ -56,6 +60,8 @@
         <br>
         <br>
         <label for="new_client">Обращаетесь к нам впервые?</label>
+        <br>
+        <br>
         <input type="checkbox" id="new_client" name="client_status" value="new" onclick="handleCheckboxSelection('client_status', this)">
         <label for="new_client">Да, я новый клиент</label>
         <input type="checkbox" id="returning_client" name="client_status" value="returning" onclick="handleCheckboxSelection('client_status', this)">
@@ -73,8 +79,8 @@
         </script>
         <br>
         <br>
+        <input type="reset" value="Очистить">
         <input type="submit" value="Рассчитать стоимость">
-        <input type="reset" value="Отмена">
         </form>
 </body>
 </html>
