@@ -88,7 +88,7 @@ def calculate():
     service_name = service['name']
     service_price = total_service_price + 200
 
-    return render_template('result.html', service_name=service_name, service_price=service_price,
+    return render_template('index.html', service_name=service_name, service_price=service_price,
                            total_service_price=total_service_price)
 
 

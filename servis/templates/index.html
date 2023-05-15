@@ -5,7 +5,8 @@
     <link type="text/css" href="{{ url_for('static', filename='css/style.css')}}" rel="stylesheet" />
 </head>
 <body>
-    <h1>Калькулятор стоимости услуг</h1>
+<h1 class="calculator-title">Калькулятор стоимости услуг</h1>
+<div class="container">
     <form action="/calculate" method="POST">
         <label for="services">Выберите интересующую услугу:</label>
         <br>
@@ -82,5 +83,10 @@
         <input type="reset" value="Очистить">
         <input type="submit" value="Рассчитать стоимость">
         </form>
+      <div class="result">
+        <h1>Результат расчета цены</h1>
+        <p>Услуга: {{ service_name }} - цена от: {{ total_service_price }}  руб. до {{ service_price }} руб.</p>
+      </div>
+</div>
 </body>
 </html>
