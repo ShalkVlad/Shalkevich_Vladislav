@@ -1,238 +1,150 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
-
-/* Общие стили */
-
-* {
-  box-sizing: border-box;
-  font-family: Roboto, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-.red-asterisk {
-  color: red;
-}
-
-.container {
-  display: flex;
-  justify-content: flex-end;
-  margin-left: 560px;
-}
-
-.result {
-  margin-left: 20px;
-
-}
-
 body {
-  background-image: url('https://sun9-57.userapi.com/impg/yJlc3oJCXfg4R9nhJvN5ARzrsmfieCnPanNBnQ/aPdhaFWzfb0.jpg?size=1000x563&quality=96&sign=49f5ebfb9a3e84458da969fa86d278df&type=album');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+.red-asterisk {
+    color: red;
 }
 
 .calculator-title {
-  font-size: 32px;
-  text-align: center;
-  color: #ffffff;
-  background-color: #ff0707;
-
+    font-size: 32px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #ff0707;
+    padding: 20px;
 }
 
-form {
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: #808080;
-  padding: 20px;
-  border-radius: 10px;
+.calculate {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid gray;
 }
+
 h3 {
-  text-align: center;
-  margin: 50px 0;
-  font-size: 32px;
-  color: #000000;
-  margin-right: 5%
-
+    text-align: center;
+    margin: 20px 0;
+    font-size: 22px;
+    color: #000000;
+    font-weight: normal;
 }
 
 .header-wrapper {
-  max-width: 600px;
-  font-size: 25px;
-  color: #ffffff;
-  background-color: #ff0707;
-   margin-left: 34%
-}
-
-label {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 20px;
-  color: #ffffff;
-}
-/* стили для заголовка */
-h1 {
-  text-align: center;
-  margin: 50px 0;
-  font-size: 32px;
-  color: #808080;
-}
-
-/* стили для цены */
-p {
-  font-size: 2rem;
-  text-align: center;
-  margin-top: 3rem;
-  animation-name: color-change;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-}
-
-/* анимация для изменения цвета */
-@keyframes color-change {
-  0% {
-    color: red;
-  }
-  25% {
-    color: blue;
-  }
-  50% {
-    color: green;
-  }
-  75% {
-    color: orange;
-  }
-  100% {
-    color: purple;
-  }
+    max-width: 641px;
+    font-size: 17px;
+    color: #ffffff;
+    background-color: #ff0707;
+    margin: 0 auto;
 }
 
 input[type="number"],
 select {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  border: 2px solid #96007d;
+    width: 100%;
+    font-style: italic;
+    color: gray;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.Eror:required:invalid:focus {
+  outline: 1px solid #ff0707;
+  background-color: #e00c3c;
+  color: #ffffff;
+}
+
+.Eror:required:valid:focus {
+  background-color: #ffffff;
+  color: #333;
+}
+
+input[type="number"]:required:invalid:focus {
+    outline: 1px solid #ff0707;
+    background-color: #e00c3c;
+}
+
+input[type="number"]:required:valid:focus {
+  outline: none;
+}
+
+input[type="number"]:required:invalid:focus::placeholder {
+  color: #ffffff;
+}
+
+select option {
+  background-color: white;
+  color: #333;
+}
+
+input[type="radio"]:required:invalid:focus {
+  outline: 1px solid #ff0707;
+  background-color: #e00c3c;
+  color: #ffffff;
 }
 
 input[type="reset"],
 input[type="submit"] {
-  display: block;
-  width: 100%;
-  margin: 0 auto;
-  background-color: #f7f7f7;
-  color: #333;
-  font-size: 18px;
-  padding: 10px 40px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-input[type="reset"] {
-  margin-bottom: 10px;
-}
-
-input[type="submit"]:hover {
-  background-color: #ee57aa;
-}
-
-/* Анимации для чекбоксов */
-
-input[type="checkbox"]+label {
-  display: inline-block;
-  margin-right: 37px;
-}
-
-input[type="checkbox"]:checked+label::before {
-  content: "\2713";
-  display: inline-block;
-  font-size: 14px;
-  margin-right: 5px;
-  color: #3dcaff;
-}
-
-/* Анимации */
-
-input[type="checkbox"]+label::before {
-  content: "";
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  margin-right: 5px;
-  border: 2px solid #ccc;
-  border-radius: 2px;
-  transition: all 0.2s ease;
-  position: relative;
-  top: 2px;
-}
-
-input[type="checkbox"]:hover+label::before {
-  border-color: #ee57aa;
-}
-
-input[type="checkbox"]:checked+label::before {
-  background-color: #e40303;
-  border-color: #e40303;
-}
-
-/* Медиа-запросы */
-@media only screen and (max-width: 768px) {
-  body {
-    font-size: 14px;
-  }
-
-  h1 {
-    font-size: 24px;
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  body {
-    font-size: 12px;
-  }
-
-  h1 {
-    font-size: 20px;
-  }
-
-  form {
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  input[type="number"] {
-    width: 60%;
-    margin-bottom: 10px;
-    }
-
-    label {
-    font-size: 14px;
-    }
-
-    select {
-    font-size: 12px;
-    }
-
-    input[type="submit"] {
-    font-size: 16px;
-    padding: 10px 20px;
-    }
-
-    #services {
+    background-color: #ffffff;
+    color: #333;
+    font-size: 18px;
     width: 100%;
-    }
+    cursor: pointer;
+    border: 1px solid gray;
 
-    input[type="checkbox"]{
-    margin-right: 5px;
-    }
+}
 
-    input[type="checkbox"] + label{
-    font-size: 12px;
-    }
-    }
-    input[type="checkbox"]{
-    opacity: 0;
-    }
+input[type="reset"] + input[type="submit"] {
+    margin-top: 10px;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#result-window {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.popup-close {
+    padding: 10px 20px;
+    background-color: #e00c3c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.popup-close:hover {
+    background-color: #c30932;
+}
+
+.text {
+    font-size: 15px;
+}
