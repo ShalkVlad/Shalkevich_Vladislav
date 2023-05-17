@@ -50,7 +50,7 @@ select {
 
 .Eror:required:invalid:focus {
   outline: 1px solid #ff0707;
-  background-color: #e00c3c;
+  background-color: #ff0707;
   color: #ffffff;
 }
 
@@ -59,16 +59,18 @@ select {
   color: #333;
 }
 
-input[type="number"]:required:invalid:focus {
-    outline: 1px solid #ff0707;
-    background-color: #e00c3c;
+
+input[type="number"]:invalid:focus {
+  background-color: #ff0000;
 }
 
-input[type="number"]:required:valid:focus {
-  outline: none;
+input[type="number"]:valid,
+input[type="number"]:focus {
+  background-color: #ffffff;
+  color: #333;
 }
 
-input[type="number"]:required:invalid:focus::placeholder {
+input[type="number"]:invalid:focus::placeholder {
   color: #ffffff;
 }
 
@@ -79,7 +81,7 @@ select option {
 
 input[type="radio"]:required:invalid:focus {
   outline: 1px solid #ff0707;
-  background-color: #e00c3c;
+  background-color: #ff0707;
   color: #ffffff;
 }
 
