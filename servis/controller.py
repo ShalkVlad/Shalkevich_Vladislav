@@ -50,7 +50,8 @@ def calculate():
     result_html = """
      <div id="result-window" class="popup-overlay">
          <div class="popup-content">
-             <p>Стоимость услуги «{service_name}» составит: от {total_service_price}-{service_price} бел.рублей*
+             <p>Стоимость услуги «{service_name}» составит: <br> 
+             от {total_service_price}-{service_price} бел.рублей*
              </p>
              <br><br>
              <p class="text">*Для получения подробной информации, свяжитесь с нашим менеджером</p>
