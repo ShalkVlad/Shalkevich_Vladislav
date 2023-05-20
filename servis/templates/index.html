@@ -59,6 +59,14 @@
         <label for="new_client">да</label><br>
         <input type="radio" id="returning_client" name="client_status" value="returning" onclick="handleCheckboxSelection('client_status', this)" required>
         <label for="returning_client">нет</label><br><br>
+        <h4 class="header-wrapper">Оставьте, пожалуйста, контактные данные. В ближайшее время с Вами свяжеться наш менеджер:</h4>
+        <br>
+        <label for="fullname">Ваше ФИО <span class="red-asterisk">*</span></label>
+        <input type="text" id="fullname" name="fullname" required minlength="15" maxlength="40" placeholder="Введите ФИО">
+        <label for="phone">Ваш телефон <span class="red-asterisk">*</span></label>
+        <input type="number" id="phone" name="phone" min="9" required placeholder="+375(__)___-__-__">
+        <label for="email">Ваш email <span class="red-asterisk">*</span></label>
+        <input type="text" id="email" name="email" min="6" required placeholder="Электронная почта">
         <input type="reset" value="Очистить">
         <input type="submit" value="Рассчитать стоимость">
         {% if result_html %}

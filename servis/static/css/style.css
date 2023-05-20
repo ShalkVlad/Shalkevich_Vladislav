@@ -33,10 +33,13 @@ h3 {
   color: #fff;
   background-color: #e00c3c;
   margin: 0 auto;
-  font-size: smaller;
+  font-size: 18.5px;
+  text-align: center;
+
 }
 
 input[type="number"],
+input[type="text"],
 select {
   width: 100%;
   font-style: italic;
@@ -66,16 +69,19 @@ select option {
   color: #333;
 }
 
-input[type="number"]:invalid:focus {
+input[type="number"]:invalid:focus,
+input[type="text"]:invalid:focus {
   background-color: #e00c3c;
   color: #fff;
 }
 
-input[type="number"]:invalid:focus::placeholder {
+input[type="number"]:invalid:focus::placeholder,
+input[type="text"]:invalid:focus::placeholder {
   color: #fff;
 }
 
-input[type="number"]:valid:active {
+input[type="number"]:valid:active 
+input[type="text"]:valid:active   {
   background-color: #fff;
   color: #333;
 }
@@ -93,8 +99,8 @@ input[type="radio"]:required:invalid:active {
 
 input[type="reset"],
 input[type="submit"] {
-  background-color: #fff;
-  color: #333;
+  background-color: #7a7a7a;
+  color: #fff;
   font-size: 18px;
   width: 100%;
   cursor: pointer;

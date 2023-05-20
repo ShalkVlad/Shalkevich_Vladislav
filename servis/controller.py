@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///service_requests.db'
+db = SQLAlchemy(app)
 
 services = {
     "1": {"name": "Оптимизация сайта", "price": 1100},
@@ -12,6 +15,18 @@ services = {
 }
 
 
+class ServiceRequest(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    fullname = db.Column(db.String(40), nullable=False)
+    phone = db.Column(db.String(20), nullable=False)
+    email = db.Column(db.String(50), nullable=False)
+    service_name = db.Column(db.String(50), nullable=False)
+    total_service_price = db.Column(db.Float, nullable=False)
+
+    def __repr__(self):
+        return '<ServiceRequest %r>' % self.fullname
+
+
 @app.route('/')
 def index():
     return render_template('index.html', services=services)
@@ -19,6 +34,9 @@ def index():
 
 @app.route('/calculate', methods=['POST'])
 def calculate():
+    fullname = request.form['fullname']
+    phone = request.form['phone']
+    email = request.form['email']
     service_id = request.form['services']
     duration = int(request.form['duration'])
     competition = int(request.form['competition'])
@@ -47,9 +65,16 @@ def calculate():
 
     service_name = services[service_id]['name']
     service_price = total_service_price + 500
+
+    service_request = ServiceRequest(fullname=fullname, phone=phone, email=email, service_name=service_name,
+                                     total_service_price=service_price)
+    db.session.add(service_request)
+    db.session.commit()
+
     result_html = """
      <div id="result-window" class="popup-overlay">
          <div class="popup-content">
+         {fullname}<br> 
              <p>Стоимость услуги «{service_name}» составит: <br> 
              от {total_service_price}-{service_price} бел.рублей*
              </p>
@@ -60,10 +85,13 @@ def calculate():
              </form>
          </div>
      </div>
-     """.format(service_name=service_name, total_service_price=total_service_price, service_price=service_price)
+     """.format(service_name=service_name, fullname=fullname, total_service_price=total_service_price,
+                service_price=service_price)
 
     return render_template('index.html', result_html=result_html)
 
 
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
