@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Siddham&family=Oswald:wght@700&display=swap');
 
+
+body {
+  background-image: url("/static/background.jpg");
+  background-size: cover;
+}
+
 .red-asterisk {
   color: #e00c3c;
 }
@@ -13,6 +19,7 @@
 }
 
 .calculate {
+  background: #fff  ;
   font-family: 'Roboto', Arial, sans-serif;
   max-width: 600px;
   margin: 0 auto;
@@ -35,7 +42,6 @@ h3 {
   margin: 0 auto;
   font-size: 18.5px;
   text-align: center;
-
 }
 
 input[type="number"],
@@ -49,34 +55,21 @@ select {
   box-sizing: border-box;
 }
 
-.error:invalid {
-  color: #7a7a7a;
-}
-
 select option {
   background-color: #fff;
   color: #333;
 }
 
-.error:required:invalid:focus {
-  outline: 1px solid #e00c3c;
-  background-color: #e00c3c;
-  color: #fff;
-}
-
-.error:required:valid:focus {
-  background-color: #fff;
-  color: #333;
-}
-
 input[type="number"]:invalid:focus,
-input[type="text"]:invalid:focus {
+input[type="text"]:invalid:focus,
+select:invalid:focus {
   background-color: #e00c3c;
   color: #fff;
 }
 
 input[type="number"]:invalid:focus::placeholder,
-input[type="text"]:invalid:focus::placeholder {
+input[type="text"]:invalid:focus::placeholder,
+select:invalid:focus::placeholder {
   color: #fff;
 }
 

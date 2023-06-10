@@ -28,45 +28,45 @@
         <br>
         <label for="competition">Как оцениваете уровень конкуренции Вашей сферы <span class="red-asterisk">*</span></label>
         <br>
-        <input type="radio" id="high" name="competition" value="300" required>
+        <input type="radio" id="high" name="competition" value="высокий" required>
         <label for="high">высокий</label>
         <br>
-        <input type="radio" id="medium" name="competition" value="200" required>
+        <input type="radio" id="medium" name="competition" value="средний" required>
         <label for="medium">средний</label>
         <br>
-        <input type="radio" id="low" name="competition" value="100" required>
+        <input type="radio" id="low" name="competition" value="низкий" required>
         <label for="low">низкий</label>
         <br>
-        <input type="radio" id="unknown" name="competition" value="0" required>
+        <input type="radio" id="unknown" name="competition" value="не знаю" required>
         <label for="unknown">не знаю</label>
         <br><br>
         <label for="advertising-report">Насколько часто вы хотите получать отчёт по интернет-рекламе? <span class="red-asterisk">*</span></label>
         <br>
-        <input type="radio" id="daily" name="advertising-report" value="100" onclick="handleCheckboxSelection('advertising-report', this)" required>
+        <input type="radio" id="daily" name="advertising-report" value="ежедневно" onclick="handleCheckboxSelection('advertising-report', this)" required>
         <label for="daily">ежедневно</label><br>
-        <input type="radio" id="weekly" name="advertising-report" value="50" onclick="handleCheckboxSelection('advertising-report', this)" required>
+        <input type="radio" id="weekly" name="advertising-report" value="еженедельно" onclick="handleCheckboxSelection('advertising-report', this)" required>
         <label for="weekly">еженедельно</label><br>
-        <input type="radio" id="monthly" name="advertising-report" value="0" onclick="handleCheckboxSelection('advertising-report', this)" required>
+        <input type="radio" id="monthly" name="advertising-report" value="ежемесячно" onclick="handleCheckboxSelection('advertising-report', this)" required>
         <label for="monthly">ежемесячно</label><br><br>
         <label for="employee">Есть штатный специалист в компании? <span class="red-asterisk">*</span></label><br>
-        <input type="radio" id="yes" name="employee_answer" value="yes" onclick="handleCheckboxSelection('employee_answer', this)" required>
+        <input type="radio" id="yes" name="employee_answer" value="да" onclick="handleCheckboxSelection('employee_answer', this)" required>
         <label for="yes">да</label><br>
-        <input type="radio" id="no" name="employee_answer" value="0" onclick="handleCheckboxSelection('employee_answer', this)" required>
+        <input type="radio" id="no" name="employee_answer" value="нет" onclick="handleCheckboxSelection('employee_answer', this)" required>
         <label for="no">нет</label>
         <br><br>
         <label for="new_client">Обращаетесь к нам впервые? <span class="red-asterisk">*</span></label><br>
-        <input type="radio" id="new_client" name="client_status" value="new" onclick="handleCheckboxSelection('client_status', this)" required>
+        <input type="radio" id="new_client" name="client_status" value="да" onclick="handleCheckboxSelection('client_status', this)" required>
         <label for="new_client">да</label><br>
-        <input type="radio" id="returning_client" name="client_status" value="returning" onclick="handleCheckboxSelection('client_status', this)" required>
+        <input type="radio" id="returning_client" name="client_status" value="нет" onclick="handleCheckboxSelection('client_status', this)" required>
         <label for="returning_client">нет</label><br><br>
         <h4 class="header-wrapper">Оставьте, пожалуйста, контактные данные. В ближайшее время с Вами свяжеться наш менеджер:</h4>
         <br>
         <label for="fullname">Ваше ФИО <span class="red-asterisk">*</span></label>
         <input type="text" id="fullname" name="fullname" required minlength="15" maxlength="40" placeholder="Введите ФИО">
         <label for="phone">Ваш телефон <span class="red-asterisk">*</span></label>
-        <input type="number" id="phone" name="phone" min="9" required placeholder="+375(__)___-__-__">
+        <input type="number" id="phone" name="phone" minlength="9" maxlength="12" required placeholder="+375(__)___-__-__">
         <label for="email">Ваш email <span class="red-asterisk">*</span></label>
-        <input type="text" id="email" name="email" min="6" required placeholder="Электронная почта">
+        <input type="text" id="email" name="email" minlength="6" required placeholder="Электронная почта">
         <input type="reset" value="Очистить">
         <input type="submit" value="Рассчитать стоимость">
         {% if result_html %}

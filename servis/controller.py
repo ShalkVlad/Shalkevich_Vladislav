@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///service_requests.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///services.db'
 db = SQLAlchemy(app)
 
 services = {
@@ -17,14 +17,20 @@ services = {
 
 class ServiceRequest(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    fullname = db.Column(db.String(40), nullable=False)
+    username = db.Column(db.String(40), nullable=False)
     phone = db.Column(db.String(20), nullable=False)
     email = db.Column(db.String(50), nullable=False)
+    service_number = db.Column(db.String(10), nullable=False)
+    duration = db.Column(db.Integer, nullable=False)
+    competition = db.Column(db.String(10), nullable=False)
+    newsletter = db.Column(db.String(10), nullable=False)
+    employee_state = db.Column(db.String(10), nullable=False)
+    new_client = db.Column(db.String(10), nullable=False)
     service_name = db.Column(db.String(50), nullable=False)
     total_service_price = db.Column(db.Float, nullable=False)
 
     def __repr__(self):
-        return '<ServiceRequest %r>' % self.fullname
+        return '<ServiceRequest %r>' % self.username
 
 
 @app.route('/')
@@ -34,17 +40,15 @@ def index():
 
 @app.route('/calculate', methods=['POST'])
 def calculate():
-    fullname = request.form['fullname']
-    phone = request.form['phone']
-    email = request.form['email']
-    service_id = request.form['services']
+    username = request.form['fullname']
+    service_number = request.form['services']
     duration = int(request.form['duration'])
-    competition = int(request.form['competition'])
-    advertising_report = int(request.form['advertising-report'])
-    employee_answer = request.form['employee_answer']
-    client_status = request.form['client_status']
+    competition = request.form['competition']
+    newsletter = request.form['advertising-report']
+    employee_state = request.form['employee_answer']
+    new_client = request.form['client_status']
 
-    service_price = services[service_id]['price']
+    service_price = services[service_number]['price']
 
     if duration <= 3:
         total_service_price = service_price
@@ -55,26 +59,47 @@ def calculate():
     else:
         total_service_price = service_price * 0.85
 
-    total_service_price += competition + advertising_report
+    if competition == 'высокий':
+        total_service_price += 100
+    elif competition == 'средний':
+        total_service_price += 50
+    elif competition == 'низкий':
+        total_service_price += 25
 
-    if employee_answer == 'yes':
+    if newsletter == 'еженедельно':
+        total_service_price += 50
+    elif newsletter == 'ежемесячно':
+        total_service_price += 25
+
+    if employee_state == 'да':
         total_service_price += 50
 
-    if client_status == 'new':
+    if new_client == 'да':
         total_service_price *= 0.9
 
-    service_name = services[service_id]['name']
+    service_name = services[service_number]['name']
     service_price = total_service_price + 500
 
-    service_request = ServiceRequest(fullname=fullname, phone=phone, email=email, service_name=service_name,
-                                     total_service_price=service_price)
+    service_request = ServiceRequest(
+        username=username,
+        phone=request.form['phone'],
+        email=request.form['email'],
+        service_number=service_number,
+        duration=duration,
+        competition=competition,
+        newsletter=newsletter,
+        employee_state=employee_state,
+        new_client=new_client,
+        service_name=service_name,
+        total_service_price=service_price
+    )
     db.session.add(service_request)
     db.session.commit()
 
     result_html = """
      <div id="result-window" class="popup-overlay">
          <div class="popup-content">
-         {fullname}<br> 
+         {username}<br> 
              <p>Стоимость услуги «{service_name}» составит: <br> 
              от {total_service_price}-{service_price} бел.рублей*
              </p>
@@ -85,7 +110,7 @@ def calculate():
              </form>
          </div>
      </div>
-     """.format(service_name=service_name, fullname=fullname, total_service_price=total_service_price,
+     """.format(service_name=service_name, username=username, total_service_price=total_service_price,
                 service_price=service_price)
 
     return render_template('index.html', result_html=result_html)
