@@ -12,7 +12,7 @@ class Plotter:
         df = pd.read_json(json_file)
 
         # Table
-        columns = ['name', 'gt_corners', 'mean', 'max', 'min',
+        columns = ['name', 'gt_corners', 'rb_corners', 'mean', 'max', 'min',
                    'floor_mean', 'floor_max', 'floor_min', 'ceiling_mean',
                    'ceiling_max', 'ceiling_min']
         df = df[columns]
