@@ -1,13 +1,13 @@
 from aiogram import types, Dispatcher
 
-import db
-from user_kb import start_keyboard, help_keyboard, main_keyboard
+import DB
+from User_kb import start_keyboard, help_keyboard, main_keyboard
 
 
 # Обработчик команды /start
 async def command_start(message: types.Message):
     user_id = message.from_user.id
-    if db.is_user_registered(user_id):
+    if DB.is_user_registered(user_id):
         await message.answer("Добро пожаловать в ваш кабинет!", reply_markup=main_keyboard)
     else:
         await message.answer(f"Здравствуй, {message.from_user.full_name}!\n"

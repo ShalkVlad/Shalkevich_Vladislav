@@ -3,10 +3,10 @@ from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.types import ReplyKeyboardRemove, ContentType
-import db
-from creat_Bot import dp, bot
-from db import create_profile
-from user_kb import gender_markup, main_keyboard, partner_gender_markup
+import DB
+from Creat_Bot import dp, bot
+from DB import create_profile
+from User_kb import gender_markup, main_keyboard, partner_gender_markup
 
 
 class RegistrationState(StatesGroup):
@@ -167,7 +167,7 @@ async def process_name(message: types.Message, state: FSMContext):
         await message.answer("Имя может содержать только буквы. Пожалуйста, попробуйте еще раз.")
         return
     user_id = message.from_user.id
-    result = await asyncio.to_thread(db.update_user_name, user_id, name)
+    result = await asyncio.to_thread(DB.update_user_name, user_id, name)
 
     if result:
         await message.reply("Имя успешно обновлено!")
@@ -191,7 +191,7 @@ async def process_age(message: types.Message, state: FSMContext):
         return
 
     user_id = message.from_user.id
-    result = await asyncio.to_thread(db.update_user_age, user_id, age)
+    result = await asyncio.to_thread(DB.update_user_age, user_id, age)
 
     if result:
         await message.reply("Возраст успешно обновлен!")
@@ -206,7 +206,7 @@ async def process_age(message: types.Message, state: FSMContext):
 async def process_country(message: types.Message, state: FSMContext):
     country = message.text
     user_id = message.from_user.id
-    result = await asyncio.to_thread(db.update_user_country, user_id, country)
+    result = await asyncio.to_thread(DB.update_user_country, user_id, country)
 
     if result:
         await message.reply("Страна успешно обновлена!")
@@ -223,7 +223,7 @@ async def process_photo(message: types.Message, state: FSMContext):
     photo = message.photo[-1].file_id
 
     user_id = message.from_user.id
-    if await db.update_user_photo(user_id, photo):
+    if await DB.update_user_photo(user_id, photo):
         # Фотография успешно обновлена в базе данных
         await bot.send_message(chat_id=message.chat.id, text="Фотография успешно обновлена!")
         await bot.send_photo(chat_id=message.chat.id, photo=photo)
@@ -239,7 +239,7 @@ async def process_photo(message: types.Message, state: FSMContext):
 async def process_about_me(message: types.Message, state: FSMContext):
     about_me = message.text
     user_id = message.from_user.id
-    result = await asyncio.to_thread(db.update_user_about, user_id, about_me)
+    result = await asyncio.to_thread(DB.update_user_about, user_id, about_me)
 
     if result:
         await message.reply("Информация о себе успешно обновлена!")

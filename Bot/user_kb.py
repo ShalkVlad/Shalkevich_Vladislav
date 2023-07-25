@@ -11,7 +11,7 @@ start_keyboard.add(btn_create_profile, btn_bot_info)
 # Кнопки для клавиатуры "Помощь"
 btn_community_rules = InlineKeyboardButton("📜 Правила сообщества")
 btn_bot_capabilities = InlineKeyboardButton("🤔 Что я могу?")
-btn_back_to_main_menu = InlineKeyboardButton("🔙 Вернуться в главное меню")
+btn_back_to_main_menu = InlineKeyboardButton("🏠 главное меню")
 
 # Клавиатура "Помощь"
 help_keyboard = ReplyKeyboardMarkup(resize_keyboard=True)
@@ -64,7 +64,7 @@ bonus_keyboard = ReplyKeyboardMarkup([[btn_star_bonus, btn_hello_bonus], [btn_vi
 # Кнопки для клавиатуры "Редактировать анкету"
 btn_edit_profile = KeyboardButton("✏️ Изменить анкету")
 btn_delete_profile = KeyboardButton("❌ Удалить анкету")
-btn_main_menu = KeyboardButton("🏠 Главное меню")
+btn_main_menu = KeyboardButton("🏠 главное меню")
 
 # Клавиатура "Редактировать анкету"
 edit_profile_keyboard = ReplyKeyboardMarkup(resize_keyboard=True)

@@ -1,6 +1,6 @@
 from aiogram.utils import executor
-import other, user
-from creat_Bot import dp
+import Other, User
+from Creat_Bot import dp
 
 
 # Функция, которая вызывается при старте бота
@@ -9,8 +9,8 @@ async def on_bot_start(_):
 
 
 # Регистрация обработчиков команд и текстовых сообщений из файлов "other.py" и "user.py"
-other.register(dp)
-user.register_user(dp)
+Other.register(dp)
+User.register_user(dp)
 
 if __name__ == '__main__':
     # Запуск бота с обработкой команд и текстовых сообщений
