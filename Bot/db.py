@@ -1,84 +1,123 @@
-from base64 import b64decode as dec64
-import binascii
-import sqlite3
-from io import BytesIO
+from sqlalchemy import create_engine, Column, Integer, String, Text
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
-from PIL import Image
-from aiogram.types import Message, PhotoSize
+# Create the database engine
+db_file = 'users.db'
+db_url = f'sqlite:///{db_file}'
+engine = create_engine(db_url, echo=False)
 
-conn = sqlite3.connect('users.db')
-cursor = conn.cursor()
+# Create a base class for declarative models
+Base = declarative_base()
 
-# Создание таблицы пользователей
-cursor.execute('''
-    CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY,
-    name TEXT,
-    age INTEGER,
-    gender TEXT,
-    photo BLOB
-    )
-''')
+
+# Define the User model
+class User(Base):
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False)
+    age = Column(Integer, nullable=False)
+    gender = Column(String, nullable=False)
+    partner_gender = Column(String, nullable=False)
+    country = Column(String)
+    about = Column(Text)
+    photo = Column(Text)
+    wallet = Column(Integer, default=0)
+
+
+# Create or update the database schema
+Base.metadata.create_all(engine)
+
+# Create a session to interact with the database
+Session = sessionmaker(bind=engine)
+session = Session()
 
 
 def is_user_registered(user_id: int) -> bool:
-    cursor.execute('SELECT COUNT(*) FROM users WHERE id = ?', (user_id,))
-    count = cursor.fetchone()[0]
-    return count > 0
+    user = session.query(User).filter_by(id=user_id).first()
+    return user is not None
 
 
-# Создание профиля пользователя
-def create_profile(user_id: int, name: str, age: int, gender: str, photo: bytes):
-    cursor.execute('INSERT INTO users (id, name, age, gender, photo) VALUES (?, ?, ?, ?, ?)',
-                   (user_id, name, age, gender, photo))
-    conn.commit()
+def create_profile(user_id: int, name: str, age: int, gender: str, country: str, about: str, photo: str,
+                   partner_gender: str):
+    user = User(id=user_id, name=name, age=age, gender=gender, partner_gender=partner_gender,
+                country=country, about=about, photo=photo)
+    session.add(user)
+    session.commit()
 
 
-# Получение профиля пользователя по ID
+def update_user_name(user_id: int, name: str):
+    user = session.query(User).filter_by(id=user_id).first()
+    if user:
+        user.name = name
+        session.commit()
+        return True
+    return False
+
+
+def update_user_age(user_id: int, age: int):
+    user = session.query(User).filter_by(id=user_id).first()
+    if user:
+        user.age = age
+        session.commit()
+        return True
+    return False
+
+
+def update_user_country(user_id: int, country: str):
+    user = session.query(User).filter_by(id=user_id).first()
+    if user:
+        user.country = country
+        session.commit()
+        return True
+    return False
+
+
+def update_user_about(user_id: int, about: str):
+    user = session.query(User).filter_by(id=user_id).first()
+    if user:
+        user.about = about
+        session.commit()
+        return True
+    return False
+
+
+async def update_user_photo(user_id: int, photo: str):
+    user = session.query(User).filter_by(id=user_id).first()
+    if user:
+        user.photo = photo
+        session.commit()
+        return True
+    return False
+
+
 def get_profile(user_id: int):
-    cursor.execute('SELECT name, age, gender FROM users WHERE id = ?', (user_id,))
-    return cursor.fetchone()
-
-
-async def process_photo(message: Message):
-    photo: PhotoSize = message.photo[-1]
-    photo_binary = BytesIO()
-    await photo.download(destination=photo_binary)
-    photo_binary.seek(0)
-    photo_bytes = photo_binary.read()
-    cursor.execute("INSERT INTO users (photo) VALUES (?)", (photo_bytes,))
-    conn.commit()
-
-
-# Получение всех профилей пользователей
-def get_all_profiles():
-    cursor.execute('SELECT * FROM users')
-    return cursor.fetchall()
-
-
-# Удаление профиля пользователя по ID
-def delete_profile(user_id: int):
-    cursor.execute('DELETE FROM users WHERE id = ?', (user_id,))
-    conn.commit()
-
-
-def get_user_photo(user_id):
-    cursor.execute("SELECT * FROM users WHERE id=?", (user_id,))
-    user_data = cursor.fetchone()
-    if user_data:
-        photo_data_str = user_data[-1]
-        try:
-            image_bytes = dec64(photo_data_str + "=" * ((4 - len(photo_data_str) % 4) % 4))
-            image = Image.open(BytesIO(image_bytes))
-            return image
-        except binascii.Error:
-            print("Ошибка декодирования изображения")
-            return None
+    user = session.query(User).filter_by(id=user_id).first()
+    if user:
+        return user.name, user.age, user.gender, user.country, user.about, user.photo, user.wallet
     else:
-        print("Пользователь не найден")
         return None
 
 
-# Закрытие соединения с базой данных
+def get_all_profiles():
+    return session.query(User).all()
+
+
+def delete_profile(user_id: int):
+    user = session.query(User).filter_by(id=user_id).first()
+    if user:
+        session.delete(user)
+        session.commit()
+
+
+def get_user_wallet(user_id: int):
+    user = session.query(User).filter_by(id=user_id).first()
+    if user:
+        return user.wallet
+    else:
+        return None
+
+
+# Close the database session when done
 def close_db():
-    conn.close()
+    session.close()
