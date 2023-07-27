@@ -1,12 +1,15 @@
 import asyncio
+
 from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.types import ReplyKeyboardRemove, ContentType
+from geopy import Nominatim
+
 import DB
 from Creat_Bot import dp, bot
 from DB import create_profile
-from User_kb import gender_markup, main_keyboard, partner_gender_markup
+from User_kb import gender_markup, main_keyboard, location_keyboard
 
 
 class RegistrationState(StatesGroup):
@@ -14,9 +17,9 @@ class RegistrationState(StatesGroup):
     age = State()
     gender = State()
     country = State()
+    city = State()
     about = State()
     photo = State()
-    partner_gender = State()
 
 
 class Newdata(StatesGroup):
@@ -24,6 +27,7 @@ class Newdata(StatesGroup):
     name = State()
     age = State()
     country = State()
+    city = State()
     about = State()
 
 
@@ -88,44 +92,61 @@ async def process_gender(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
         data['gender'] = gender
 
-    await message.answer("Выберите пол партнёра", reply_markup=partner_gender_markup)
-    await RegistrationState.partner_gender.set()
-
-
-@dp.message_handler(lambda message: message.text in ["♂️ Мужской", "♀️ Женский", "🤖 Не важно", "♂️", "♀️", "🤖"],
-                    state=RegistrationState.partner_gender)
-async def process_partner_gender(message: types.Message, state: FSMContext):
-    partner_gender = message.text
-
-    if partner_gender not in ["♂️ Мужской", "♀️ Женский", "🤖 Не важно", "♂️", "♀️", "🤖"]:
-        await message.answer("Пожалуйста, выберите один из предложенных вариантов")
-        return
-
-    async with state.proxy() as data:
-        data['partner_gender'] = partner_gender
-
-    await message.answer("Введите вашу страну", reply_markup=ReplyKeyboardRemove())
+    await message.answer("Введите вашу страну", reply_markup=location_keyboard)
     await RegistrationState.country.set()
 
 
-@dp.message_handler(state=RegistrationState.country)
-async def process_country(message: types.Message, state: FSMContext):
-    country = message.text.strip()
+@dp.message_handler(content_types=[ContentType.LOCATION, ContentType.TEXT], state=RegistrationState.country)
+async def process_country_input_or_location(message: types.Message, state: FSMContext):
+    if message.content_type == ContentType.LOCATION:
+        latitude = message.location.latitude
+        longitude = message.location.longitude
 
-    # В этом месте также можно добавить валидацию для страны, если требуется.
+        geolocator = Nominatim(user_agent="myGeocoder")
+        location = geolocator.reverse((latitude, longitude), language="ru")
+        country = location.raw["address"].get("country")
+        city = location.raw["address"].get("city")
+
+        async with state.proxy() as data:
+            data['country'] = country
+            data['city'] = city
+
+        await message.answer(f"Ваша страна: {country}")
+        await message.answer(f"Ваш город: {city}")
+        await message.answer("Расскажите немного о себе", reply_markup=ReplyKeyboardRemove())
+        await RegistrationState.about.set()
+    else:
+        country = message.text.strip()
+        async with state.proxy() as data:
+            data['country'] = country
+
+        await message.answer("Укажите ваш город")
+        await RegistrationState.city.set()
+
+
+@dp.message_handler(content_types=[ContentType.LOCATION, ContentType.TEXT], state=RegistrationState.city)
+async def process_city_input_or_location(message: types.Message, state: FSMContext):
+    if message.content_type == ContentType.LOCATION:
+        latitude = message.location.latitude
+        longitude = message.location.longitude
+
+        geolocator = Nominatim(user_agent="myGeocoder")
+        location = geolocator.reverse((latitude, longitude), language="ru")
+        city = location.raw["address"].get("city")
+    else:
+        city = message.text.strip()
 
     async with state.proxy() as data:
-        data['country'] = country
+        data['city'] = city
 
-    await message.answer("Расскажите немного о себе")
+    await message.answer(f"Ваш город: {city}")
+    await message.answer("Расскажите немного о себе", reply_markup=ReplyKeyboardRemove())
     await RegistrationState.about.set()
 
 
 @dp.message_handler(state=RegistrationState.about)
 async def process_about(message: types.Message, state: FSMContext):
     about = message.text.strip()
-
-    # В этом месте также можно добавить валидацию для информации о пользователе.
 
     async with state.proxy() as data:
         data['about'] = about
@@ -135,21 +156,18 @@ async def process_about(message: types.Message, state: FSMContext):
     age = data["age"]
     gender = data["gender"]
     country = data["country"]
+    city = data["city"]
     about = data["about"]
     photo = data["photo"]
-    partner_gender = data["partner_gender"]
 
-    create_profile(user_id, name, age, gender, country, about, photo, partner_gender)
+    create_profile(user_id, name, age, gender, country, about, photo, city)
     await bot.send_photo(chat_id=message.chat.id, photo=photo)
     await message.answer(f"🎉 Поздравляем, {name}!\n"
                          f"Ваша анкета успешно создана!\n"
                          f"Ваши данные:\n"
-                         f"Имя: {name}\n"
-                         f"Возраст: {age}\n"
-                         f"Пол: {gender}\n"
-                         f"Страна: {country}\n"
-                         f"Информация о себе: {about}\n"
-                         f"Вы ищете партнёра:{partner_gender}",
+                         f"Имя: {name}, Возраст: {age}, Пол: {gender}\n"
+                         f"Страна: {country}, Город: {city}\n"
+                         f"Информация о себе: {about}\n",
                          reply_markup=ReplyKeyboardRemove())
 
     await state.finish()
@@ -202,21 +220,6 @@ async def process_age(message: types.Message, state: FSMContext):
     await message.answer("Добро пожаловать в ваш персональный кабинет!", reply_markup=main_keyboard)
 
 
-@dp.message_handler(state=Newdata.country)
-async def process_country(message: types.Message, state: FSMContext):
-    country = message.text
-    user_id = message.from_user.id
-    result = await asyncio.to_thread(DB.update_user_country, user_id, country)
-
-    if result:
-        await message.reply("Страна успешно обновлена!")
-    else:
-        await message.reply("Произошла ошибка при обновлении страны.")
-
-    await state.finish()
-    await message.answer("Добро пожаловать в ваш персональный кабинет!", reply_markup=main_keyboard)
-
-
 @dp.message_handler(content_types=ContentType.PHOTO, state=Newdata.photo)
 async def process_photo(message: types.Message, state: FSMContext):
     # Получаем файл фотографии из сообщения
@@ -245,6 +248,63 @@ async def process_about_me(message: types.Message, state: FSMContext):
         await message.reply("Информация о себе успешно обновлена!")
     else:
         await message.reply("Произошла ошибка при обновлении информации о себе.")
+
+    await state.finish()
+    await message.answer("Добро пожаловать в ваш персональный кабинет!", reply_markup=main_keyboard)
+
+
+@dp.message_handler(content_types=[ContentType.LOCATION, ContentType.TEXT], state=Newdata.country)
+async def process_country_input_or_location(message: types.Message, state: FSMContext):
+    if message.content_type == ContentType.LOCATION:
+        latitude = message.location.latitude
+        longitude = message.location.longitude
+
+        geolocator = Nominatim(user_agent="myGeocoder")
+        location = geolocator.reverse((latitude, longitude), language="ru")
+        country = location.raw["address"].get("country")
+    else:
+        country = message.text.strip()
+
+    async with state.proxy() as data:
+        data['country'] = country
+
+    await message.answer(f"Ваша страна: {country}")
+    await message.answer("Укажите ваш город или нажмите на кнопку '📍 Предоставить геолокацию'",
+                         reply_markup=location_keyboard)
+    await RegistrationState.city.set()
+
+
+@dp.message_handler(content_types=[ContentType.LOCATION, ContentType.TEXT], state=Newdata.city)
+async def process_city_input_or_location(message: types.Message, state: FSMContext):
+    if message.content_type == ContentType.LOCATION:
+        latitude = message.location.latitude
+        longitude = message.location.longitude
+
+        geolocator = Nominatim(user_agent="myGeocoder")
+        location = geolocator.reverse((latitude, longitude), language="ru")
+        city = location.raw["address"].get("city")
+    else:
+        city = message.text.strip()
+
+    async with state.proxy() as data:
+        data['city'] = city
+
+    await message.reply(f"Ваш город: {city}. Город успешно обновлен!")
+
+    await state.finish()
+    await message.answer("Добро пожаловать в ваш персональный кабинет!", reply_markup=main_keyboard)
+
+
+@dp.message_handler(state=Newdata.country)
+async def process_country(message: types.Message, state: FSMContext):
+    country = message.text
+    user_id = message.from_user.id
+    result = await asyncio.to_thread(DB.update_user_country, user_id, country)
+
+    if result:
+        await message.reply(f"Ваша страна: {country}. Страна успешно обновлена!")
+    else:
+        await message.reply("Произошла ошибка при обновлении страны.")
 
     await state.finish()
     await message.answer("Добро пожаловать в ваш персональный кабинет!", reply_markup=main_keyboard)

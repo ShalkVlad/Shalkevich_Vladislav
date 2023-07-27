@@ -27,13 +27,11 @@ gender_markup = ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
 gender_markup.add(btn_male, btn_female, btn_other_gender)
 
 # Кнопки для выбора пола партнёра
-btn_male_partner = KeyboardButton("♂️ Мужской")
-btn_female_partner = KeyboardButton("♀️ Женский")
 btn_other_partner_gender = KeyboardButton("🤖 Не важно")
 
 # Клавиатура выбора пола партнёра
 partner_gender_markup = ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
-partner_gender_markup.add(btn_male_partner, btn_female_partner, btn_other_partner_gender)
+partner_gender_markup.add(btn_male, btn_female, btn_other_partner_gender)
 
 # Кнопки для основной клавиатуры
 btn_my_profile = KeyboardButton(text="😊 Моя анкета")
@@ -52,27 +50,26 @@ main_keyboard.add(btn_my_profile, btn_bonuses, btn_wallet, btn_mutual_sympathies
 btn_star_bonus = KeyboardButton("⭐️ Звезда")
 btn_hello_bonus = KeyboardButton("💬 Напиши 'Привет'")
 btn_vip_bonus = KeyboardButton("👑 Персона ВИП")
-btn_incognito_bonus = KeyboardButton("👤 Инкогнито")
+btn_incognito_bonus = KeyboardButton("👤‍ Инкогнито")
 btn_limitless_bonus = KeyboardButton("💪🏼 НЕТ ЛИМИТУ! … Почти")
-btn_bonus_back = InlineKeyboardButton("🏠 главное меню")
 
 # Клавиатура "Бонусы"
 bonus_keyboard = ReplyKeyboardMarkup([[btn_star_bonus, btn_hello_bonus], [btn_vip_bonus, btn_incognito_bonus],
-                                      [btn_limitless_bonus, btn_bonus_back]], row_width=2, selective=True,
+                                      [btn_limitless_bonus, btn_back_to_main_menu]], row_width=2, selective=True,
                                      resize_keyboard=True)
 
 # Кнопки для клавиатуры "Редактировать анкету"
 btn_edit_profile = KeyboardButton("✏️ Изменить анкету")
 btn_delete_profile = KeyboardButton("❌ Удалить анкету")
-btn_main_menu = KeyboardButton("🏠 главное меню")
 
 # Клавиатура "Редактировать анкету"
 edit_profile_keyboard = ReplyKeyboardMarkup(resize_keyboard=True)
-edit_profile_keyboard.add(btn_edit_profile, btn_delete_profile, btn_main_menu)
+edit_profile_keyboard.add(btn_edit_profile, btn_delete_profile, btn_back_to_main_menu)
 
 btn_edit_name = KeyboardButton("😀 Изменить имя")
 btn_edit_age = KeyboardButton("🎂 Изменить возраст")
 btn_edit_country = KeyboardButton("🌎 Изменить страну")
+btn_edit_city = KeyboardButton("🏙️ Изменить город")
 btn_edit_about = KeyboardButton("✍️ Изменить описание")
 btn_change_photo = KeyboardButton("📷 Изменить фото")
 btn_Nev = KeyboardButton("🆕 Новая анкета")
@@ -80,5 +77,9 @@ btn_Nev = KeyboardButton("🆕 Новая анкета")
 # Клавиатура "Редактировать анкету" с названиями полей таблицы
 edit_profile_keyboard_with_fields = ReplyKeyboardMarkup(resize_keyboard=True)
 edit_profile_keyboard_with_fields.add(btn_edit_name, btn_edit_age,
-                                      btn_edit_country, btn_edit_about, btn_change_photo, btn_main_menu,
-                                      btn_Nev)
+                                      btn_edit_country, btn_edit_city, btn_edit_about, btn_change_photo,
+                                      btn_back_to_main_menu, btn_Nev)
+
+btn_provide_location = KeyboardButton("📍 Предоставить геолокацию", request_location=True)
+location_keyboard = ReplyKeyboardMarkup(resize_keyboard=True)
+location_keyboard.add(btn_provide_location)
