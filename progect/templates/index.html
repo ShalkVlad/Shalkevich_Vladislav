@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Моя библиотека</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Моя библиотека</h1>
+
+    <div class="form-container">
+        <h3>Добавить книгу</h3>
+        <label for="book_id">Идентификатор книги:</label>
+        <input type="text" id="book_id" name="book_id">
+
+        <label for="title">Название книги:</label>
+        <input type="text" id="title" name="title">
+
+        <label for="author_ids">Идентификаторы авторов (через запятую):</label>
+        <input type="text" id="author_ids" name="author_ids">
+
+        <button onclick="addBook()">Добавить</button>
+    </div>
+
+    <div class="form-container">
+        <h3>Добавить автора</h3>
+        <label for="author_id">Идентификатор автора:</label>
+        <input type="text" id="author_id" name="author_id">
+
+        <label for="name">Имя автора:</label>
+        <input type="text" id="name" name="name">
+
+        <label for="books_written">Идентификаторы книг автора (через запятую):</label>
+        <input type="text" id="books_written" name="books_written">
+
+        <button onclick="addAuthor()">Добавить</button>
+    </div>
+
+    <div id="book-info">
+        <!-- Здесь будет отображаться информация о книге после добавления -->
+    </div>
+
+    <div id="author-info">
+        <!-- Здесь будет отображаться информация об авторе после добавления -->
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
