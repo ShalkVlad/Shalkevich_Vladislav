@@ -9,19 +9,6 @@ engine = create_engine(db_url, echo=False)
 Base = declarative_base()
 
 
-class Profile:
-    def __init__(self, name, age, gender, country, about, photo, wallet, city, telegram_username):
-        self.name = name
-        self.age = age
-        self.gender = gender
-        self.country = country
-        self.about = about
-        self.photo = photo
-        self.wallet = wallet
-        self.city = city
-        self.telegram_username = telegram_username
-
-
 class User(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
@@ -33,8 +20,6 @@ class User(Base):
     about = Column(Text)
     photo = Column(Text)
     wallet = Column(Integer, default=0)
-    telegram_username = Column(String)
-    language = Column(String)
 
 
 Base.metadata.create_all(engine)
@@ -48,13 +33,47 @@ def is_user_registered(user_id: int) -> bool:
     return user is not None
 
 
-def create_profile(user_id: int, name: str, age: int, gender: str, country: str, about: str, photo: str,
-                   city: str, telegram_username: str, language: str):
+def create_profile(user_id: int, name: str, age: int, gender: str, country: str, about: str, photo: str, city: str):
     user = User(id=user_id, name=name, age=age, gender=gender,
-                country=country, about=about, photo=photo, city=city, telegram_username=telegram_username,
-                language=language)  # Добавляем параметр language
+                country=country, about=about, photo=photo, city=city)
     session.add(user)
     session.commit()
+
+
+def update_user_name(user_id: int, name: str):
+    user = session.query(User).filter_by(id=user_id).first()
+    if user:
+        user.name = name
+        session.commit()
+        return True
+    return False
+
+
+def update_user_age(user_id: int, age: int):
+    user = session.query(User).filter_by(id=user_id).first()
+    if user:
+        user.age = age
+        session.commit()
+        return True
+    return False
+
+
+def update_user_country(user_id: int, country: str):
+    user = session.query(User).filter_by(id=user_id).first()
+    if user:
+        user.country = country
+        session.commit()
+        return True
+    return False
+
+
+def update_user_about(user_id: int, about: str):
+    user = session.query(User).filter_by(id=user_id).first()
+    if user:
+        user.about = about
+        session.commit()
+        return True
+    return False
 
 
 async def update_user_photo(user_id: int, photo: str):
@@ -66,31 +85,19 @@ async def update_user_photo(user_id: int, photo: str):
     return False
 
 
-async def update_user_language(user_id: int, language: str):
-    update_data = {"language": language}
-    result = await update_user_profile(user_id, update_data)
-    return result
-
-
-async def update_user_profile(user_id: int, update_data: dict):
+async def update_user_city(user_id: int, city: str):
     user = session.query(User).filter_by(id=user_id).first()
     if user:
-        for field, value in update_data.items():
-            if hasattr(user, field):
-                setattr(user, field, value)
-            else:
-                return False  # Недопустимое поле в update_data
-
+        user.city = city
         session.commit()
         return True
-    else:
-        return False
+    return False
 
 
 def get_profile(user_id: int):
     user = session.query(User).filter_by(id=user_id).first()
     if user:
-        return user.name, user.age, user.gender, user.country, user.about, user.photo, user.wallet, user.city,
+        return user.name, user.age, user.gender, user.country, user.about, user.photo, user.wallet,user.city
     else:
         return None
 
@@ -99,17 +106,11 @@ def get_all_profiles():
     return session.query(User).all()
 
 
-def delete_user_profile(user_id: int):
-    # Удаляем профиль пользователя
-    session.query(User).filter_by(id=user_id).delete()
-
-    # Удаляем взаимные симпатии пользователя
-    from likes import Like
-    session.query(Like).filter_by(sender_id=user_id).delete()
-    session.query(Like).filter_by(recipient_id=user_id).delete()
-
-    session.commit()
-    return True
+def delete_profile(user_id: int):
+    user = session.query(User).filter_by(id=user_id).first()
+    if user:
+        session.delete(user)
+        session.commit()
 
 
 def get_user_wallet(user_id: int):
@@ -119,39 +120,13 @@ def get_user_wallet(user_id: int):
     else:
         return None
 
-
-def update_profile(user_id: int, name: str, age: int, gender: str, country: str, about: str, photo: str,
-                   city: str, telegram_username: str, language: str):
+def get_user_City(user_id: int):
     user = session.query(User).filter_by(id=user_id).first()
     if user:
-        user.name = name
-        user.age = age
-        user.gender = gender
-        user.country = country
-        user.about = about
-        user.photo = photo
-        user.city = city
-        user.telegram_username = telegram_username
-        user.language = language
-        session.commit()
-
-
-def get_user(user_id: int):
-    user = session.query(User).filter_by(id=user_id).first()
-    if user:
-        return Profile(
-            name=user.name,
-            age=user.age,
-            gender=user.gender,
-            country=user.country,
-            about=user.about,
-            photo=user.photo,
-            wallet=user.wallet,
-            city=user.city,
-            telegram_username=user.telegram_username
-        )
+        return user.city
     else:
         return None
+
 
 
 def close_db():

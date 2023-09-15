@@ -1,8 +1,7 @@
 from aiogram.utils import executor
-
-import Other
-import User
+import Other, User
 from Creat_Bot import dp
+
 
 
 async def on_bot_start(_):
