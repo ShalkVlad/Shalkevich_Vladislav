@@ -1,4 +1,4 @@
-import asyncio
+import logging
 
 from aiogram import types
 from aiogram.dispatcher import FSMContext
@@ -8,8 +8,8 @@ from geopy import Nominatim
 
 import DB
 from Creat_Bot import dp, bot
-from DB import create_profile
-from User_kb import gender_markup, main_keyboard, location_keyboard
+from Other import load_language_texts, get_user_language, cancels
+from User_kb import genders, main, location, Create
 
 
 class RegistrationState(StatesGroup):
@@ -22,289 +22,232 @@ class RegistrationState(StatesGroup):
     photo = State()
 
 
-class Newdata(StatesGroup):
-    photo = State()
-    name = State()
-    age = State()
-    country = State()
-    city = State()
-    about = State()
-
-
 @dp.message_handler(state=RegistrationState.name)
-async def process_name(message: types.Message, state: FSMContext):
+@cancels
+async def process_name(message: types.Message, state: FSMContext,texts, preferences, user_id, raw_state):
     name = message.text.strip()
-    if not (3 <= len(name) <= 15):
-        await message.answer("Имя должно содержать от 3 до 15 символов. Пожалуйста, попробуйте еще раз.")
-        return
-
-    if not name.isalpha():
-        await message.answer("Имя может содержать только буквы. Пожалуйста, попробуйте еще раз.")
+    if not (3 <= len(name) <= 15) or not name.isalpha():
+        await message.answer(texts["VAllUE-NAME"])
         return
 
     async with state.proxy() as data:
         data['name'] = name
-
-    await message.answer("Введите ваш возраст")
-    await RegistrationState.age.set()
+        data['telegram_id'] = message.from_user.id
+        if not preferences:
+            await message.answer(texts["AGE"], reply_markup=Create(texts))
+            await RegistrationState.age.set()
+        else:
+            # Просто передайте имя напрямую в функцию обновления профиля
+            await DB.update_user_profile(user_id, {"name": name})
+            await state.finish()
+            await message.answer(texts["update_successful"])
+            await message.answer(texts["welcome_message"], reply_markup=main(texts))
 
 
 @dp.message_handler(state=RegistrationState.age)
-async def process_age(message: types.Message, state: FSMContext):
+@cancels
+async def process_age(message: types.Message, state: FSMContext, texts, preferences, user_id, raw_state):
     try:
         age = int(message.text)
     except ValueError:
-        await message.reply("Пожалуйста, введите корректное значение возраста (целое число).")
+        await message.answer(texts["VAllUE-AGE"])
         return
 
-    if not (0 <= age <= 60):
-        await message.answer("Возраст должен быть от 0 до 60 лет. Пожалуйста, попробуйте еще раз.")
+    if not (10 <= age <= 70):
+        await message.answer(texts["TRABLE-AGE"])
         return
 
     async with state.proxy() as data:
         data['age'] = age
 
-    await message.answer("Теперь загрузите вашу фотографию")
-    await RegistrationState.photo.set()
+    if not preferences:
+        await message.answer(texts["photo_prompt"], reply_markup=Create(texts))
+        await RegistrationState.photo.set()
+    else:
+        # Просто передайте имя напрямую в функцию обновления профиля
+        await DB.update_user_profile(user_id, {"age": age})
+        await state.finish()
+        await message.answer(texts["update_successful"])
+        await message.answer(texts["welcome_message"], reply_markup=main(texts))
 
 
 @dp.message_handler(content_types=ContentType.PHOTO, state=RegistrationState.photo)
 async def process_photo(message: types.Message, state: FSMContext):
-    # Получаем файл фотографии из сообщения
-    photo = message.photo[-1].file_id
+    texts = load_language_texts(get_user_language(message.from_user.id, DB.session))
+    user_id = message.from_user.id
+    user = DB.get_user(user_id)
+    preferences = user.about
+    if message.content_type == ContentType.PHOTO:
+        photo = message.photo[-1].file_id
 
-    async with state.proxy() as data:
-        data['photo'] = photo
+        async with state.proxy() as data:
+            data['photo'] = photo
 
-    await message.answer("Выберите ваш пол", reply_markup=gender_markup)
-    await RegistrationState.gender.set()
+        if not preferences:
+            await message.answer((texts["gender_prompt"]), reply_markup=genders(texts))
+            await RegistrationState.gender.set()
+        else:
+            # Просто передайте имя напрямую в функцию обновления профиля
+            await DB.update_user_profile(user_id, {"photo": photo})
+            await state.finish()
+            await message.answer(texts["update_successful"])
+            await message.answer(texts["welcome_message"], reply_markup=main(texts))
+    else:
+        await message.answer(texts["VAllUE-PHOTO"])
 
 
-@dp.message_handler(lambda message: message.text in ["♂️ Мужской", "♀️ Женский", "🤖 Другое", "♂️", "♀️", "🤖"],
-                    state=RegistrationState.gender)
-async def process_gender(message: types.Message, state: FSMContext):
+@dp.message_handler(state=RegistrationState.photo)
+async def handle_text_input(message: types.Message):
+    texts = load_language_texts(get_user_language(message.from_user.id, DB.session))
+
+    await message.answer(texts["VAllUE-PHOTO"])
+
+
+@dp.message_handler(state=RegistrationState.gender)
+@cancels
+async def process_gender(message: types.Message, state: FSMContext, texts, preferences, user_id, raw_state):
+
     gender = message.text
 
-    if gender not in ["♂️ Мужской", "♀️ Женский", "🤖 Другое", "♂️", "♀️", "🤖"]:
-        await message.answer("Пожалуйста, выберите один из предложенных вариантов")
+    valid_genders = [texts["male"], texts["female"], texts["other"], "♂️", "♀️", "🤖"]
+
+    if gender not in valid_genders:
+        await message.answer(texts["VAllUE-GENDER"].format(", ".join(valid_genders)))
         return
 
     async with state.proxy() as data:
         data['gender'] = gender
 
-    await message.answer("Введите вашу страну", reply_markup=location_keyboard)
-    await RegistrationState.country.set()
+        if not preferences:
+            await message.answer(texts["location_prompt"], reply_markup=location(texts))
+            await RegistrationState.country.set()
+        else:
+            # Просто передайте имя напрямую в функцию обновления профиля
+            await DB.update_user_profile(user_id, {"gender": gender})
+            await state.finish()
+            await message.answer(texts["update_successful"])
+            await message.answer(texts["welcome_message"], reply_markup=main(texts))
 
 
-@dp.message_handler(content_types=[ContentType.LOCATION, ContentType.TEXT], state=RegistrationState.country)
-async def process_country_input_or_location(message: types.Message, state: FSMContext):
-    if message.content_type == ContentType.LOCATION:
-        latitude = message.location.latitude
-        longitude = message.location.longitude
-
-        geolocator = Nominatim(user_agent="myGeocoder")
-        location = geolocator.reverse((latitude, longitude), language="ru")
-        country = location.raw["address"].get("country")
-        city = location.raw["address"].get("city")
-
-        async with state.proxy() as data:
-            data['country'] = country
-            data['city'] = city
-
-        await message.answer(f"Ваша страна: {country}")
-        await message.answer(f"Ваш город: {city}")
-        await message.answer("Расскажите немного о себе", reply_markup=ReplyKeyboardRemove())
-        await RegistrationState.about.set()
-    else:
-        country = message.text.strip()
-        async with state.proxy() as data:
-            data['country'] = country
-
-        await message.answer("Укажите ваш город")
-        await RegistrationState.city.set()
+@dp.message_handler(content_types=ContentType.TEXT, state=RegistrationState.gender)
+async def process_gender_text(message: types.Message):
+    texts = load_language_texts(get_user_language(message.from_user.id, DB.session))
+    await message.answer(texts["TRABLE-GENDER"])
 
 
-@dp.message_handler(content_types=[ContentType.LOCATION, ContentType.TEXT], state=RegistrationState.city)
-async def process_city_input_or_location(message: types.Message, state: FSMContext):
-    if message.content_type == ContentType.LOCATION:
-        latitude = message.location.latitude
-        longitude = message.location.longitude
-
-        geolocator = Nominatim(user_agent="myGeocoder")
-        location = geolocator.reverse((latitude, longitude), language="ru")
-        city = location.raw["address"].get("city")
-    else:
-        city = message.text.strip()
-
+@dp.message_handler(lambda message: message.content_type in [ContentType.LOCATION, ContentType.TEXT],
+                    state=RegistrationState.country)
+@cancels
+async def process_location_or_city_input(message: types.Message, state: FSMContext, texts, preferences, user_id, raw_state):
     async with state.proxy() as data:
-        data['city'] = city
+        if message.content_type == ContentType.LOCATION:
+            latitude = message.location.latitude
+            longitude = message.location.longitude
+            geolocator = Nominatim(user_agent="PhysioGnomySBOT")
 
-    await message.answer(f"Ваш город: {city}")
-    await message.answer("Расскажите немного о себе", reply_markup=ReplyKeyboardRemove())
-    await RegistrationState.about.set()
+            try:
+                locations = geolocator.reverse((latitude, longitude), language="ru")
+                country = locations.raw["address"].get("country")
+                city = locations.raw["address"].get("city")
+
+                if data.get('country') is None:
+                    data['country'] = country
+                    await message.answer(texts["USER_COUNTRY"] + country)
+                if data.get('city') is None:
+                    data['city'] = city
+                    await message.answer(texts["USER_CITY"] + city)
+                    if not preferences:
+                        await message.answer(texts["about_prompt"], reply_markup=Create(texts))
+                        await RegistrationState.about.set()
+                    else:
+                        # Просто передайте имя напрямую в функцию обновления профиля
+                        await DB.update_user_profile(user_id, {"country": country})
+                        await DB.update_user_profile(user_id, {"city": city})
+                        await state.finish()
+                        await message.answer(texts["update_successful"])
+                        await message.answer(texts["welcome_message"], reply_markup=main(texts))
+
+                await message.answer(texts["about_prompt"], reply_markup=Create(texts))
+                await RegistrationState.about.set()
+            except Exception as e:
+                logging.error(f"Ошибка при обратном геокодировании: {e}")
+                await message.answer(texts["TRABLE_CITY"])
+        else:
+            async with state.proxy() as data:
+                if 'country' not in data:
+                    location_input = message.text.strip()
+                    if not location_input.isalpha():
+                        await message.answer(texts["TRABLE_COUNTRY_NAME"])
+                        return
+                    data['country'] = location_input
+
+                    await message.answer(
+                        f"{texts['USER_COUNTRY']} {data['country']}")
+                    if not preferences:
+                        await message.answer(texts["CITY_PARTNER"], reply_markup=Create(texts))
+                        await RegistrationState.city.set()
+                    else:
+                        # Просто передайте имя напрямую в функцию обновления профиля
+                        await DB.update_user_profile(user_id, {"country": location_input})
+                        await state.finish()
+                        await message.answer(texts["update_successful"])
+                        await message.answer(texts["welcome_message"], reply_markup=main(texts))
+
+
+@dp.message_handler(lambda message: message.content_type == ContentType.TEXT, state=RegistrationState.city)
+@cancels
+async def process_text_location_input(message: types.Message, state: FSMContext, texts, preferences, user_id, raw_state):
+    async with state.proxy() as data:
+        city_input = message.text.strip()
+        if not city_input.isalpha():
+            await message.answer(texts["TRABLE_CITY_NAME"])
+            return
+        data['city'] = city_input
+        await message.answer( f"{texts['USER_CITY']}:{city_input}")
+        if not preferences:
+            await message.answer(texts["about_prompt"], reply_markup=Create(texts))
+            await RegistrationState.about.set()
+        else:
+            # Просто передайте имя напрямую в функцию обновления профиля
+            await DB.update_user_profile(user_id, {"city": city_input})
+            await state.finish()
+            await message.answer(texts["update_successful"])
+            await message.answer(texts["welcome_message"], reply_markup=main(texts))
 
 
 @dp.message_handler(state=RegistrationState.about)
-async def process_about(message: types.Message, state: FSMContext):
+@cancels
+async def process_about(message: types.Message, state: FSMContext, texts, preferences, user_id,  raw_state):
     about = message.text.strip()
+    if not preferences:
+        async with state.proxy() as data:
+            data['about'] = about
+            telegram_username = message.from_user.username
+            user_id = message.from_user.id
+        name = data["name"]
+        age = data["age"]
+        gender = data["gender"]
+        country = data["country"]
+        city = data["city"]
+        about = data["about"]
+        photo = data["photo"]
+        language = get_user_language(user_id, DB.session)
 
-    async with state.proxy() as data:
-        data['about'] = about
-
-    user_id = message.from_user.id
-    name = data["name"]
-    age = data["age"]
-    gender = data["gender"]
-    country = data["country"]
-    city = data["city"]
-    about = data["about"]
-    photo = data["photo"]
-
-    create_profile(user_id, name, age, gender, country, about, photo, city)
-    await bot.send_photo(chat_id=message.chat.id, photo=photo)
-    await message.answer(f"🎉 Поздравляем, {name}!\n"
-                         f"Ваша анкета успешно создана!\n"
-                         f"Ваши данные:\n"
-                         f"Имя: {name}, Возраст: {age}, Пол: {gender}\n"
-                         f"Страна: {country}, Город: {city}\n"
-                         f"Информация о себе: {about}\n",
-                         reply_markup=ReplyKeyboardRemove())
-
-    await state.finish()
-    await message.answer("Добро пожаловать в ваш персональный кабинет!", reply_markup=main_keyboard)
-
-
-@dp.message_handler(state=Newdata.name)
-async def process_name(message: types.Message, state: FSMContext):
-    name = message.text
-    if not (3 <= len(name) <= 15):
-        await message.answer("Имя должно содержать от 3 до 15 символов. Пожалуйста, попробуйте еще раз.")
-        return
-
-    if not name.isalpha():
-        await message.answer("Имя может содержать только буквы. Пожалуйста, попробуйте еще раз.")
-        return
-    user_id = message.from_user.id
-    result = await asyncio.to_thread(DB.update_user_name, user_id, name)
-
-    if result:
-        await message.reply("Имя успешно обновлено!")
-    else:
-        await message.reply("Произошла ошибка при обновлении имени.")
-
-    await state.finish()
-    await message.answer("Добро пожаловать в ваш персональный кабинет!", reply_markup=main_keyboard)
-
-
-@dp.message_handler(state=Newdata.age)
-async def process_age(message: types.Message, state: FSMContext):
-    try:
-        age = int(message.text)
-    except ValueError:
-        await message.reply("Пожалуйста, введите корректное значение возраста (целое число).")
-        return
-
-    if not (0 <= age <= 60):
-        await message.answer("Возраст должен быть от 0 до 60 лет. Пожалуйста, попробуйте еще раз.")
-        return
-
-    user_id = message.from_user.id
-    result = await asyncio.to_thread(DB.update_user_age, user_id, age)
-
-    if result:
-        await message.reply("Возраст успешно обновлен!")
-    else:
-        await message.reply("Произошла ошибка при обновлении возраста.")
-
-    await state.finish()
-    await message.answer("Добро пожаловать в ваш персональный кабинет!", reply_markup=main_keyboard)
-
-
-@dp.message_handler(content_types=ContentType.PHOTO, state=Newdata.photo)
-async def process_photo(message: types.Message, state: FSMContext):
-    # Получаем файл фотографии из сообщения
-    photo = message.photo[-1].file_id
-
-    user_id = message.from_user.id
-    if await DB.update_user_photo(user_id, photo):
-        # Фотография успешно обновлена в базе данных
-        await bot.send_message(chat_id=message.chat.id, text="Фотография успешно обновлена!")
+        DB.update_profile(user_id, name, age, gender, country, about, photo, city, telegram_username, language)
         await bot.send_photo(chat_id=message.chat.id, photo=photo)
+        await message.answer(f"{texts['G']}, {name}!\n"
+                             f"{texts['R']}\n"
+                             f"{texts['E']}\n"
+                             f"{name}, {age}, {texts['gender']}: {gender}\n"
+                             f"{texts['country']} {country}, {texts['city']}  {city}\n"
+                             f"{about}\n",
+                             reply_markup=ReplyKeyboardRemove())
+
+        await state.finish()
+        await message.answer(texts["welcome_message"], reply_markup=main(texts))
     else:
-        # Произошла ошибка при обновлении фотографии
-        await bot.send_message(chat_id=message.chat.id, text="Произошла ошибка при обновлении фотографии.")
-
-    await state.finish()
-    await message.answer("Добро пожаловать в ваш персональный кабинет!", reply_markup=main_keyboard)
-
-
-@dp.message_handler(state=Newdata.about)
-async def process_about_me(message: types.Message, state: FSMContext):
-    about_me = message.text
-    user_id = message.from_user.id
-    result = await asyncio.to_thread(DB.update_user_about, user_id, about_me)
-
-    if result:
-        await message.reply("Информация о себе успешно обновлена!")
-    else:
-        await message.reply("Произошла ошибка при обновлении информации о себе.")
-
-    await state.finish()
-    await message.answer("Добро пожаловать в ваш персональный кабинет!", reply_markup=main_keyboard)
-
-
-@dp.message_handler(content_types=[ContentType.LOCATION, ContentType.TEXT], state=Newdata.country)
-async def process_country_input_or_location(message: types.Message, state: FSMContext):
-    if message.content_type == ContentType.LOCATION:
-        latitude = message.location.latitude
-        longitude = message.location.longitude
-
-        geolocator = Nominatim(user_agent="myGeocoder")
-        location = geolocator.reverse((latitude, longitude), language="ru")
-        country = location.raw["address"].get("country")
-    else:
-        country = message.text.strip()
-
-    async with state.proxy() as data:
-        data['country'] = country
-
-    await message.answer(f"Ваша страна: {country}")
-    await message.answer("Укажите ваш город или нажмите на кнопку '📍 Предоставить геолокацию'",
-                         reply_markup=location_keyboard)
-    await RegistrationState.city.set()
-
-
-@dp.message_handler(content_types=[ContentType.LOCATION, ContentType.TEXT], state=Newdata.city)
-async def process_city_input_or_location(message: types.Message, state: FSMContext):
-    if message.content_type == ContentType.LOCATION:
-        latitude = message.location.latitude
-        longitude = message.location.longitude
-
-        geolocator = Nominatim(user_agent="myGeocoder")
-        location = geolocator.reverse((latitude, longitude), language="ru")
-        city = location.raw["address"].get("city")
-    else:
-        city = message.text.strip()
-
-    async with state.proxy() as data:
-        data['city'] = city
-
-    await message.reply(f"Ваш город: {city}. Город успешно обновлен!")
-
-    await state.finish()
-    await message.answer("Добро пожаловать в ваш персональный кабинет!", reply_markup=main_keyboard)
-
-
-@dp.message_handler(state=Newdata.country)
-async def process_country(message: types.Message, state: FSMContext):
-    country = message.text
-    user_id = message.from_user.id
-    result = await asyncio.to_thread(DB.update_user_country, user_id, country)
-
-    if result:
-        await message.reply(f"Ваша страна: {country}. Страна успешно обновлена!")
-    else:
-        await message.reply("Произошла ошибка при обновлении страны.")
-
-    await state.finish()
-    await message.answer("Добро пожаловать в ваш персональный кабинет!", reply_markup=main_keyboard)
+        # Просто передайте имя напрямую в функцию обновления профиля
+        await DB.update_user_profile(user_id, {"about": about})
+        await state.finish()
+        await message.answer(texts["update_successful"])
+        await message.answer(texts["welcome_message"], reply_markup=main(texts))
