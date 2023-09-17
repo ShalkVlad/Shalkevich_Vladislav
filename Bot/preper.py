@@ -134,7 +134,7 @@ async def process_location_or_text(message: types.Message, state: FSMContext):
                     data['city'] = city_input
 
                     await message.answer(
-                        f"{texts['USER_COUNTRY']}:{data['country']}, {texts['USER_CITY']}:{city_input}")
+                        f"{texts['serch_preper']}:{data['country']}, {texts['USER_CITY']}:{city_input}")
 
                     await message.answer(texts["YOU_FOTO"], reply_markup=ReplyKeyboardRemove())
                     await ProfileState.confirmed.set()

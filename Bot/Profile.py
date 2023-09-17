@@ -24,7 +24,7 @@ class RegistrationState(StatesGroup):
 
 @dp.message_handler(state=RegistrationState.name)
 @cancels
-async def process_name(message: types.Message, state: FSMContext,texts, preferences, user_id, raw_state):
+async def process_name(message: types.Message, state: FSMContext, texts, preferences, user_id, raw_state):
     name = message.text.strip()
     if not (3 <= len(name) <= 15) or not name.isalpha():
         await message.answer(texts["VAllUE-NAME"])
@@ -106,7 +106,6 @@ async def handle_text_input(message: types.Message):
 @dp.message_handler(state=RegistrationState.gender)
 @cancels
 async def process_gender(message: types.Message, state: FSMContext, texts, preferences, user_id, raw_state):
-
     gender = message.text
 
     valid_genders = [texts["male"], texts["female"], texts["other"], "♂️", "♀️", "🤖"]
@@ -138,7 +137,8 @@ async def process_gender_text(message: types.Message):
 @dp.message_handler(lambda message: message.content_type in [ContentType.LOCATION, ContentType.TEXT],
                     state=RegistrationState.country)
 @cancels
-async def process_location_or_city_input(message: types.Message, state: FSMContext, texts, preferences, user_id, raw_state):
+async def process_location_or_city_input(message: types.Message, state: FSMContext, texts, preferences, user_id,
+                                         raw_state):
     async with state.proxy() as data:
         if message.content_type == ContentType.LOCATION:
             latitude = message.location.latitude
@@ -196,14 +196,15 @@ async def process_location_or_city_input(message: types.Message, state: FSMConte
 
 @dp.message_handler(lambda message: message.content_type == ContentType.TEXT, state=RegistrationState.city)
 @cancels
-async def process_text_location_input(message: types.Message, state: FSMContext, texts, preferences, user_id, raw_state):
+async def process_text_location_input(message: types.Message, state: FSMContext, texts, preferences, user_id,
+                                      raw_state):
     async with state.proxy() as data:
         city_input = message.text.strip()
         if not city_input.isalpha():
             await message.answer(texts["TRABLE_CITY_NAME"])
             return
         data['city'] = city_input
-        await message.answer( f"{texts['USER_CITY']}:{city_input}")
+        await message.answer(f"{texts['USER_CITY']}:{city_input}")
         if not preferences:
             await message.answer(texts["about_prompt"], reply_markup=Create(texts))
             await RegistrationState.about.set()
@@ -217,7 +218,7 @@ async def process_text_location_input(message: types.Message, state: FSMContext,
 
 @dp.message_handler(state=RegistrationState.about)
 @cancels
-async def process_about(message: types.Message, state: FSMContext, texts, preferences, user_id,  raw_state):
+async def process_about(message: types.Message, state: FSMContext, texts, preferences, user_id, raw_state):
     about = message.text.strip()
     if not preferences:
         async with state.proxy() as data:
