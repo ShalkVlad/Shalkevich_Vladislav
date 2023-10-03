@@ -103,11 +103,6 @@ def delete_user_profile(user_id: int):
     # Удаляем профиль пользователя
     session.query(User).filter_by(id=user_id).delete()
 
-    # Удаляем взаимные симпатии пользователя
-    from likes import Like
-    session.query(Like).filter_by(sender_id=user_id).delete()
-    session.query(Like).filter_by(recipient_id=user_id).delete()
-
     session.commit()
     return True
 

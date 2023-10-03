@@ -1,11 +1,9 @@
-import json
-
 from aiogram import types, Dispatcher
 from aiogram.dispatcher import FSMContext
 
-import DB
-import Profil_vere
-from User_kb import start, helps, main, language
+from DataBase import DB, Profil_vere
+from Language.Language import load_language_texts, get_user_language, get_user_texts, Language
+from User_Keybord.User_kb import start, main, helps
 
 
 def cancels(func):
@@ -24,7 +22,7 @@ def cancels(func):
                 await message.answer(texts["cancel_message"], reply_markup=main(texts))
         elif message.text.strip() == texts["Cancel"]:
             await state.finish()
-            await message.answer(texts["NEV-CANCEL"], reply_markup=main(texts))
+            await message.answer(texts["update_cancelled"], reply_markup=main(texts))
         else:
             # Вызываем обработчик сообщения и передаем `texts` как аргумент
             await func(message, state, texts, preferences, user_id, *args, **kwargs)
@@ -50,7 +48,7 @@ def cancel(func):
                 await message.answer(texts["cancel_message"], reply_markup=main(texts))
         elif message.text.strip() == texts["Cancel"]:
             await state.finish()
-            await message.answer(texts["NEV-CANCEL"], reply_markup=main(texts))
+            await message.answer(texts["update_cancelled"], reply_markup=main(texts))
         else:
             # Вызываем обработчик сообщения и передаем `texts` как аргумент
             await func(message, state, texts, preferences, user_id, *args, **kwargs)
@@ -58,68 +56,6 @@ def cancel(func):
             # Здесь можно выполнить какие-либо действия после выполнения функции
 
     return cancel_registration
-
-
-def get_user_language(user_id: int, session: DB.Session):
-    user = session.query(DB.User).filter_by(id=user_id).first()
-    if user:
-        return user.language
-    return None
-
-
-async def Language(message: types.Message):
-    texts = get_user_texts(message.from_user.id, DB.session)
-    await message.answer(texts["change_language"], reply_markup=language)
-
-
-def get_user_texts(user_id, session):
-    user_language = get_user_language(user_id, session)
-    return load_language_texts(user_language)
-
-
-def load_language_texts(languag):
-    if not languag:
-        languag = "Русский"
-    with open(f"{languag}.json", "r", encoding="utf-8") as file:
-        return json.load(file)
-
-
-# Function to set the language to Belarusian
-async def belarusian_language(message: types.Message):
-    user_id = message.from_user.id
-    await DB.update_user_language(user_id, "Беларускі")
-    texts = get_user_texts(message.from_user.id, DB.session)
-    await message.answer(texts["doneBelarusian"])
-
-
-# Function to set the language to Ukrainian
-async def ukrainian_language(message: types.Message):
-    user_id = message.from_user.id
-    await DB.update_user_language(user_id, "Українська")
-    texts = get_user_texts(message.from_user.id, DB.session)
-    await message.answer(texts["doneUkrainian"])
-
-
-# Function to set the language to Polish
-async def polish_language(message: types.Message):
-    user_id = message.from_user.id
-    await DB.update_user_language(user_id, "Polski")
-    texts = get_user_texts(message.from_user.id, DB.session)
-    await message.answer(texts["donePolish"])
-
-
-async def russian_language(message: types.Message):
-    user_id = message.from_user.id
-    await DB.update_user_language(user_id, "Русский")
-    texts = get_user_texts(message.from_user.id, DB.session)
-    await message.answer(texts["doneRu"])
-
-
-async def english_language(message: types.Message):
-    user_id = message.from_user.id
-    await DB.update_user_language(user_id, "English")
-    texts = get_user_texts(message.from_user.id, DB.session)
-    await message.answer(texts["doneEng"])
 
 
 # Обработчик команды /start

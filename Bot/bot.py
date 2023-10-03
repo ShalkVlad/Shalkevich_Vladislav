@@ -1,8 +1,8 @@
 from aiogram.utils import executor
 
-import Other
-import User
-from Creat_Bot import dp
+from Seting import Other
+from Seting.Creat_Bot import dp
+from User import User_Main
 
 
 async def on_bot_start(_):
@@ -10,7 +10,7 @@ async def on_bot_start(_):
 
 
 Other.register(dp)
-User.register_user(dp)
+User_Main.register_user(dp)
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True, on_startup=on_bot_start)

@@ -4,7 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25924913-6d4d-4823-b1e6-9f96fbd712d8" name="Changes" comment="" />
+    <list default="true" id="25924913-6d4d-4823-b1e6-9f96fbd712d8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Black.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creat_Bot.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/English.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Other.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Polski.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Profil_vere.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Profile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/User.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/User_kb.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/likes.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preper.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/search.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Беларускі.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Русский.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Сonfig.py" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,20 +40,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
   <component name="ProjectId" id="2O9WHZ7kQCobdxkxMVFZjN4nJ40" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/django/store&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/django/store",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Python.bot">
     <configuration name="bot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Бот" />
