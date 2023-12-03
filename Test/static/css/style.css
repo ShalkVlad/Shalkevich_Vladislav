@@ -1,0 +1,150 @@
+body {
+    font-family: Arial, sans-serif;
+    background: url("/static/background.png") no-repeat center center fixed;
+    background-color: #f4f4f4;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.forms-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+#addTaskFormContainer,
+#editFormContainer {
+    margin-right: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    font-weight: bolder;
+    width: -webkit-fill-available;
+}
+
+li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+li button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #ff6347;
+    color: #fff;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    margin-bottom: 8px;
+}
+
+input,
+textarea,
+select {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#searchResult {
+    background-color: yellow;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#sortContainer {
+    top: 230px;
+    left: 10px;
+    z-index: 1;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#editTaskForm {
+    margin-right: 270px;
+    margin-top: -505px;
+    display: none;
+}
+
+#sortContainer label {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#sortType {
+    margin-right: 10px;
+}
+
+label[for="fileAttachment"] {
+    margin-bottom: 8px;
+    display: block;
+}
+
+#fileAttachment {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#fileAttachment:hover {
+    border-color: #4caf50;
+}
+
+#fileAttachment:focus {
+    outline: none;
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Task List</title>
+</head>
+
+<body>
+    <h1>Task List</h1>
+
+    <label for="taskId">Need help finding a task? Specify the number:</label>
+    <input type="number" id="taskId" name="taskId" required>
+    <button type="button" id="searchTaskButton">Find Task</button>
+    <div id="searchResult"></div>
+
+    <div id="sortContainer">
+        <label for="sortType">Sort by Date:</label>
+        <select id="sortType" name="sortType">
+            <option value="asc">Ascending</option>
+            <option value="desc" id="applySortButton">Descending</option>
+        </select>
+
+        <label for="filterPriority">Filter by Priority:</label>
+        <select id="filterPriority" name="filterPriority">
+            <option value="">All</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select>
+    </div>
+
+    <ul id="taskList"></ul>
+
+    <form id="addTaskForm">
+        <label for="title">Task Title:</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="description">Task Description:</label>
+        <textarea id="description" name="description" required></textarea>
+
+        <label for="categories">Categories:</label>
+        <input type="text" id="categories" name="categories">
+
+        <label for="fileAttachment">Attach File:</label>
+        <input type="file" id="fileAttachment" name="fileAttachment">
+
+        <label for="priority">Execution Priority:</label>
+        <select id="priority" name="priority">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select>
+
+        <button type="submit">Add Task</button>
+    </form>
+
+    <form id="editTaskForm">
+        <h2>Edit Task</h2>
+
+        <label for="editTitle">Task Title:</label>
+        <input type="text" id="editTitle" name="editTitle" required>
+
+        <label for="editDescription">Task Description:</label>
+        <textarea id="editDescription" name="editDescription" required></textarea>
+
+        <label for="editCategories">Categories:</label>
+        <input type="text" id="editCategories" name="editCategories">
+
+        <label for="editFileAttachment">Attach File:</label>
+        <input type="file" id="editFileAttachment" name="editFileAttachment">
+
+        <label for="editPriority">Execution Priority:</label>
+        <select id="editPriority" name="editPriority">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select>
+
+        <button type="button" id="updateTaskButton">Save Changes</button>
+    </form>
+
+    <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+</body>
+
+</html>

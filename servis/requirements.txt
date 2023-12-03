@@ -1,0 +1,5 @@
+aiogram < 3
+geopy
+aiohttp
+deepface == 0.0.79
+sqlalchemy
