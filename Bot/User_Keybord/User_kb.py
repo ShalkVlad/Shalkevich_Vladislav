@@ -1,196 +1,117 @@
-from aiogram.types import KeyboardButton, ReplyKeyboardMarkup, InlineKeyboardButton
-
+from aiogram.types import (
+    KeyboardButton,
+    ReplyKeyboardMarkup,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+)
 
 def start(texts):
-    create_profile = InlineKeyboardButton((texts["profile"]))
-    info = InlineKeyboardButton((texts["info"]))
+    create_profile = InlineKeyboardButton(text=texts["profile"], callback_data="create_profile")
+    info = InlineKeyboardButton(text=texts["info"], callback_data="info")
 
-    starts = ReplyKeyboardMarkup(resize_keyboard=True)
+    starts = InlineKeyboardMarkup(row_width=2)
     starts.add(create_profile, info)
 
     return starts
 
-
 def helps(texts):
-    community = InlineKeyboardButton((texts["community"]))
-    capabilities = InlineKeyboardButton((texts["capabi"]))
-    Mein_Menu = InlineKeyboardButton((texts["menu"]))
+    community = InlineKeyboardButton(text=texts["community"], callback_data="community")
+    capabilities = InlineKeyboardButton(text=texts["capabi"], callback_data="capabilities")
+    menu = InlineKeyboardButton(text=texts["menu"], callback_data="menu")
 
-    helping = ReplyKeyboardMarkup(resize_keyboard=True)
-    helping.add(community, capabilities, Mein_Menu)
+    helping = InlineKeyboardMarkup(row_width=2)
+    helping.add(community, capabilities, menu)
 
     return helping
 
-
 def genders(texts):
-    male = KeyboardButton(texts["male"])
-    female = KeyboardButton(texts["female"])
-    other = KeyboardButton(texts["other"])
+    male = KeyboardButton(text=texts["male"])
+    female = KeyboardButton(text=texts["female"])
+    other = KeyboardButton(text=texts["other"])
 
-    gender = ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
+    gender = ReplyKeyboardMarkup(resize_keyboard=True)
     gender.add(male, female, other)
 
     return gender
 
-
 def main(texts):
-    MY_profile = KeyboardButton(texts["MY_profile"])
-    Bonus = KeyboardButton(texts["All_bonus"])
-    wallet = KeyboardButton(texts["wallets"])
-    Sympathies = KeyboardButton(texts["sympathies"])
-    view = KeyboardButton(texts["view"])
-    Language = KeyboardButton(texts["language"])
+    buttons = [
+        KeyboardButton(text=texts["MY_profile"]),
+        KeyboardButton(text=texts["All_bonus"]),
+        KeyboardButton(text=texts["wallets"]),
+        KeyboardButton(text=texts["sympathies"]),
+        KeyboardButton(text=texts["view"]),
+        KeyboardButton(text=texts["language"]),
+    ]
+    main_menu = ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+    main_menu.add(*buttons)
 
-    Main = ReplyKeyboardMarkup(row_width=2, selective=True, resize_keyboard=True)
-    Main.add(MY_profile, Bonus, wallet, Sympathies, view, Language)
-
-    return Main
-
+    return main_menu
 
 def bonus(texts):
-    star = KeyboardButton(texts["star"])
-    hello = KeyboardButton(texts["hello"])
-    vip = KeyboardButton(texts["vip"])
-    limitless = KeyboardButton(texts["limitless"])
-    men = InlineKeyboardButton(texts["menu"])
+    buttons = [
+        InlineKeyboardButton(text=texts["star"], callback_data="star"),
+        InlineKeyboardButton(text=texts["hello"], callback_data="hello"),
+        InlineKeyboardButton(text=texts["vip"], callback_data="vip"),
+        InlineKeyboardButton(text=texts["limitless"], callback_data="limitless"),
+    ]
+    menu_button = InlineKeyboardButton(text=texts["menu"], callback_data="menu")
+    bonuses = InlineKeyboardMarkup(row_width=2)
+    bonuses.add(*buttons, menu_button)
 
-    bonuses = ReplyKeyboardMarkup([[star, hello], [limitless, vip],
-                                   [men]], row_width=2, selective=True,
-                                  resize_keyboard=True)
     return bonuses
 
-
 def edits(texts):
-    edit = KeyboardButton(texts["edit"])
-    delete = KeyboardButton(texts["delete"])
-    apply_filter = KeyboardButton(texts["apply_filter"])
-    menU = InlineKeyboardButton(texts["menu"])
+    buttons = [
+        InlineKeyboardButton(text=texts["edit"], callback_data="edit"),
+        InlineKeyboardButton(text=texts["delete"], callback_data="delete"),
+        InlineKeyboardButton(text=texts["apply_filter"], callback_data="apply_filter"),
+    ]
+    menu_button = InlineKeyboardButton(text=texts["menu"], callback_data="menu")
+    edit_profile_keyboard = InlineKeyboardMarkup(row_width=1)
+    edit_profile_keyboard.add(*buttons, menu_button)
 
-    edit_profile_keyboard = ReplyKeyboardMarkup(resize_keyboard=True)
-    edit_profile_keyboard.add(edit, delete, menU, apply_filter)
     return edit_profile_keyboard
 
-
 def edit_prof(texts):
-    edit_name = KeyboardButton(texts["edit_name"])
-    edit_age = KeyboardButton(texts["edit_age"])
-    edit_country = KeyboardButton(texts["edit_country"])
-    edit_about = KeyboardButton(texts["edit_about"])
-    photo = KeyboardButton(texts["photo"])
-    me = InlineKeyboardButton(texts["menu"])
+    buttons = [
+        InlineKeyboardButton(text=texts["edit_name"], callback_data="edit_name"),
+        InlineKeyboardButton(text=texts["edit_age"], callback_data="edit_age"),
+        InlineKeyboardButton(text=texts["edit_country"], callback_data="edit_country"),
+        InlineKeyboardButton(text=texts["edit_about"], callback_data="edit_about"),
+        InlineKeyboardButton(text=texts["photo"], callback_data="photo"),
+    ]
+    menu_button = InlineKeyboardButton(text=texts["menu"], callback_data="menu")
+    edit_profile = InlineKeyboardMarkup(row_width=1)
+    edit_profile.add(*buttons, menu_button)
 
-    EditS = ReplyKeyboardMarkup(resize_keyboard=True)
-    EditS.add(edit_name, edit_age,
-              edit_country, edit_about, photo,
-              me)
-    return EditS
-
+    return edit_profile
 
 def cancel(texts):
-    cancelS = KeyboardButton(texts["Cancel"])
-    cancelel = ReplyKeyboardMarkup(resize_keyboard=True)
-    cancelel.add(cancelS)
-    return cancelel
+    cancel_button = KeyboardButton(text=texts["Cancel"])
+    cancel_markup = ReplyKeyboardMarkup(resize_keyboard=True)
+    cancel_markup.add(cancel_button)
 
+    return cancel_markup
 
 def create_locations(texts):
-    provide_location = KeyboardButton(texts["provide_location"], request_location=True)
-    cancelS = KeyboardButton(texts["Cancel"])
-    locations = ReplyKeyboardMarkup(selective=True, resize_keyboard=True)
-    locations.add(provide_location, cancelS)
-    return locations
+    provide_location = KeyboardButton(text=texts["provide_location"], request_location=True)
+    cancel_button = KeyboardButton(text=texts["Cancel"])
 
-
-def sympathy(texts):
-    send_sympathy = KeyboardButton(texts["send_sympathy"])
-    received_sympathy = KeyboardButton(texts["received_sympathy"])
-    mutual_sympathy = KeyboardButton(texts["mutual_sympathys"])
-    Menu = InlineKeyboardButton(texts["menu"])
-
-    ED_sympathy = ReplyKeyboardMarkup(resize_keyboard=True)
-    ED_sympathy.add(mutual_sympathy, received_sympathy, send_sympathy, Menu)
-
-    return ED_sympathy
-
-
-def sympathies(texts):
-    sympathiesS = KeyboardButton(texts["sympathiesS"])
-
-    Sympathie = ReplyKeyboardMarkup(selective=True, resize_keyboard=True)
-    Sympathie.add(sympathiesS)
-
-    return Sympathie
-
-
-def create_syma_keyboard(texts):
-    skip = KeyboardButton(texts["skip"])
-    sympathyS = KeyboardButton(texts["sympathyS"])
-    menuu = InlineKeyboardButton(texts["menu"])
-
-    syma = ReplyKeyboardMarkup(resize_keyboard=True)
-    syma.add(sympathyS, skip, menuu)
-
-    return syma
-
-
-def create_nextsdelete_keyboard(texts):
-    Nexts = KeyboardButton(texts["Nexts"])
-    Deletes = KeyboardButton(texts["Deletes"])
-    litl_menu = InlineKeyboardButton(texts["menu"])
-
-    nextsdelete = ReplyKeyboardMarkup(resize_keyboard=True)
-    nextsdelete.add(Nexts, Deletes, litl_menu)
-
-    return nextsdelete
-
-
-def update_preferences(texts):
-    update_age = KeyboardButton(texts["update_age"])
-    update_country = KeyboardButton(texts["update_country"])
-    update_confirmation = KeyboardButton(texts["update_confirmation"])
-    gena = KeyboardButton(texts["gena"])
-    MYmenu = InlineKeyboardButton(texts["menu"])
-
-    update_preferences_keyboard = ReplyKeyboardMarkup(resize_keyboard=True)
-    update_preferences_keyboard.add(update_age, update_country, update_confirmation, gena, MYmenu)
-
-    return update_preferences_keyboard
-
-
-def Create(texts):
-    Cancels = KeyboardButton(texts["cancelS"])
-
-    Cancel = ReplyKeyboardMarkup(resize_keyboard=True)
-    Cancel.add(Cancels)
-
-    return Cancel
-
-
-def location(texts):
-    Location = KeyboardButton(texts["location"], request_location=True)
-
-    locations = ReplyKeyboardMarkup(selective=True, resize_keyboard=True)
-    locations.add(Location)
+    locations = ReplyKeyboardMarkup(resize_keyboard=True)
+    locations.add(provide_location, cancel_button)
 
     return locations
 
+def language_keyboard():
+    buttons = [
+        KeyboardButton("🇷🇺 Русский"),
+        KeyboardButton("🇬🇧 English"),
+        KeyboardButton("🇧🇾 Беларускі"),
+        KeyboardButton("🇺🇦 Українська"),
+        KeyboardButton("🇵🇱 Polski"),
+    ]
+    language_markup = ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+    language_markup.add(*buttons)
 
-def create_sympathy(texts):
-    sympathys = KeyboardButton(texts["add_simpaty"])
-    skip = KeyboardButton(texts["Nexts"])
-    back = KeyboardButton(texts["menu"])
-
-    SERCH_sympathy = ReplyKeyboardMarkup(resize_keyboard=True)
-    SERCH_sympathy.add(sympathys, skip, back)
-
-    return SERCH_sympathy
-
-
-russian_language = KeyboardButton("🇷🇺 Русский")
-english_language = KeyboardButton("🇬🇧 English")
-belarusian_language = KeyboardButton("🇧🇾 Беларускі")
-ukrainian_language = KeyboardButton("🇺🇦 Українська")
-polish_language = KeyboardButton("🇵🇱 Polski")
-
-language = ReplyKeyboardMarkup(resize_keyboard=True)
-language.add(russian_language, english_language, belarusian_language, ukrainian_language, polish_language)
+    return language_markup

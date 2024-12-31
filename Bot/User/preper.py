@@ -1,23 +1,25 @@
 import logging
 import os
-
 import aiohttp
-from aiogram import types
-from aiogram.dispatcher import FSMContext
-from aiogram.dispatcher.filters.state import StatesGroup, State
+from aiogram import Router, types
+from aiogram.filters import Command, StateFilter
+from aiogram.fsm.context import FSMContext
+from aiogram.fsm.state import StatesGroup, State
 from aiogram.types import ContentType, ReplyKeyboardRemove
 from deepface import DeepFace
 from geopy import Nominatim
 
-from DataBase import Profil_vere, DB
-from DataBase.Profil_vere import get_user_preferences
-from Language.Language import load_language_texts, get_user_language, get_user_texts
-from Seting.Config import TOKEN
-from Seting.Creat_Bot import dp, bot
-from Seting.Other import cancel
-from User import search
-from User_Keybord.User_kb import genders, main, location
+from Bot.DataBase import Profil_vere, DB
+from Bot.DataBase.Profil_vere import get_user_preferences
+from Bot.Language.Language import load_language_texts, get_user_language, get_user_texts
+from Bot.Seting.Config import TOKEN
+from Bot.Seting.Other import cancel
+from Bot.User import search
+from Bot.User_Keybord.User_kb import genders, main
+from Bot.bot import bot
+from WebSite.store.Blog.views import location
 
+router = Router()
 
 class ProfileState(StatesGroup):
     preferred_country = State()
@@ -27,7 +29,7 @@ class ProfileState(StatesGroup):
     preferred_city = State()
 
 
-@dp.message_handler(state=ProfileState.preferred_age)
+@router.message(StateFilter(ProfileState.preferred_age))
 @cancel
 async def process_age(message: types.Message, state: FSMContext, texts, preferences, user_id, raw_state):
     async with state.proxy() as data:
@@ -66,7 +68,7 @@ async def process_age(message: types.Message, state: FSMContext, texts, preferen
                 await message.answer(texts["welcome_message"], reply_markup=main(texts))
 
 
-@dp.message_handler(state=ProfileState.preferred_gender)
+@router.message(StateFilter(ProfileState.preferred_gender))
 @cancel
 async def process_gender(message: types.Message, state: FSMContext, texts, preferences, user_id, raw_state):
     gender = message.text
@@ -90,8 +92,7 @@ async def process_gender(message: types.Message, state: FSMContext, texts, prefe
         await message.answer(texts["welcome_message"], reply_markup=main(texts))
 
 
-@dp.message_handler(content_types=[ContentType.LOCATION, ContentType.TEXT],
-                    state=[ProfileState.preferred_country, ProfileState.preferred_city])
+@router.message(StateFilter([ProfileState.preferred_country, ProfileState.preferred_city]))
 async def process_location_or_text(message: types.Message, state: FSMContext):
     texts = load_language_texts(get_user_language(message.from_user.id, DB.session))
     async with state.proxy() as data:
@@ -111,7 +112,6 @@ async def process_location_or_text(message: types.Message, state: FSMContext):
                     await message.answer(texts["search_country"] + country + " " + city)
 
                 await message.answer(texts["send_photo_for_verification"], reply_markup=ReplyKeyboardRemove())
-
                 await ProfileState.confirmed.set()
             except Exception as e:
                 logging.error(f"Ошибка при обратном геокодировании: {e}")
@@ -130,18 +130,14 @@ async def process_location_or_text(message: types.Message, state: FSMContext):
                     await message.answer(texts["invalid_country_name"])
                     return
                 data['city'] = city_input
-
-                await message.answer(
-                    f"{texts['serch_preper']}:{data['country']}, {texts['USER_CITY']}:{city_input}")
-
+                await message.answer(f"{texts['serch_preper']}:{data['country']}, {texts['USER_CITY']}:{city_input}")
                 await message.answer(texts["send_photo_for_verification"], reply_markup=ReplyKeyboardRemove())
                 await ProfileState.confirmed.set()
 
 
-@dp.message_handler(state=ProfileState.confirmed)
+@router.message(StateFilter(ProfileState.confirmed))
 async def handle_text_input(message: types.Message):
     texts = load_language_texts(get_user_language(message.from_user.id, DB.session))
-
     await message.answer(texts["upload_photo_error"])
 
 
@@ -154,7 +150,7 @@ async def verify_face(img1, img2):
         return False
 
 
-@dp.message_handler(content_types=types.ContentType.PHOTO, state=ProfileState.confirmed)
+@router.message(content_types=types.ContentType.PHOTO, state=ProfileState.confirmed)
 async def process_user_photo(message: types.Message, state: FSMContext, raw_state):
     texts = get_user_texts(message.from_user.id, DB.session)
     print("Processing user photo:", message.from_user.id, message.photo)
@@ -218,3 +214,4 @@ async def process_user_photo(message: types.Message, state: FSMContext, raw_stat
         await state.finish()
         await search.ProfileLookupState.show_next.set()
         await search.process_profile_lookup(message, state)
+
